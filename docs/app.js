@@ -212,6 +212,27 @@
       merksatzBereich.hidden = true;
       return;
     }
+
+    // Zu viele Fehlversuche (Durchklicken)? Dann kein Merksatz, sondern neu starten.
+    var mindestens = aufgabe.mindestensErsterVersuch || 0;
+    if (anzahlErsterVersuch() < mindestens) {
+      var warnung = el('section', 'durchklicken');
+      warnung.setAttribute('role', 'alert');
+      warnung.appendChild(el('h2', null, A.durchklickenTitel));
+      warnung.appendChild(el('p', null, KB2.ersetzen(A.durchklickenText,
+        { x: anzahlErsterVersuch(), y: karten.length, z: mindestens })));
+      var neu = el('button', 'knopf durchklicken-knopf', A.durchklickenKnopf);
+      neu.type = 'button';
+      neu.addEventListener('click', zuruecksetzen);
+      warnung.appendChild(neu);
+      merksatzBereich.appendChild(warnung);
+      merksatzBereich.hidden = false;
+      if (scrollen) {
+        setTimeout(function () { warnung.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
+      }
+      return;
+    }
+
     KB2.Freischaltung.alsGeloestMerken(aufgabeId);
 
     var kasten = el('section', 'merksatz');
@@ -264,14 +285,15 @@
     if (vorher !== karten.length && anzahlRichtig() === karten.length) merksatzZeigen(true);
   }
 
-  nochEinmalKnopf.addEventListener('click', function () {
+  nochEinmalKnopf.addEventListener('click', zuruecksetzen);
+  function zuruecksetzen() {
     KB2.Freischaltung.zuruecknehmen(aufgabeId);
     zustand = leererZustand();
     speichern();
     allesZeigen(false);
     var ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: ruhig ? 'auto' : 'smooth' });
-  });
+  }
 
   allesZeigen(false);
 })();

@@ -58,6 +58,8 @@
   ✓ Merksatz noch nicht sichtbar
   ✓ Karte 10: S richtig → ✓, Erklärung, Knöpfe gesperrt
   ✓ Fortschritt „10 von 10 richtig“
+  ✓ Zu viele Fehlversuche: „Hey, nicht einfach durchklicken!“, kein Merksatz, keine Freischaltung
+  ✓ „Aufgabe neu starten“ setzt die Aufgabe zurück
   ✓ Kasten „Ihr Merksatz“ erscheint nach vollständiger Lösung
   ✓ „erkannt“ und „bearbeitet“ fett und unterstrichen
   ✓ Keine Sternchen sichtbar
@@ -150,6 +152,8 @@
   ✓ Merksatz noch nicht sichtbar
   ✓ Karte 8: P richtig → ✓, Erklärung, Knöpfe gesperrt
   ✓ Fortschritt „8 von 8 richtig“
+  ✓ Zu viele Fehlversuche: „Hey, nicht einfach durchklicken!“, kein Merksatz, keine Freischaltung
+  ✓ „Aufgabe neu starten“ setzt die Aufgabe zurück
   ✓ Kasten „Ihr Merksatz“ erscheint nach vollständiger Lösung
   ✓ Merksatz und Hinweis stehen im Kasten
   ✓ Zählung „Beim ersten Versuch richtig“
@@ -161,6 +165,10 @@
   ✓ Nach „Noch einmal üben“ ist der Knopf weg, bis wieder alles gelöst ist
   ✓ Nach erneuter vollständiger Lösung erscheint er wieder
   ✓ AA2a Karte 2: M ist richtig (mit eigener Erklärung)
+
+== Mindestzahl „beim ersten Versuch richtig“ (Aufgabe 1)
+  ✓ 6 von 10 beim ersten Versuch → neu starten
+  ✓ 7 von 10 beim ersten Versuch → Merksatz
 
 == Sperre: 2 a) erst nach Aufgabe 1
   ✓ 2 a) vor Aufgabe 1: „Lösen Sie zuerst Arbeitsauftrag 1!“, keine Karten
@@ -176,4 +184,4 @@
   ✓ Keine Fehler in der Konsole
   ✓ Keine Anfragen an externe Adressen
 
-167 von 167 Prüfungen bestanden.
+173 von 173 Prüfungen bestanden.

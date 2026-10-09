@@ -105,7 +105,6 @@
   ✓ „S – sozial-kommunikativ“ steht so im Auftrag
   ✓ „P – personal“ steht so im Auftrag
   ✓ „Lösen Sie zuerst beide Aufgaben.“ steht so im Auftrag
-  ✓ „Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen. Ihr Spitzname und Ihre Punkte erscheinen nur während des Unterrichts auf einer Rangliste und werden nicht gespeichert.“ steht so im Auftrag
   ✓ „Geben Sie den vierstelligen Raumcode ein, der gerade in der Präsentation angezeigt wird.“ steht so im Auftrag
   ✓ „⬇ Ducken“ steht so im Auftrag
   ✓ „⬆ Springen“ steht so im Auftrag
@@ -122,4 +121,4 @@
   ✓ Vorlage „Beim ersten Versuch richtig: x von y“
   ✓ Wartetext der Rangliste
 
-113 von 113 Prüfungen bestanden.
+112 von 112 Prüfungen bestanden.

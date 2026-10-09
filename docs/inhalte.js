@@ -42,6 +42,11 @@ var INHALTE = {
     richtigText: 'Richtig!',
     falschText: 'Noch nicht richtig – versuchen Sie es noch einmal.',
     tippVorwort: 'Tipp:',
+    // Erscheint statt des Merksatzes, wenn zu wenige Karten beim ersten Versuch richtig waren.
+    // {x} = beim ersten Versuch richtig, {y} = Anzahl Karten, {z} = nötige Mindestzahl
+    durchklickenTitel: 'Hey, nicht einfach durchklicken!',
+    durchklickenText: 'Beim ersten Versuch richtig: {x} von {y} – nötig sind mindestens {z}. Lesen Sie jede Aussage genau und überlegen Sie, bevor Sie antworten. Dann erhalten Sie auch Ihren Merksatz.',
+    durchklickenKnopf: 'Aufgabe neu starten',
     // Erscheint erst, wenn BEIDE Aufgaben vollständig richtig gelöst sind
     easterEggKnopf: '🎁 Merksatz fertig abgeschrieben? Dann tippen Sie hier!'
   },
@@ -61,6 +66,10 @@ var INHALTE = {
 
     // Wird vor jeden Kartentext gesetzt (hier leer = nichts davor)
     kartenAnfang: '',
+
+    // So viele Karten müssen beim ERSTEN Versuch richtig sein, sonst gibt es
+    // keinen Merksatz und die Aufgabe muss neu gestartet werden (0 = keine Prüfung)
+    mindestensErsterVersuch: 7,
 
     karten: [
       {
@@ -163,6 +172,9 @@ var INHALTE = {
 
     // Jede Karte beginnt mit „Lina …“
     kartenAnfang: 'Lina',
+
+    // So viele Karten müssen beim ERSTEN Versuch richtig sein (0 = keine Prüfung)
+    mindestensErsterVersuch: 5,
 
     // Diese Aufgabe lässt sich erst öffnen, wenn Arbeitsauftrag 1 gelöst ist
     voraussetzung: 'aa1',
@@ -297,11 +309,11 @@ var INHALTE = {
     titel: 'Diabetes Run!',
     gesperrt: 'Lösen Sie zuerst beide Aufgaben.',
 
-    spitznameFrage: 'Ihr Spitzname:',
-    spitznameHinweis: 'Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen. Ihr Spitzname und Ihre Punkte erscheinen nur während des Unterrichts auf einer Rangliste und werden nicht gespeichert.',
+    spitznameFrage: 'Ihr Vorname:',
+    spitznameHinweis: 'Bitte tragen Sie Ihren Vornamen ein – so sieht die Klasse auf der Rangliste, wer gespielt hat. Gibt es Ihren Vornamen zweimal, hängen Sie den ersten Buchstaben Ihres Nachnamens an (z. B. „Mia K“). Vorname und Punkte erscheinen nur während des Unterrichts auf der Rangliste und werden nicht gespeichert.',
     spitznameFehlerLaenge: 'Bitte 2 bis 12 Zeichen eingeben.',
     spitznameFehlerZeichen: 'Erlaubt sind Buchstaben, Ziffern, Leerzeichen, - und _.',
-    spitznameFehlerWort: 'Bitte wählen Sie einen anderen Spitznamen.',
+    spitznameFehlerWort: 'Bitte geben Sie Ihren Vornamen ein.',
 
     raumcodeFrage: 'Geben Sie den vierstelligen Raumcode ein, der gerade in der Präsentation angezeigt wird.',
     raumcodeFehler: 'Bitte genau 4 Ziffern eingeben.',
@@ -311,7 +323,7 @@ var INHALTE = {
     nochmal: 'Nochmal',
     zurueckZumStart: 'Zum Startbildschirm',
     raumcodeAendern: 'Raumcode ändern',
-    figurAendern: 'Spitzname ändern',
+    figurAendern: 'Vornamen ändern',
     bestleistung: 'Ihre Bestleistung: {x}',
     punkte: 'Punkte: {x}',
     neueBestleistung: 'Neue Bestleistung!',
@@ -372,7 +384,7 @@ var INHALTE = {
     // {name} wird durch den Spitznamen ersetzt
     ausblendenFrage: 'Eintrag „{name}“ ausblenden?',
     ausblenden: 'Eintrag ausblenden',
-    nameAusblenden: 'Diesen Spitznamen überall ausblenden',
+    nameAusblenden: 'Diesen Namen überall ausblenden',
     codeWechseln: 'Raumcode wechseln',
     demo: 'Demo-Modus: erfundene Einträge'
   }

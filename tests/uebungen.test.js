@@ -74,6 +74,21 @@ const H = require('./hilfen');
       if (i < daten.karten.length - 1) H.pruefe(!(await merksatzSichtbar()), 'Merksatz noch nicht sichtbar');
     }
     await H.warte(900);
+    // Zu viele Fehlversuche (alle Karten erst falsch) → Warnung statt Merksatz
+    const warnung = p.locator('.durchklicken');
+    H.pruefe((await warnung.isVisible()) && (await warnung.innerText()).includes('Hey, nicht einfach durchklicken!') &&
+      !(await merksatzSichtbar()) && !(await p.evaluate((a) => KB2.Freischaltung.istGeloest(a), aufgabe)),
+      'Zu viele Fehlversuche: „Hey, nicht einfach durchklicken!“, kein Merksatz, keine Freischaltung');
+    await p.click('.durchklicken-knopf');
+    await H.warte(300);
+    H.pruefe((await p.locator('#fortschritt-text').innerText()) === `0 von ${daten.karten.length} richtig` &&
+      (await p.locator('.durchklicken').count()) === 0, '„Aufgabe neu starten“ setzt die Aufgabe zurück');
+    // Jetzt sorgfältig: alles beim ersten Versuch richtig (bei Karte 2 von 2 a) die Antwort S)
+    for (const k of daten.karten) {
+      const r = richtig(k);
+      await p.locator(`#karte-${k.nummer} [data-kuerzel="${r.length > 1 ? 'S' : r[0]}"]`).click();
+    }
+    await H.warte(900);
     const kasten = p.locator('.merksatz');
     H.pruefe(await kasten.isVisible(), 'Kasten „Ihr Merksatz“ erscheint nach vollständiger Lösung');
     const kastenText = (await kasten.innerText()).replace(/\s*\n\s*/g, ' ');
@@ -84,7 +99,7 @@ const H = require('./hilfen');
       H.pruefe(!kastenText.includes('**'), 'Keine Sternchen sichtbar');
     }
     H.pruefe(kastenText.includes(daten.merksatz.replace(/\*\*/g, '').replace(/\n/g, ' ')) && kastenText.includes('Schreiben Sie den Merksatz auf Ihr Arbeitsblatt.'), 'Merksatz und Hinweis stehen im Kasten');
-    const erwartetErster = daten.karten.filter((k) => kuerzel.filter((x) => !richtig(k).includes(x)).length === 0).length;
+    const erwartetErster = daten.karten.length;
     H.pruefe(kastenText.includes(`Beim ersten Versuch richtig: ${erwartetErster} von ${daten.karten.length}`), 'Zählung „Beim ersten Versuch richtig“', kastenText);
     const imBild = await kasten.evaluate((e) => { const r = e.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });
     H.pruefe(imBild, 'Automatisch zum Merksatz gescrollt');
@@ -133,6 +148,33 @@ const H = require('./hilfen');
     await p.close();
   }
   await handy.close();
+
+  // Grenze: genau die Mindestzahl reicht, eine weniger nicht
+  console.log('\n== Mindestzahl „beim ersten Versuch richtig“ (Aufgabe 1)');
+  {
+    const ctx3 = await browser.newContext(H.MOBIL);
+    const q = await ctx3.newPage();
+    H.beobachten(q, protokoll, 'grenze');
+    await q.goto(basis + 'aa1.html');
+    const d = await q.evaluate(() => INHALTE.aa1);
+    for (const fehler of [d.karten.length - d.mindestensErsterVersuch + 1, d.karten.length - d.mindestensErsterVersuch]) {
+      await q.evaluate(() => { sessionStorage.clear(); });
+      await q.reload();
+      for (let i = 0; i < d.karten.length; i++) {
+        const k = d.karten[i];
+        const r = [].concat(k.richtig)[0];
+        if (i < fehler) await q.click(`#karte-${k.nummer} [data-kuerzel="${r === 'S' ? 'G' : 'S'}"]`);
+        await q.click(`#karte-${k.nummer} [data-kuerzel="${r}"]`);
+      }
+      await H.warte(300);
+      const richtigErst = d.karten.length - fehler;
+      const warn = (await q.locator('.durchklicken').count()) === 1;
+      const merk = (await q.locator('.merksatz').count()) === 1;
+      if (richtigErst < d.mindestensErsterVersuch) H.pruefe(warn && !merk, `${richtigErst} von ${d.karten.length} beim ersten Versuch → neu starten`);
+      else H.pruefe(merk && !warn, `${richtigErst} von ${d.karten.length} beim ersten Versuch → Merksatz`);
+    }
+    await ctx3.close();
+  }
 
   // 2 a) ist gesperrt, solange Aufgabe 1 nicht gelöst ist
   console.log('\n== Sperre: 2 a) erst nach Aufgabe 1');

@@ -102,7 +102,7 @@ console.log('\n== Weitere wörtliche Texte');
 const woertlich = [
   I.allgemein.kopfzeile, I.allgemein.merksatzUeberschrift, I.allgemein.merksatzHinweis, I.allgemein.nochEinmal,
   ...I.aa1.antworten.map((a) => a.text), ...I.aa2.antworten.map((a) => a.text),
-  I.spiel.gesperrt, I.spiel.spitznameHinweis, I.spiel.raumcodeFrage, I.spiel.knopfDucken, I.spiel.knopfSpringen,
+  I.spiel.gesperrt, I.spiel.raumcodeFrage, I.spiel.knopfDucken, I.spiel.knopfSpringen,
   I.spiel.statusVerbunden, I.spiel.statusWartet, I.spiel.statusPruefen,
   I.rangliste.raumcodeFrage, I.rangliste.starten, I.rangliste.vorschlagen,
   I.rangliste.nachzuegler, I.rangliste.belegt, I.rangliste.ausblenden, I.rangliste.leeren
