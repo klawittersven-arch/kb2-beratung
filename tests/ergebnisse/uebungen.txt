@@ -162,6 +162,11 @@
   ✓ Nach erneuter vollständiger Lösung erscheint er wieder
   ✓ AA2a Karte 2: M ist richtig (mit eigener Erklärung)
 
+== Reihenfolge AA2 → AA1
+  ✓ Nur 2 a) gelöst: kein Belohnungs-Knopf
+  ✓ Danach Aufgabe 1 gelöst: auch dort kein Belohnungs-Knopf
+  ✓ Zurück bei der gelösten 2 a): jetzt erscheint der Knopf am Ende von 2 a)
+
 == ohne Browser-Speicher
   ✓ Übung läuft ohne Speicher fehlerfrei
 
@@ -169,4 +174,4 @@
   ✓ Keine Fehler in der Konsole
   ✓ Keine Anfragen an externe Adressen
 
-162 von 162 Prüfungen bestanden.
+165 von 165 Prüfungen bestanden.

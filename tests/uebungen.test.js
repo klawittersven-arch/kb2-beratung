@@ -134,6 +134,29 @@ const H = require('./hilfen');
   }
   await handy.close();
 
+  // Umgekehrte Reihenfolge: erst 2 a), dann 1 → Knopf erscheint NICHT bei Aufgabe 1
+  console.log('\n== Reihenfolge AA2 → AA1');
+  {
+    const ctx2 = await browser.newContext(H.MOBIL);
+    const q = await ctx2.newPage();
+    H.beobachten(q, protokoll, 'reihenfolge');
+    const loesen = async (seite) => {
+      await q.goto(basis + seite + '.html');
+      const k = await q.evaluate((a) => INHALTE[a].karten.map((x) => [x.nummer, [].concat(x.richtig)[0]]), seite);
+      for (const [n, r] of k) await q.click(`#karte-${n} [data-kuerzel="${r}"]`);
+      await H.warte(300);
+    };
+    await loesen('aa2');
+    H.pruefe((await q.locator('.easter-egg').count()) === 0, 'Nur 2 a) gelöst: kein Belohnungs-Knopf');
+    await loesen('aa1');
+    H.pruefe((await q.locator('.merksatz').isVisible()) && (await q.locator('.easter-egg').count()) === 0,
+      'Danach Aufgabe 1 gelöst: auch dort kein Belohnungs-Knopf');
+    await q.goto(basis + 'aa2.html');
+    await H.warte(300);
+    H.pruefe((await q.locator('.easter-egg').count()) === 1, 'Zurück bei der gelösten 2 a): jetzt erscheint der Knopf am Ende von 2 a)');
+    await ctx2.close();
+  }
+
   // Ohne Speicher (sessionStorage/localStorage gesperrt) funktioniert die Seite trotzdem
   console.log('\n== ohne Browser-Speicher');
   const ctx = await browser.newContext(H.MOBIL);
