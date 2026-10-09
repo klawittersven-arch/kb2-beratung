@@ -49,9 +49,9 @@
   ✓ Querformat: großes Spielfeld, Knöpfe sichtbar, kein Überlauf
 
 == Feste Physik-Zeitschritte: 30 / 60 / 120 Hz (je 20 s Spielzeit, virtuelle Uhr)
-  30 Hz: Spielzeit 19.992 s, Strecke 3698.5 px, Tempo 220.0 px/s, gezeichnete Bilder 600, Sparmodus an
-  60 Hz: Spielzeit 20.000 s, Strecke 3700.3 px, Tempo 220.0 px/s, gezeichnete Bilder 1200, Sparmodus aus
-  120 Hz: Spielzeit 19.992 s, Strecke 3698.5 px, Tempo 220.0 px/s, gezeichnete Bilder 1201, Sparmodus aus
+  30 Hz: Spielzeit 19.992 s, Strecke 3398.6 px, Tempo 190.0 px/s, gezeichnete Bilder 600, Sparmodus an
+  60 Hz: Spielzeit 20.000 s, Strecke 3400.2 px, Tempo 190.0 px/s, gezeichnete Bilder 1200, Sparmodus aus
+  120 Hz: Spielzeit 19.992 s, Strecke 3398.6 px, Tempo 190.0 px/s, gezeichnete Bilder 1201, Sparmodus aus
   ✓ Gleiche Strecke (±0,2 %) bei 30, 60 und 120 Hz
   ✓ Spielzeit = Echtzeit bei allen Bildraten
   ✓ Bei 120 Hz höchstens 60 Bilder/s gezeichnet

@@ -190,7 +190,6 @@
     p.appendChild(el('h1', null, T.titel));
     var vorschau = el('div', 'profil');
     vorschau.appendChild(figurVorschau());
-    vorschau.appendChild(el('span', null, T.figurText));
     p.appendChild(vorschau);
     var form = el('form');
     form.setAttribute('novalidate', '');
@@ -361,7 +360,21 @@
   var SCHWERKRAFT = 1500;
   var SPRUNG_V = 430;
   var SPRUNG_KURZ_V = 220;
-  var V_START = 150, V_ZUWACHS = 3.5, V_MAX = 400;
+  var DOPPELSPRUNG_V = 360;
+  var V_START = 150, V_MAX = 900;
+
+  /* Schwierigkeit: Die ersten 30 Sekunden sind gemütlich (fast alle schaffen sie).
+     Danach steigen Tempo, Dichte und Gemeinheit rasant, sodass ein Lauf praktisch
+     nie länger als 2 Minuten dauert. */
+  var LEICHT_BIS = 30;          // Sekunden
+  function tempoBei(t) {
+    if (t < LEICHT_BIS) return V_START + 2 * t;                       // 150 → 210 px/s
+    return Math.min(V_MAX, V_START + 2 * LEICHT_BIS + 9 * (t - LEICHT_BIS)); // +9 px/s pro Sekunde
+  }
+  // 0 = leicht, 1 = volle Härte (erreicht nach 90 Sekunden)
+  function haerte() {
+    return sp.zeit < LEICHT_BIS ? 0 : Math.min(1, (sp.zeit - LEICHT_BIS) / 60);
+  }
 
   var leinwand = document.getElementById('leinwand');
   var rahmen = document.getElementById('rahmen');
@@ -441,7 +454,7 @@
   }
 
   // Objekt-Vorrat: höchstens 6 Objekte, werden wiederverwendet
-  var MAX_OBJEKTE = 6;
+  var MAX_OBJEKTE = 8;
   var objekte = [];
   for (var oi = 0; oi < MAX_OBJEKTE; oi++) {
     objekte.push({ aktiv: false, art: '', x: 0, y: 0, b: 0, h: 0, rand: 0, zucker: false });
@@ -459,14 +472,14 @@
   /* ---------- Spielzustand (keine neuen Objekte während des Laufs) ---------- */
   var sp = {
     y: 0, vy: 0, amBoden: true, duckt: false,
-    sprungGedrueckt: false, sprungPuffer: 0,
+    sprungGedrueckt: false, sprungPuffer: 0, spruenge: 0,
     v: V_START, zeit: 0, strecke: 0, bonus: 0, naechstes: 0, anzahl: 0, aus: false
   };
   var eingabe = { springen: false, ducken: false, springenNeu: false };
 
   function laufZuruecksetzen() {
     sp.y = BODEN; sp.vy = 0; sp.amBoden = true; sp.duckt = false;
-    sp.sprungPuffer = 0; sp.v = V_START; sp.zeit = 0; sp.strecke = 0; sp.bonus = 0;
+    sp.sprungPuffer = 0; sp.spruenge = 0; sp.v = V_START; sp.zeit = 0; sp.strecke = 0; sp.bonus = 0;
     sp.naechstes = 260; sp.anzahl = 0; sp.aus = false;
     eingabe.springen = false; eingabe.ducken = false; eingabe.springenNeu = false;
     for (var i = 0; i < MAX_OBJEKTE; i++) objekte[i].aktiv = false;
@@ -477,33 +490,67 @@
     return null;
   }
 
-  function hindernisErzeugen() {
-    var o = freiesObjekt();
-    if (!o) return;
-    var r = Math.random();
-    var art = ARTEN[0];
-    var summe = 0;
-    // Die ersten drei Hindernisse sind immer am Boden (zum Eingewöhnen)
-    var gesamt = sp.anzahl < 3 ? 0.76 : 1;
-    r *= gesamt;
-    for (var i = 0; i < ARTEN.length; i++) {
-      summe += ARTEN[i].anteil;
-      if (r < summe) { art = ARTEN[i]; break; }
-    }
-    var bild = bilder[art.name];
+  function objektSetzen(o, artName, x, luft, randPx) {
+    var bild = bilder[artName];
     o.aktiv = true;
-    o.art = art.name;
+    o.art = artName;
     o.zucker = false;
     o.b = bild.width;
     o.h = bild.height;
-    o.rand = art.rand;
-    o.x = B + 4;
-    o.y = art.luft ? BODEN - 26 : BODEN - o.h;
+    o.rand = randPx;
+    o.x = x;
+    o.y = luft ? BODEN - 26 : BODEN - o.h;
+  }
+
+  // Schlagloch in der Straße: nur mit einem Sprung zu überwinden
+  function lochSetzen(o, x, breite) {
+    o.aktiv = true;
+    o.art = 'loch';
+    o.zucker = false;
+    o.b = breite;
+    o.h = 24;
+    o.rand = 0;
+    o.x = x;
+    o.y = BODEN - 4;
+  }
+
+  function hindernisErzeugen() {
+    var o = freiesObjekt();
+    if (!o) return;
+    var h = haerte();
+    var x = B + 4;
     sp.anzahl++;
 
-    // Abstand zum nächsten Hindernis (wächst mit der Geschwindigkeit)
-    var abstand = Math.max(130, sp.v * 0.85) + Math.random() * sp.v * 0.9;
-    sp.naechstes = abstand + o.b;
+    // Ab 30 Sekunden: Schlaglöcher (immer häufiger und breiter)
+    if (sp.zeit >= LEICHT_BIS && Math.random() < 0.15 + 0.25 * h) {
+      lochSetzen(o, x, Math.round(26 + Math.random() * (14 + 46 * h)));
+    } else {
+      var r = Math.random();
+      var art = ARTEN[0];
+      var summe = 0;
+      // Die ersten drei Hindernisse sind immer am Boden (zum Eingewöhnen)
+      r *= sp.anzahl <= 3 ? 0.76 : 1;
+      for (var i = 0; i < ARTEN.length; i++) {
+        summe += ARTEN[i].anteil;
+        if (r < summe) { art = ARTEN[i]; break; }
+      }
+      objektSetzen(o, art.name, x, art.luft, art.rand);
+
+      // Ab 30 Sekunden: gemeine Kombinationen (Hindernis + Wespe oder Loch direkt dahinter)
+      if (!art.luft && sp.zeit >= LEICHT_BIS && Math.random() < 0.15 + 0.35 * h) {
+        var k = freiesObjekt();
+        if (k) {
+          var nah = o.x + o.b + sp.v * (0.42 - 0.12 * h);
+          if (Math.random() < 0.5) objektSetzen(k, 'wespe1', nah, true, 1);
+          else lochSetzen(k, nah, Math.round(24 + Math.random() * 20));
+          o = k;
+        }
+      }
+    }
+
+    // Abstand zum nächsten Hindernis: wird nach 30 Sekunden immer knapper
+    var abstand = Math.max(110, sp.v * (0.85 - 0.4 * h)) + Math.random() * sp.v * (0.9 - 0.65 * h);
+    sp.naechstes = (o.x - B - 4) + abstand + o.b;
 
     // Manchmal Traubenzucker in die Lücke legen
     if (Math.random() < 0.35) {
@@ -532,15 +579,23 @@
   // Ein Physik-Schritt mit fester Länge DT
   function schritt() {
     sp.zeit += DT;
-    sp.v = Math.min(V_MAX, V_START + V_ZUWACHS * sp.zeit);
+    sp.v = tempoBei(sp.zeit);
     var weg = sp.v * DT;
     sp.strecke += weg;
 
-    // Springen (mit kurzem Puffer, falls kurz vor der Landung gedrückt)
-    if (eingabe.springenNeu) { sp.sprungPuffer = 0.12; eingabe.springenNeu = false; }
+    // Springen: am Boden normal, in der Luft einmal Doppelsprung.
+    // Kurz vor der Landung gedrückt → Sprung direkt nach der Landung.
+    if (eingabe.springenNeu) {
+      eingabe.springenNeu = false;
+      if (!sp.amBoden && sp.spruenge < 2 && !(sp.vy > 0 && sp.y > BODEN - 8)) {
+        sp.vy = -DOPPELSPRUNG_V; sp.spruenge = 2;
+      } else {
+        sp.sprungPuffer = 0.12;
+      }
+    }
     if (sp.sprungPuffer > 0) {
       if (sp.amBoden) {
-        sp.vy = -SPRUNG_V; sp.amBoden = false; sp.sprungPuffer = 0;
+        sp.vy = -SPRUNG_V; sp.amBoden = false; sp.sprungPuffer = 0; sp.spruenge = 1;
       } else {
         sp.sprungPuffer -= DT;
       }
@@ -549,7 +604,7 @@
       if (!eingabe.springen && sp.vy < -SPRUNG_KURZ_V) sp.vy = -SPRUNG_KURZ_V; // kurzer Hüpfer
       sp.vy += SCHWERKRAFT * (eingabe.ducken ? 2.5 : 1) * DT;
       sp.y += sp.vy * DT;
-      if (sp.y >= BODEN) { sp.y = BODEN; sp.vy = 0; sp.amBoden = true; }
+      if (sp.y >= BODEN) { sp.y = BODEN; sp.vy = 0; sp.amBoden = true; sp.spruenge = 0; }
     }
     sp.duckt = eingabe.ducken;
 
@@ -559,7 +614,13 @@
       if (!o.aktiv) continue;
       o.x -= weg;
       if (o.x + o.b < -2) { o.aktiv = false; continue; }
-      if (trifft(o)) {
+      if (o.art === 'loch') {
+        // Füße vollständig über dem Loch und am Boden → hineingefallen
+        if (sp.amBoden && SPIELER_X + 5 > o.x + 1 && SPIELER_X + 11 < o.x + o.b - 1 && !TEST.unverwundbar) {
+          sp.aus = true;
+          sp.y = BODEN + 8;
+        }
+      } else if (trifft(o)) {
         if (o.zucker) { o.aktiv = false; sp.bonus += 25; }
         else if (!TEST.unverwundbar) { sp.aus = true; }
       }
@@ -593,6 +654,17 @@
     for (var i = 0; i < MAX_OBJEKTE; i++) {
       var o = objekte[i];
       if (!o.aktiv) continue;
+      if (o.art === 'loch') {
+        var lx = Math.round(o.x);
+        ctx.fillStyle = '#3A3F43';
+        ctx.fillRect(lx - 1, 155, o.b + 2, 1);
+        ctx.fillStyle = '#1C1F22';
+        ctx.fillRect(lx, 156, o.b, 24);
+        ctx.fillStyle = '#F2A30F';
+        ctx.fillRect(lx - 3, 150, 2, 6);
+        ctx.fillRect(lx + o.b + 1, 150, 2, 6);
+        continue;
+      }
       var bild = o.art === 'wespe1' ? (fluegel ? bilder.wespe2 : bilder.wespe1) : bilder[o.art];
       ctx.drawImage(bild, Math.round(o.x), Math.round(o.y));
     }
@@ -882,7 +954,7 @@
       return {
         bildschirm: bildschirm, zeit: sp.zeit, strecke: sp.strecke, v: sp.v, punkte: punkte(),
         y: sp.y, amBoden: sp.amBoden, duckt: sp.duckt, sparmodus: sparmodus, pausiert: pausiert,
-        objekte: objekte.filter(function (o) { return o.aktiv; }).map(function (o) { return { art: o.art, x: o.x, y: o.y }; })
+        objekte: objekte.filter(function (o) { return o.aktiv; }).map(function (o) { return { art: o.art, x: o.x, y: o.y, b: o.b, h: o.h }; })
       };
     },
     sender: function () { return sender; }

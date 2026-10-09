@@ -227,7 +227,8 @@ var INHALTE = {
       }
     ],
 
-    merksatz: 'Gute Beratung braucht Fach-, Methoden-, sozial-kommunikative und personale Kompetenz – dazu gehört auch, die eigenen Gefühle und Grenzen zu reflektieren.',
+    // \n = Zeilenumbruch, **…** = fett und unterstrichen
+    merksatz: 'Fach im Kopf, Methode in der Hand,\nsozial mit Herz – und personal: den Blick auf mich gewandt.',
 
     // Aufklappbare Hilfe (nur bei Arbeitsauftrag 2 a)
     hilfe: {
@@ -291,9 +292,6 @@ var INHALTE = {
     titel: 'Diabetes Run!',
     gesperrt: 'Lösen Sie zuerst beide Aufgaben.',
 
-    // Text neben der Spielfigur (es gibt nur eine Figur: die Krankenschwester)
-    figurText: 'Ihre Spielfigur: die Krankenschwester',
-
     spitznameFrage: 'Ihr Spitzname:',
     spitznameHinweis: 'Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen. Ihr Spitzname und Ihre Punkte erscheinen nur während des Unterrichts auf einer Rangliste und werden nicht gespeichert.',
     spitznameFehlerLaenge: 'Bitte 2 bis 12 Zeichen eingeben.',
@@ -315,9 +313,9 @@ var INHALTE = {
     gameOver: 'Game over',
     pausiert: 'Pause – tippen Sie hier, um weiterzuspielen.',
 
-    steuerungHandy: 'Tippen Sie unten auf „⬆ Springen“ oder „⬇ Ducken“.',
+    steuerungHandy: 'Tippen Sie unten auf „⬆ Springen“ oder „⬇ Ducken“. In der Luft noch einmal springen = Doppelsprung.',
     steuerungTastatur: 'Tastatur: Leertaste oder Pfeil hoch = springen, Pfeil runter = ducken.',
-    spielidee: 'Die Krankenschwester ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren und Pflegewagen, ducken Sie sich vor Wespen und sammeln Sie Traubenzucker (+25 Punkte).',
+    spielidee: 'Die Krankenschwester ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren, Pflegewagen und Schlaglöcher, ducken Sie sich vor Wespen und sammeln Sie Traubenzucker (+25 Punkte). Nach 30 Sekunden wird es schnell schwer!',
     knopfDucken: '⬇ Ducken',
     knopfSpringen: '⬆ Springen',
 

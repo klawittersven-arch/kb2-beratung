@@ -176,12 +176,16 @@
     fortschrittBalken.style.width = Math.round(n / karten.length * 100) + '%';
   }
 
-  // Merksatz-Absatz: **Wort** wird fett und unterstrichen hervorgehoben
+  // Merksatz-Absatz: **Wort** wird fett und unterstrichen hervorgehoben, \n bricht die Zeile um
   function merksatzAbsatz(text) {
     var p = el('p', 'merksatz-text');
-    String(text).split('**').forEach(function (teil, i) {
-      if (!teil) return;
-      p.appendChild(i % 2 ? el('strong', 'betont', teil) : document.createTextNode(teil));
+    // \n im Text = Zeilenumbruch
+    String(text).split('\n').forEach(function (zeile, z) {
+      if (z > 0) p.appendChild(document.createElement('br'));
+      zeile.split('**').forEach(function (teil, i) {
+        if (!teil) return;
+        p.appendChild(i % 2 ? el('strong', 'betont', teil) : document.createTextNode(teil));
+      });
     });
     return p;
   }
