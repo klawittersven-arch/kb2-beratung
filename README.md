@@ -9,7 +9,7 @@ am Smartphone:
 | Seite | Inhalt |
 |---|---|
 | `aa1.html` | Arbeitsauftrag 1: Situativ oder geplant? (10 Situationen, S/G, ab Nr. 6 schwieriger) |
-| `aa2.html` | Arbeitsauftrag 2 a): Kompetenzen erkennen (8 Verhaltensweisen, F/M/S/P) | – erst nach Arbeitsauftrag 1 freigeschaltet
+| `aa2.html` | Arbeitsauftrag 2: Kompetenzen erkennen (8 Verhaltensweisen, F/M/S/P) | – erst nach Arbeitsauftrag 1 freigeschaltet
 | `index.html` | kurze Startseite mit Links zu beiden Aufgaben |
 | `spiel.html` | verstecktes Minispiel „Diabetes Run!“ (Easter Egg) |
 | `rangliste.html` | Live-Rangliste für Ihren Laptop/Beamer – **nirgends verlinkt** |
@@ -62,7 +62,7 @@ Beschriftungen der Rangliste stehen dort.
 ### Schutz gegen Durchklicken
 
 Bei jeder Aufgabe steht in `docs/inhalte.js` `mindestensErsterVersuch` (Aufgabe 1: 7 von 10,
-Aufgabe 2 a): 5 von 8). Sind weniger Karten beim ersten Versuch richtig, erscheint statt des
+Aufgabe 2: 5 von 8). Sind weniger Karten beim ersten Versuch richtig, erscheint statt des
 Merksatzes „Hey, nicht einfach durchklicken!“ mit dem Knopf „Aufgabe neu starten“. Dann gibt es
 weder Merksatz noch Freischaltung. Mit `0` schalten Sie die Prüfung ab.
 

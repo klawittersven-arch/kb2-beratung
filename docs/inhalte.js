@@ -157,10 +157,10 @@ var INHALTE = {
   },
 
   /* ------------------------------------------------------------------------
-     ARBEITSAUFTRAG 2 a) (Seite aa2.html)
+     ARBEITSAUFTRAG 2 (Seite aa2.html)
      ------------------------------------------------------------------------ */
   aa2: {
-    titel: 'Arbeitsauftrag 2 a): Kompetenzen erkennen',
+    titel: 'Arbeitsauftrag 2: Kompetenzen erkennen',
     anweisung: 'Ordnen Sie Linas Verhaltensweisen jeweils einem Kompetenzbereich zu: F = Fach-, M = Methoden-, S = sozial-kommunikative, P = personale Kompetenz.',
 
     antworten: [
@@ -247,7 +247,7 @@ var INHALTE = {
     // \n = Zeilenumbruch, **…** = fett und unterstrichen
     merksatz: 'Fach im Kopf, Methode in der Hand,\nsozial mit Herz – und personal: den Blick auf mich gewandt.',
 
-    // Aufklappbare Hilfe (nur bei Arbeitsauftrag 2 a)
+    // Aufklappbare Hilfe (nur bei Arbeitsauftrag 2
     hilfe: {
       ueberschrift: 'Hilfe: Die vier Kompetenzbereiche',
       bereiche: [
@@ -299,7 +299,7 @@ var INHALTE = {
     titel: 'Professionell beraten',
     einleitung: 'Wählen Sie die Aufgabe, deren QR-Code Sie auf dem Arbeitsblatt sehen.',
     linkAA1: 'Arbeitsauftrag 1: Situativ oder geplant?',
-    linkAA2: 'Arbeitsauftrag 2 a): Kompetenzen erkennen'
+    linkAA2: 'Arbeitsauftrag 2: Kompetenzen erkennen'
   },
 
   /* ------------------------------------------------------------------------

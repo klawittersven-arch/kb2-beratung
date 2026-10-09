@@ -245,7 +245,7 @@
     kasten.appendChild(el('p', 'erster-versuch',
       KB2.ersetzen(A.ersterVersuch, { x: anzahlErsterVersuch(), y: karten.length })));
 
-    // Belohnung: nur am Ende von Arbeitsauftrag 2 a) und erst, wenn
+    // Belohnung: nur am Ende von Arbeitsauftrag 2 und erst, wenn
     // beide Aufgaben vollständig richtig gelöst sind
     if (aufgabeId === 'aa2' && anzahlRichtig() === karten.length && KB2.Freischaltung.beideGeloest()) {
       var ei = el('a', 'easter-egg', A.easterEggKnopf);

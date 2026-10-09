@@ -31,7 +31,7 @@
   ✓ Merksatz (überarbeitete Fassung)
 
 == Arbeitsauftrag 2 a)
-  ✓ Titel
+  ✓ Titel (überarbeitete Fassung)
   ✓ Arbeitsanweisung
   ✓ Anzahl Karten 8 + 0 ergänzte
   ✓ Karte 1: Nummer
