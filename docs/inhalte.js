@@ -309,11 +309,11 @@ var INHALTE = {
     titel: 'Diabetes Run!',
     gesperrt: 'Lösen Sie zuerst beide Aufgaben.',
 
-    spitznameFrage: 'Ihr Spitzname:',
-    spitznameHinweis: 'Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen. Ihr Spitzname und Ihre Punkte erscheinen nur während des Unterrichts auf einer Rangliste und werden nicht gespeichert.',
+    spitznameFrage: 'Ihr Vorname:',
+    spitznameHinweis: 'Bitte tragen Sie Ihren Vornamen ein – so sieht die Klasse auf der Rangliste, wer gespielt hat. Gibt es Ihren Vornamen zweimal, hängen Sie den ersten Buchstaben Ihres Nachnamens an (z. B. „Mia K“). Vorname und Punkte erscheinen nur während des Unterrichts auf der Rangliste und werden nicht gespeichert.',
     spitznameFehlerLaenge: 'Bitte 2 bis 12 Zeichen eingeben.',
     spitznameFehlerZeichen: 'Erlaubt sind Buchstaben, Ziffern, Leerzeichen, - und _.',
-    spitznameFehlerWort: 'Bitte wählen Sie einen anderen Spitznamen.',
+    spitznameFehlerWort: 'Bitte geben Sie Ihren Vornamen ein.',
 
     raumcodeFrage: 'Geben Sie den vierstelligen Raumcode ein, der gerade in der Präsentation angezeigt wird.',
     raumcodeFehler: 'Bitte genau 4 Ziffern eingeben.',
@@ -323,7 +323,7 @@ var INHALTE = {
     nochmal: 'Nochmal',
     zurueckZumStart: 'Zum Startbildschirm',
     raumcodeAendern: 'Raumcode ändern',
-    figurAendern: 'Spitzname ändern',
+    figurAendern: 'Vornamen ändern',
     bestleistung: 'Ihre Bestleistung: {x}',
     punkte: 'Punkte: {x}',
     neueBestleistung: 'Neue Bestleistung!',
@@ -384,7 +384,7 @@ var INHALTE = {
     // {name} wird durch den Spitznamen ersetzt
     ausblendenFrage: 'Eintrag „{name}“ ausblenden?',
     ausblenden: 'Eintrag ausblenden',
-    nameAusblenden: 'Diesen Spitznamen überall ausblenden',
+    nameAusblenden: 'Diesen Namen überall ausblenden',
     codeWechseln: 'Raumcode wechseln',
     demo: 'Demo-Modus: erfundene Einträge'
   }

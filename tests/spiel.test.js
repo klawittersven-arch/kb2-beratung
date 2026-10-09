@@ -30,8 +30,9 @@ const H = require('./hilfen');
     /* ---------- Einrichtung ---------- */
     console.log('\n== Spitzname, Raumcode');
     const hinweis = await p.locator('.hinweis').innerText();
-    H.pruefe(hinweis.includes('Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen.'), 'Datenschutzhinweis beim Spitznamen');
-    for (const [name, erwartet] of [['A', '2 bis 12'], ['Mia!', 'Erlaubt sind'], ['Arsch', 'anderen Spitznamen'], ['F1ck3r', 'anderen Spitznamen']]) {
+    H.pruefe((await p.locator('label[for=spitzname]').innerText()) === 'Ihr Vorname:' && hinweis.includes('Bitte tragen Sie Ihren Vornamen ein'),
+      'Abfrage des Vornamens mit Hinweis');
+    for (const [name, erwartet] of [['A', '2 bis 12'], ['Mia!', 'Erlaubt sind'], ['Arsch', 'Ihren Vornamen'], ['F1ck3r', 'Ihren Vornamen']]) {
       await p.fill('#spitzname', name);
       await p.click('button[type=submit]');
       const f = await p.locator('.fehler').innerText();

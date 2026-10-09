@@ -6,7 +6,7 @@
   ✓ Beide gelöst: Spitzname wird abgefragt, Krankenschwester wird angezeigt (keine Figurwahl)
 
 == Spitzname, Raumcode
-  ✓ Datenschutzhinweis beim Spitznamen
+  ✓ Abfrage des Vornamens mit Hinweis
   ✓ Spitzname „A“ wird abgelehnt
   ✓ Spitzname „Mia!“ wird abgelehnt
   ✓ Spitzname „Arsch“ wird abgelehnt

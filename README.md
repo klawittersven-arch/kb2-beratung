@@ -23,7 +23,7 @@ Sie hier!“. Er existiert erst, wenn beide Aufgaben vollständig richtig gelös
 
 **Datenschutz:** keine Anmeldung, keine Cookies, keine Analyse, keine fremden Schriften
 oder Skripte. Die Übungen übertragen keine Daten. Nur das Minispiel sendet nach jedem Lauf
-Spitzname, Figur und Punktzahl direkt vom Handy an Ihren Laptop (WebRTC über PeerJS, siehe
+Vorname, Figur und Punktzahl direkt vom Handy an Ihren Laptop (WebRTC über PeerJS, siehe
 unten). Es gibt keinen eigenen Server und keine Datenbank; nichts wird dauerhaft gespeichert.
 
 ## Dateien
@@ -74,7 +74,7 @@ weder Merksatz noch Freischaltung. Mit `0` schalten Sie die Prüfung ab.
 | `ANZEIGE_MINUTEN` | die Rangliste zeigt nur Punkte der letzten so vielen Minuten (Standard 45) |
 | `RAUMCODE_GUELTIG_STUNDEN` | so lange merkt sich ein Handy den Raumcode (Standard 3) |
 | `RANGLISTE_PLAETZE` | Anzahl der angezeigten Plätze (Standard 10) |
-| `SPERRWOERTER` | einfacher Filter gegen beleidigende Spitznamen – beliebig ergänzbar |
+| `SPERRWOERTER` | einfacher Filter gegen beleidigende Vornamen – beliebig ergänzbar |
 
 Nach größeren Änderungen können Sie in `docs/sw.js` die Zeile `var VERSION = 'v1';` auf
 `'v2'` usw. erhöhen. Dann erneuern alle Handys ihren Offline-Speicher. (Kleine Textänderungen
@@ -138,8 +138,8 @@ an Ihren Laptop.
 - Der Raumcode steht groß in der Ecke („Nachzügler: Raumcode im Spiel eingeben“).
 - Solange noch niemand gespielt hat, zeigt die Seite nur ruhig „Warten auf die ersten Läufe …“.
 - **Moderation:** Klick auf einen Eintrag → „Eintrag ausblenden“ (dieses Gerät) oder „Diesen
-  Spitznamen überall ausblenden“. „Liste leeren“ entfernt alle Einträge (mit Rückfrage).
-- Gleiche Spitznamen werden unterschieden („Mia“, „Mia (2)“). Pro Gerät zählt die Bestleistung
+  Namen überall ausblenden“. „Liste leeren“ entfernt alle Einträge (mit Rückfrage).
+- Gleiche Vornamen werden unterschieden („Mia“, „Mia (2)“). Pro Gerät zählt die Bestleistung
   der letzten `ANZEIGE_MINUTEN` Minuten.
 - Ein versehentliches Neuladen der Rangliste ist unproblematisch (Einträge bleiben erhalten).
 - **Probeansicht:** `…/rangliste.html?demo=1` zeigt erfundene Einträge – ideal, um vorab das
