@@ -1,0 +1,4 @@
+node_modules/
+__pycache__/
+# Lösungsfassungen nicht veröffentlichen (das Repository ist für GitHub Pages öffentlich)
+*_LSG.docx

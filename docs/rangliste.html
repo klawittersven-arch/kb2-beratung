@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>Rangliste</title>
+<link rel="stylesheet" href="rangliste.css">
+</head>
+<body>
+<section id="einrichtung" hidden>
+  <div class="einrichtung-innen">
+    <h1 data-text="titel"></h1>
+    <form id="einrichtung-form" novalidate>
+      <label for="raum-eingabe" data-text="raumcodeFrage"></label>
+      <input id="raum-eingabe" class="code-feld" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off">
+      <p class="fehler" id="einrichtung-fehler" role="alert"></p>
+      <button type="submit" class="knopf" data-text="starten"></button>
+      <button type="button" class="knopf knopf-zweit" id="vorschlagen" data-text="vorschlagen"></button>
+    </form>
+    <p class="einrichtung-hinweis" data-text="einrichtungHinweis"></p>
+  </div>
+</section>
+
+<section id="tafel" hidden>
+  <header class="tafel-kopf">
+    <h1 id="tafel-titel" data-text="titel"></h1>
+    <div class="raum" id="raum-kasten">
+      <span class="raum-label" data-text="raumcode"></span>
+      <span class="raum-code" id="raum-code"></span>
+      <span class="raum-hinweis" id="raum-hinweis" data-text="nachzuegler"></span>
+    </div>
+  </header>
+  <main class="tafel-mitte">
+    <p id="warten" data-text="warten"></p>
+    <ol id="liste" aria-live="polite"></ol>
+  </main>
+  <footer class="tafel-fuss">
+    <span id="status"><span class="punkt" id="status-punkt"></span><span id="status-text"></span></span>
+    <span id="anzahl"></span>
+    <span id="demo-hinweis" hidden data-text="demo"></span>
+    <span class="fuss-knoepfe">
+      <button type="button" class="leise" id="vollbild"></button>
+      <button type="button" class="leise" id="leeren" data-text="leeren"></button>
+      <button type="button" class="leise" id="wechseln" data-text="codeWechseln"></button>
+    </span>
+  </footer>
+  <div id="dialog" class="dialog" hidden role="dialog" aria-modal="false">
+    <p id="dialog-text"></p>
+    <div class="dialog-knoepfe" id="dialog-knoepfe"></div>
+  </div>
+  <div id="belegt" class="belegt" hidden role="alert">
+    <p data-text="belegt"></p>
+    <div class="dialog-knoepfe">
+      <button type="button" class="knopf" id="belegt-erneut" data-text="erneutVersuchen"></button>
+      <button type="button" class="knopf knopf-zweit" id="belegt-anderer" data-text="andererCode"></button>
+    </div>
+  </div>
+</section>
+
+<script src="inhalte.js"></script>
+<script src="config.js"></script>
+<script src="gemeinsam.js"></script>
+<script src="vendor/peerjs.min.js"></script>
+<script src="verbindung.js"></script>
+<script src="pixel.js"></script>
+<script src="rangliste.js"></script>
+</body>
+</html>

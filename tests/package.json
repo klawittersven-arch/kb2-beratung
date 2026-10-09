@@ -1,0 +1,11 @@
+{
+  "name": "kb2-ab12-tests",
+  "private": true,
+  "description": "Automatische Tests für die Web-App zu Arbeitsblatt 12 (nur zum Testen, nicht Teil der Website)",
+  "scripts": {
+    "test": "node inhalte.test.js && node uebungen.test.js && node spiel.test.js && node offline_datenschutz.test.js && node rangliste.test.js"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}
