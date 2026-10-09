@@ -73,7 +73,7 @@ function aufgabePruefen(name, daten, zeilen, merksatzKenn, zusatz) {
 
 aufgabePruefen('Arbeitsauftrag 1', I.aa1, abschnitt('== Inhalte Arbeitsauftrag 1', '== Inhalte Arbeitsauftrag 2'), 'Merksatz AA1: ', {
   karten: 5,
-  merksatz: 'Situativ wird ein Beratungsbedarf erkannt – geplant wird er in Ruhe bearbeitet: Komplexe, emotionale oder konfliktreiche Themen brauchen einen vereinbarten Termin.'
+  merksatz: 'Situativ wird ein Beratungsbedarf **erkannt** – geplant wird er in Ruhe **bearbeitet**: Komplexe, emotionale oder konfliktreiche Themen brauchen einen vereinbarten Termin.'
 });
 const aa2Zeilen = abschnitt('== Inhalte Arbeitsauftrag 2', '== Easter Egg');
 aufgabePruefen('Arbeitsauftrag 2 a)', I.aa2, aa2Zeilen, 'Merksatz AA2a: ');

@@ -17,7 +17,7 @@ const H = require('./hilfen');
     const daten = await p.evaluate((a) => INHALTE[a], aufgabe);
     const kuerzel = daten.antworten.map((a) => a.kuerzel);
     const richtig = (k) => (Array.isArray(k.richtig) ? k.richtig : [k.richtig]);
-    const merksatzSichtbar = () => p.evaluate((m) => document.body.innerText.includes(m) || document.documentElement.innerHTML.includes(m), daten.merksatz);
+    const merksatzSichtbar = () => p.evaluate((m) => document.body.innerText.includes(m) || document.documentElement.innerHTML.includes(m), daten.merksatz.replace(/\*\*/g, ''));
 
     H.pruefe(!(await merksatzSichtbar()), 'Merksatz steht vor dem Lösen nirgends in der Seite');
     H.pruefe((await p.locator('.karte').count()) === daten.karten.length, `${daten.karten.length} Karten in fester Reihenfolge`);
@@ -77,7 +77,13 @@ const H = require('./hilfen');
     const kasten = p.locator('.merksatz');
     H.pruefe(await kasten.isVisible(), 'Kasten „Ihr Merksatz“ erscheint nach vollständiger Lösung');
     const kastenText = await kasten.innerText();
-    H.pruefe(kastenText.includes(daten.merksatz) && kastenText.includes('Schreiben Sie den Merksatz auf Ihr Arbeitsblatt.'), 'Merksatz und Hinweis stehen im Kasten');
+    if (aufgabe === 'aa1') {
+      const betont = await p.$$eval('.merksatz-text .betont', (e) => e.map((x) => [x.textContent, getComputedStyle(x).fontWeight, getComputedStyle(x).textDecorationLine]));
+      H.pruefe(JSON.stringify(betont.map((b) => b[0])) === '["erkannt","bearbeitet"]' && betont.every((b) => +b[1] >= 700 && b[2].includes('underline')),
+        '„erkannt“ und „bearbeitet“ fett und unterstrichen', betont);
+      H.pruefe(!kastenText.includes('**'), 'Keine Sternchen sichtbar');
+    }
+    H.pruefe(kastenText.includes(daten.merksatz.replace(/\*\*/g, '')) && kastenText.includes('Schreiben Sie den Merksatz auf Ihr Arbeitsblatt.'), 'Merksatz und Hinweis stehen im Kasten');
     const erwartetErster = daten.karten.filter((k) => kuerzel.filter((x) => !richtig(k).includes(x)).length === 0).length;
     H.pruefe(kastenText.includes(`Beim ersten Versuch richtig: ${erwartetErster} von ${daten.karten.length}`), 'Zählung „Beim ersten Versuch richtig“', kastenText);
     const imBild = await kasten.evaluate((e) => { const r = e.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });

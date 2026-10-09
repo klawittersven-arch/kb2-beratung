@@ -176,6 +176,16 @@
     fortschrittBalken.style.width = Math.round(n / karten.length * 100) + '%';
   }
 
+  // Merksatz-Absatz: **Wort** wird fett und unterstrichen hervorgehoben
+  function merksatzAbsatz(text) {
+    var p = el('p', 'merksatz-text');
+    String(text).split('**').forEach(function (teil, i) {
+      if (!teil) return;
+      p.appendChild(i % 2 ? el('strong', 'betont', teil) : document.createTextNode(teil));
+    });
+    return p;
+  }
+
   // Der Merksatz wird erst nach vollständiger Lösung in die Seite eingefügt.
   function merksatzZeigen(scrollen) {
     merksatzBereich.textContent = '';
@@ -190,7 +200,7 @@
     var h = el('h2', null, A.merksatzUeberschrift);
     h.id = 'merksatz-ueberschrift';
     kasten.appendChild(h);
-    kasten.appendChild(el('p', 'merksatz-text', aufgabe.merksatz));
+    kasten.appendChild(merksatzAbsatz(aufgabe.merksatz));
     kasten.appendChild(el('p', 'merksatz-hinweis', A.merksatzHinweis));
     kasten.appendChild(el('p', 'erster-versuch',
       KB2.ersetzen(A.ersterVersuch, { x: anzahlErsterVersuch(), y: karten.length })));

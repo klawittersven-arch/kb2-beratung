@@ -59,6 +59,8 @@
   ✓ Karte 10: S richtig → ✓, Erklärung, Knöpfe gesperrt
   ✓ Fortschritt „10 von 10 richtig“
   ✓ Kasten „Ihr Merksatz“ erscheint nach vollständiger Lösung
+  ✓ „erkannt“ und „bearbeitet“ fett und unterstrichen
+  ✓ Keine Sternchen sichtbar
   ✓ Merksatz und Hinweis stehen im Kasten
   ✓ Zählung „Beim ersten Versuch richtig“
   ✓ Automatisch zum Merksatz gescrollt
@@ -167,4 +169,4 @@
   ✓ Keine Fehler in der Konsole
   ✓ Keine Anfragen an externe Adressen
 
-160 von 160 Prüfungen bestanden.
+162 von 162 Prüfungen bestanden.

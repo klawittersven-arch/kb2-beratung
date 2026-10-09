@@ -1,6 +1,6 @@
 
 == Offline nach dem ersten Laden
-  ✓ Service Worker aktiv, Cache „kb2-ab12-v2“ mit Versionsnummer
+  ✓ Service Worker aktiv, Cache „kb2-ab12-v4“ mit Versionsnummer
   ✓ Offline: index.html lädt aus dem Speicher
   ✓ Offline: aa1.html lädt aus dem Speicher
   ✓ Offline: aa2.html lädt aus dem Speicher
@@ -20,7 +20,7 @@
   ✓ Keine externen Skripte, Schriften, Bilder oder Stile im eigenen Code
   ✓ Keine Bild-, Ton- oder Schriftdateien im Ordner docs/
   ✓ docs/.nojekyll vorhanden
-  Spielseite ohne PeerJS: 95.0 KB; alle Dateien in docs/: 228.0 KB (PeerJS 85.0 KB)
+  Spielseite ohne PeerJS: 95.1 KB; alle Dateien in docs/: 228.6 KB (PeerJS 85.0 KB)
   ✓ Spielseite inkl. Code und Grafiken (ohne PeerJS) unter 150 KB
   ✓ Alles zusammen unter 400 KB
 

@@ -136,8 +136,9 @@ var INHALTE = {
       }
     ],
 
-    // Erscheint erst, wenn alle Karten richtig gelöst sind
-    merksatz: 'Situativ wird ein Beratungsbedarf erkannt – geplant wird er in Ruhe bearbeitet: Komplexe, emotionale oder konfliktreiche Themen brauchen einen vereinbarten Termin.'
+    // Erscheint erst, wenn alle Karten richtig gelöst sind.
+    // Wörter zwischen **…** werden fett und unterstrichen angezeigt.
+    merksatz: 'Situativ wird ein Beratungsbedarf **erkannt** – geplant wird er in Ruhe **bearbeitet**: Komplexe, emotionale oder konfliktreiche Themen brauchen einen vereinbarten Termin.'
 
     // Alternativen zum Austauschen (einfach eine davon oben einsetzen):
     // 'Situativ erkennen, geplant vertiefen: Im Pflegealltag fallen Beratungsbedarfe auf – in einem vereinbarten Gespräch werden sie mit Zeit und Ruhe gemeinsam bearbeitet.'
