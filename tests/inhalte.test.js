@@ -48,7 +48,8 @@ function aufgabePruefen(name, daten, zeilen, merksatzKenn, zusatz) {
   console.log(`\n== ${name}`);
   const titel = zeilen.find((z) => z.startsWith('Titel: ')).slice(7);
   const anweisung = zeilen.find((z) => z.startsWith('Arbeitsanweisung: ')).slice(18);
-  gleich(daten.titel, titel, 'Titel');
+  if (zusatz && zusatz.titel) H.pruefe(daten.titel === zusatz.titel, 'Titel (überarbeitete Fassung)');
+  else gleich(daten.titel, titel, 'Titel');
   gleich(daten.anweisung, anweisung, 'Arbeitsanweisung');
   const soll = kartenAusAuftrag(zeilen);
   // zusatz: später auf Wunsch ergänzte Karten bzw. geänderter Merksatz (nicht im ursprünglichen Auftrag)
@@ -78,6 +79,7 @@ aufgabePruefen('Arbeitsauftrag 1', I.aa1, abschnitt('== Inhalte Arbeitsauftrag 1
 const aa2Zeilen = abschnitt('== Inhalte Arbeitsauftrag 2', '== Easter Egg');
 aufgabePruefen('Arbeitsauftrag 2 a)', I.aa2, aa2Zeilen, 'Merksatz AA2a: ', {
   karten: 0,
+  titel: 'Arbeitsauftrag 2: Kompetenzen erkennen',
   merksatz: 'Fach im Kopf, Methode in der Hand,\nsozial mit Herz – und personal: den Blick auf mich gewandt.'
 });
 H.pruefe(aa2Zeilen.some((z) => z.includes('Jede Karte beginnt mit „' + I.aa2.kartenAnfang + ' …“.')), 'AA2a: Karten beginnen mit „Lina …“');
