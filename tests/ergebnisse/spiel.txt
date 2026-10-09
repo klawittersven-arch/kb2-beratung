@@ -24,6 +24,13 @@
   ✓ Nach mehr als 3 Stunden wird der Raumcode erneut abgefragt
   ✓ Link „Raumcode ändern“ auf dem Startbildschirm
 
+== Direktlink zum Spiel
+  ✓ Falscher Schlüssel: Spiel bleibt gesperrt
+  ✓ Direktlink: ohne gelöste Aufgaben direkt zur Namenseingabe
+  ✓ Raumcode aus dem Link ist schon eingetragen → sofort spielbar
+  ✓ Neuladen ohne Schlüssel: bleibt freigeschaltet
+  ✓ Direktlink schaltet die Aufgaben nicht als gelöst frei
+
 == Tastatur: Springen, Ducken, Zusammenstoß
   ✓ Leertaste startet den Lauf auf dem Startbildschirm
   ✓ Leertaste = springen
@@ -61,4 +68,4 @@
   ✓ Keine Fehler in der Konsole
   ✓ Keine Anfragen an externe Adressen (Test-Transport)
 
-47 von 47 Prüfungen bestanden.
+52 von 52 Prüfungen bestanden.

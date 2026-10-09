@@ -69,6 +69,28 @@ const H = require('./hilfen');
     await ctx.close();
   }
 
+  /* ---------- Direktlink ---------- */
+  console.log('\n== Direktlink zum Spiel');
+  {
+    const ctx = await browser.newContext(H.MOBIL);
+    const p = await ctx.newPage();
+    H.beobachten(p, protokoll, 'direktlink');
+    await p.goto(url + '&zugang=falsch');
+    H.pruefe((await p.locator('#panel').innerText()).includes('Lösen Sie zuerst beide Aufgaben.'), 'Falscher Schlüssel: Spiel bleibt gesperrt');
+    const schluessel = await p.evaluate(() => CONFIG.DIREKTLINK_SCHLUESSEL);
+    await p.goto(url + '&zugang=' + schluessel + '&raum=5678');
+    H.pruefe((await p.locator('#spitzname').count()) === 1, 'Direktlink: ohne gelöste Aufgaben direkt zur Namenseingabe');
+    await p.fill('#spitzname', 'Ole');
+    await p.click('button[type=submit]');
+    H.pruefe((await p.locator('#knopf-los').count()) === 1 && (await p.locator('#panel').innerText()).includes('5678'),
+      'Raumcode aus dem Link ist schon eingetragen → sofort spielbar');
+    await p.goto(url);
+    H.pruefe((await p.locator('#knopf-los').count()) === 1, 'Neuladen ohne Schlüssel: bleibt freigeschaltet');
+    H.pruefe(!(await p.evaluate(() => KB2.Freischaltung.istGeloest('aa1') || KB2.Freischaltung.istGeloest('aa2'))),
+      'Direktlink schaltet die Aufgaben nicht als gelöst frei');
+    await ctx.close();
+  }
+
   /* ---------- Tastatur ---------- */
   console.log('\n== Tastatur: Springen, Ducken, Zusammenstoß');
   {

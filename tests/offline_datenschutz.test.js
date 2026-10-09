@@ -75,10 +75,10 @@ const H = require('./hilfen');
     for (const m of text.matchAll(/(?:src|href)\s*=\s*["'](https?:)?\/\/[^"']+|url\(\s*["']?https?:|@import|https?:\/\/(?!peerjs\.com)[a-z0-9.-]+\.[a-z]{2,}/gi)) extern.push(d + ': ' + m[0]);
   }
   H.pruefe(extern.length === 0, 'Keine externen Skripte, Schriften, Bilder oder Stile im eigenen Code', extern);
-  H.pruefe(!dateien.some((d) => /\.(png|jpe?g|gif|svg|webp|mp3|wav|ogg|woff2?|ttf|otf)$/i.test(d)), 'Keine Bild-, Ton- oder Schriftdateien im Ordner docs/');
+  H.pruefe(!dateien.some((d) => d !== 'logo-kbs.png' && /\.(png|jpe?g|gif|svg|webp|mp3|wav|ogg|woff2?|ttf|otf)$/i.test(d)), 'Außer dem Schullogo keine Bild-, Ton- oder Schriftdateien im Ordner docs/');
   H.pruefe(dateien.includes('.nojekyll'), 'docs/.nojekyll vorhanden');
   const groesse = (liste) => liste.reduce((s, d) => s + fs.statSync(path.join(H.DOCS, d)).size, 0);
-  const spielSeite = ['spiel.html', 'spiel.css', 'inhalte.js', 'config.js', 'gemeinsam.js', 'verbindung.js', 'pixel.js', 'spiel.js'];
+  const spielSeite = ['spiel.html', 'spiel.css', 'logo-kbs.png', 'inhalte.js', 'config.js', 'gemeinsam.js', 'verbindung.js', 'pixel.js', 'spiel.js'];
   const kbSpiel = groesse(spielSeite) / 1024;
   const kbAlle = groesse(dateien) / 1024;
   console.log(`  Spielseite ohne PeerJS: ${kbSpiel.toFixed(1)} KB; alle Dateien in docs/: ${kbAlle.toFixed(1)} KB (PeerJS ${(fs.statSync(path.join(H.DOCS, 'vendor/peerjs.min.js')).size / 1024).toFixed(1)} KB)`);
