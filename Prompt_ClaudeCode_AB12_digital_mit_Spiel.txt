@@ -1,0 +1,214 @@
+AUFTRAG: Digitale Übungen zu Arbeitsblatt 12 (KB II – Beratung) als Web-App auf GitHub Pages + QR-Codes im Arbeitsblatt + Easter Egg (Minispiel mit Live-Rangliste am Beamer)
+
+== Kontext ==
+Ich bin Lehrer an einer Berufsfachschule für Pflege (generalistische Pflegeausbildung, 2. Ausbildungsjahr, Fach KB II – Kommunikation). In diesem Repository liegt das Arbeitsblatt „KB2_AB12_Professionell_beraten_digital.docx“. Es enthält Infotexte und eine Fallsituation. Zwei Aufgaben (Arbeitsauftrag 1 und Arbeitsauftrag 2 a) bearbeiten die Schülerinnen und Schüler (SuS) am Smartphone: Sie scannen einen QR-Code auf dem Arbeitsblatt, ordnen Aussagen zu und erhalten sofort Rückmeldung. Wenn alle Zuordnungen richtig sind, erscheint ein Merksatz, den die SuS auf das Arbeitsblatt abschreiben (Ergebnissicherung).
+
+Als Belohnung gibt es ein verstecktes Minispiel (Easter Egg). Die Punkte erscheinen live auf einer Ranglisten-Seite, die ich am Laptop öffne und über den Beamer zeige – Details unten.
+
+Baue bitte alles, was nach dem Scannen des QR-Codes passiert, veröffentliche es über GitHub Pages und setze die QR-Codes in das Arbeitsblatt ein. Die Aufgabeninhalte stehen vollständig unten in diesem Auftrag (nicht im Arbeitsblatt) – übernimm alle Texte wörtlich.
+
+== Technische Vorgaben ==
+- Statische Website: nur HTML, CSS und JavaScript, ohne Framework und ohne Build-Schritt. Alle Website-Dateien liegen im Ordner docs/ (GitHub Pages: Branch main, Ordner /docs). Lege docs/.nojekyll an.
+- Datenschutz (Schule): keine externen Ressourcen (keine CDNs, keine Webfonts, keine Analytics, keine Cookies), keine Anmeldung, Systemschriften verwenden. Die Übungen selbst übertragen keine Daten. Einzige Ausnahme ist die Live-Rangliste des Minispiels: Sie überträgt nur Spitzname, Punktzahl und Figur direkt vom Handy an meinen Laptop (WebRTC über die Bibliothek PeerJS, siehe unten). Es gibt keinen eigenen Server und keine Datenbank; nichts wird dauerhaft gespeichert.
+- Mobile first: optimiert für Smartphones ab 360 px Breite im Hochformat; Antwortknöpfe mindestens 48 px hoch und gut antippbar; Schrift mindestens 17 px; hoher Kontrast; funktioniert in aktuellem Safari (iOS) und Chrome (Android), auch am Laptop.
+- Sprache Deutsch, Anrede „Sie“.
+- Alle Inhalte (Aussagen, richtige Antworten, Erklärungen, Tipps, Merksätze, Hilfetexte) stehen in einer eigenen Datei docs/inhalte.js mit deutschen Kommentaren, damit ich Texte später ohne Programmierkenntnisse ändern kann. Die Programmlogik steht getrennt davon (z. B. docs/app.js, docs/style.css).
+- Farben passend zum Arbeitsblatt: Dunkelpetrol #25434B (Kopfbereich), Petrol #3F6C72 (Akzente, Knöpfe), Hellblau #EAF2F4 (Karten). Richtig: Grün mit ✓, Tipp/falsch: Bernstein/Orange mit ✗ – Rückmeldung immer auch über Symbol und Text, nicht nur über Farbe. Ruhiges, sachliches Design.
+- Seiten:
+  docs/aa1.html   – Arbeitsauftrag 1
+  docs/aa2.html   – Arbeitsauftrag 2 a)
+  docs/index.html – kurze Startseite mit Links zu beiden Aufgaben
+  docs/spiel.html – das Minispiel (Easter Egg)
+  docs/rangliste.html – Live-Rangliste für meinen Laptop/Beamer (nirgends verlinkt, nur ich kenne die Adresse)
+- Einstellungen, die ich selbst ändern können muss, stehen kommentiert in docs/config.js:
+  RAUM_PRAEFIX = 'kb2-ab12-pflegesprint-'   (wird dem vierstelligen Raumcode vorangestellt, damit es keine Überschneidungen mit fremden Nutzern des Vermittlungsdienstes gibt)
+  ANZEIGE_MINUTEN = 45                      (Zeitraum, aus dem die Rangliste Punkte anzeigt)
+
+== Ablauf einer Aufgabe ==
+1. Kopf: „KB II – Beratung · Arbeitsblatt 12“, darunter der Aufgabentitel und die Arbeitsanweisung.
+2. Die Aussagen stehen als Karten untereinander, nummeriert wie unten. Reihenfolge fest (nicht mischen), weil die Nummern im Unterricht besprochen werden.
+3. Auf jeder Karte Antwortknöpfe:
+   AA1: „S – situativ“ | „G – geplant“
+   AA2a: „F – Fach“ | „M – Methoden“ | „S – sozial-kommunikativ“ | „P – personal“
+4. Richtige Antwort: Karte wird als richtig markiert (✓), die Erklärung der Karte erscheint, die Knöpfe dieser Karte werden gesperrt.
+5. Falsche Antwort: der gewählte Knopf wird als falsch markiert (✗) und deaktiviert, der Tipp der Karte erscheint, ein neuer Versuch ist möglich. Die richtige Lösung wird nie direkt verraten.
+6. Fortschrittsanzeige oben, z. B. „3 von 5 richtig“.
+7. Wenn alle Karten richtig gelöst sind: deutlich hervorgehobener Kasten „Ihr Merksatz“ mit dem Merksatz und dem Hinweis „Schreiben Sie den Merksatz auf Ihr Arbeitsblatt.“ Darunter: „Beim ersten Versuch richtig: x von y“. Automatisch sanft zum Kasten scrollen.
+8. Knopf „Noch einmal üben“ setzt die Aufgabe vollständig zurück.
+9. Der Merksatz darf vorher nirgends auf der Seite sichtbar sein (erst nach vollständiger Lösung per JavaScript einblenden).
+10. Fortschritt in sessionStorage merken, damit ein versehentliches Neuladen nichts löscht (Zugriff in try/catch; ohne Speicher muss die Seite trotzdem funktionieren).
+11. Nur bei AA2a: aufklappbarer Bereich „Hilfe: Die vier Kompetenzbereiche“ (standardmäßig zugeklappt) mit den Stichpunkten unten.
+
+== Inhalte Arbeitsauftrag 1 (docs/aa1.html) ==
+Titel: Arbeitsauftrag 1: Situativ oder geplant?
+Arbeitsanweisung: Ordnen Sie die Situationen zu: S = situative Beratung, G = geplante Beratung.
+
+1. „Während der Insulingabe fragt Herr Brenner: „Warum muss ich das Zeug eigentlich abends spritzen?““
+   Richtig: S
+   Erklärung: Die Frage entsteht spontan während einer Pflegehandlung – typisch für situative Beratung.
+   Tipp: Gab es einen vereinbarten Termin – oder ergibt sich die Frage spontan?
+2. „Lina vereinbart mit Herrn und Frau Brenner für Donnerstag, 16:00 Uhr, ein 30-minütiges Gespräch im Wohnzimmer.“
+   Richtig: G
+   Erklärung: Fester Termin, ruhiger Ort, ausreichend Zeit und beide Beteiligten – ein geplantes Gespräch.
+   Tipp: Achten Sie auf Termin, Ort und Zeitrahmen.
+3. „Frau Brenner spricht Lina an der Haustür auf den Kuchen an.“
+   Richtig: S
+   Erklärung: Ein „Tür-und-Angel-Gespräch“: spontan, unter Zeitdruck, ohne Privatsphäre. Das Thema gehört später in ein geplantes Gespräch.
+   Tipp: Wo und wann findet dieses Gespräch statt?
+4. „Beim Blutzuckermessen erzählt Herr Brenner: „Gestern war mir wieder so komisch.“ Lina fragt nach.“
+   Richtig: S
+   Erklärung: Lina greift eine Bemerkung spontan auf. So werden Beratungsbedarfe oft erst erkannt.
+   Tipp: Hat Lina dieses Gespräch vorbereitet?
+5. „Lina und Herr Brenner verabreden, in zwei Wochen gemeinsam auf seine Erfahrungen mit den vereinbarten Schritten zu schauen.“
+   Richtig: G
+   Erklärung: Ein vereinbarter Folgetermin zur Auswertung ist Teil des geplanten Beratungsprozesses.
+   Tipp: Wird hier etwas für später verabredet?
+
+Merksatz AA1: Beide Formen gehören zur Beratung: Situativ werden Beratungsbedarfe oft erst erkannt – komplexe, emotionale oder konfliktreiche Themen brauchen ein geplantes Gespräch.
+
+== Inhalte Arbeitsauftrag 2 a) (docs/aa2.html) ==
+Titel: Arbeitsauftrag 2 a): Kompetenzen erkennen
+Arbeitsanweisung: Ordnen Sie Linas Verhaltensweisen jeweils einem Kompetenzbereich zu: F = Fach-, M = Methoden-, S = sozial-kommunikative, P = personale Kompetenz.
+Jede Karte beginnt mit „Lina …“.
+
+1. „… erklärt Herrn Brenner in einfachen Worten, woran man eine Unterzuckerung erkennt.“
+   Richtig: F
+   Erklärung: Fachwissen korrekt und verständlich weitergeben gehört zur Fachkompetenz.
+   Tipp: Geht es um Wissen, um eine Gesprächstechnik, um die Beziehung oder um Lina selbst?
+2. „… fasst zusammen: „Sie möchten bei der Weinlese helfen – und gleichzeitig sicher sein, dass Ihnen nicht wieder so komisch wird.““
+   Richtig: M – ACHTUNG: S wird ebenfalls als richtig gewertet (zwei richtige Antworten).
+   Erklärung bei M: Zusammenfassen ist eine Gesprächstechnik – Methodenkompetenz. Weil Lina damit auch Verständnis zeigt, ist sozial-kommunikative Kompetenz ebenfalls vertretbar.
+   Erklärung bei S: Vertretbar: Lina zeigt Verständnis für Herrn Brenner. Vor allem ist Zusammenfassen aber eine Gesprächstechnik – also Methodenkompetenz.
+   Tipp: Welche Gesprächstechnik setzt Lina hier ein?
+3. „… merkt, dass sie sich über die Aussage „nur ein bisschen Alterszucker“ ärgert, und atmet durch, bevor sie antwortet.“
+   Richtig: P
+   Erklärung: Lina nimmt ihre eigenen Gefühle wahr und reguliert sie – personale Kompetenz.
+   Tipp: Um wessen Gefühle geht es hier?
+4. „… fragt auch Frau Brenner, wie es ihr mit der Situation geht.“
+   Richtig: S
+   Erklärung: Lina bezieht die Bezugsperson ein und erfragt alle Sichtweisen – sozial-kommunikative Kompetenz.
+   Tipp: Wen bezieht Lina in das Gespräch ein?
+5. „… weiß, dass eine Insulindosis nur nach ärztlicher Anordnung verändert werden darf.“
+   Richtig: F
+   Erklärung: Rechtliche Grenzen zu kennen gehört zur Fachkompetenz.
+   Tipp: Ist das Wissen, eine Technik, Beziehungsgestaltung oder Selbstreflexion?
+6. „… fragt: „Wie sicher fühlen Sie sich auf einer Skala von 0 bis 10, eine Unterzuckerung zu erkennen?““
+   Richtig: M
+   Erklärung: Die Skalierungsfrage ist eine Gesprächstechnik – Methodenkompetenz.
+   Tipp: Welche Fragetechnik nutzt Lina?
+7. „… akzeptiert, dass Herr Brenner sonntags weiterhin Kuchen essen möchte, und sucht mit ihm nach einem guten Umgang damit.“
+   Richtig: S
+   Erklärung: Wertschätzung und der Umgang mit Ambivalenz gehören zur sozial-kommunikativen Kompetenz.
+   Tipp: Lina gestaltet hier die Beziehung zu Herrn Brenner – denken Sie an die Grundhaltungen nach Rogers.
+8. „… spricht in der Teambesprechung an, dass sie bei Familie Brenner „zwischen die Fronten“ zu geraten droht.“
+   Richtig: P
+   Erklärung: Lina erkennt ihre eigenen Grenzen, klärt ihre Rolle und holt sich Unterstützung – personale Kompetenz.
+   Tipp: Kümmert sich Lina hier um die Familie – oder um ihre eigene Rolle?
+
+Merksatz AA2a: Gute Beratung braucht Fach-, Methoden-, sozial-kommunikative und personale Kompetenz – dazu gehört auch, die eigenen Gefühle und Grenzen zu reflektieren.
+
+Hilfe (aufklappbar) – „Die vier Kompetenzbereiche“:
+- Fachkompetenz: aktuelles pflegerisches und medizinisches Fachwissen (z. B. Diabetes, Unterzuckerung); Wissen über Hilfsangebote und Netzwerke; rechtliche Grenzen kennen; Informationen fachlich korrekt und verständlich geben
+- Methodenkompetenz: Beratungsprozess strukturieren (sechs Phasen); Gesprächstechniken: offene Fragen, aktives Zuhören, Paraphrasieren, Zusammenfassen, Skalierungsfragen; Ziele SMART formulieren; Material einsetzen, dokumentieren
+- Sozial-kommunikative Kompetenz: Beziehung aufbauen; Grundhaltungen nach Rogers: Empathie, Wertschätzung, Kongruenz; alle Sichtweisen erfragen, keine Partei ergreifen; mit Ambivalenz und Konflikten umgehen; Bezugspersonen einbeziehen
+- Personale Kompetenz: eigene Haltung, Werte und Gefühle reflektieren; eigene Grenzen erkennen und weitervermitteln; Selbstfürsorge („doppelte Fürsorge“); Verantwortung übernehmen, die eigene Rolle klären
+
+== Easter Egg: Minispiel „Pflege-Sprint“ (docs/spiel.html) ==
+Unterrichtsidee (bitte genau so umsetzen)
+- Ich lege mir vor der Stunde einen beliebigen vierstelligen Raumcode fest (z. B. 4821) und setze ihn kommentarlos und unauffällig auf eine Folie meiner Präsentation. Die SuS wissen zunächst nicht, wozu die Zahl dient.
+- Erst wenn eine Schülerin oder ein Schüler beide digitalen Aufgaben gelöst hat, wird das Spiel freigeschaltet. Das Spiel fordert dann auf: „Geben Sie den vierstelligen Raumcode ein, der gerade in der Präsentation angezeigt wird.“ – so wird klar, wozu die Zahl auf der Folie steht.
+- Die Ranglisten-Seite öffne ich entweder schon vor Unterrichtsbeginn und lasse sie die ganze Stunde im Hintergrund offen (PowerPoint im Vordergrund), oder ich öffne sie erst später, wenn schon einige spielen. Beides muss zuverlässig funktionieren: Bestleistungen, die vor dem Öffnen der Rangliste erzielt wurden, werden automatisch nachgereicht.
+- Auf der Ranglisten-Seite steht der Raumcode groß, damit Nachzügler ihn eingeben können.
+
+Freischaltung
+- Wenn eine Aufgabe vollständig gelöst ist, merkt sich die App das im localStorage (try/catch, Ausweichen auf sessionStorage).
+- Sind AA1 und AA2a beide gelöst, erscheint im Merksatz-Kasten zusätzlich ein unauffälliger Knopf „🥚 Da hat sich etwas versteckt …“, der zu spiel.html führt.
+- spiel.html prüft das: Sind nicht beide Aufgaben gelöst, erscheint freundlich „Lösen Sie zuerst beide Aufgaben.“ mit Links zu den Aufgaben.
+
+Start des Spiels (Reihenfolge)
+1. Figur wählen: „Lina“ (Pflegefachfrau) oder „Tim“ (Pflegefachmann).
+2. Spitzname eingeben (2–12 Zeichen; erlaubt: Buchstaben inkl. Umlaute, Ziffern, Leerzeichen, - und _; einfacher Filter gegen beleidigende Wörter) mit dem Hinweis: „Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen. Ihr Spitzname und Ihre Punkte erscheinen nur während des Unterrichts auf einer Rangliste und werden nicht gespeichert.“
+3. Raumcode eingeben: „Geben Sie den vierstelligen Raumcode ein, der gerade in der Präsentation angezeigt wird.“ Großes Ziffernfeld (inputmode="numeric"), genau 4 Ziffern. Jede vierstellige Zahl wird angenommen – das Spiel ist sofort spielbar, auch wenn die Rangliste noch nicht geöffnet ist.
+4. Spitzname, Figur und Raumcode lokal merken (Raumcode höchstens 3 Stunden, danach erneut abfragen). Kleiner Link „Raumcode ändern“ auf dem Startbildschirm.
+
+Spiel (Endless Runner, eigenständig gestaltet – KEINE Grafiken, Namen oder Sounds aus fremden Spielen übernehmen, insbesondere nicht vom Chrome-Dino)
+- HTML5-Canvas, Pixel-Art-Stil. Alle Grafiken selbst im Code als Pixel-Raster zeichnen (keine Bilddateien von außen).
+- Figuren Lina und Tim: Pixel-Figuren ca. 16 × 24 Pixel, hochskaliert, in petrolfarbener Dienstkleidung (Kasack und Hose), weiße Schuhe, Stethoskop; keine Haube, keine Klischees. Laufanimation mit 2–3 Bildern, eigene Pose für Springen und Ducken.
+- Schauplatz: Lina/Tim läuft auf der Tour des ambulanten Pflegedienstes durch das Kochertal – Straße im Vordergrund, Weinberge und Hügel im Hintergrund mit leichtem Parallax-Effekt.
+- Hindernisse am Boden (überspringen): Kuchenstück, Weinkiste, Rollator, Pflegewagen. In der Luft auf Kopfhöhe (ducken): Wespe. Sammelobjekt: Traubenzucker-Würfel (+25 Punkte).
+- Steuerung: Leertaste/Pfeil hoch = springen, Pfeil runter = ducken. Am Handy zwei große Knöpfe unten: links „⬇ Ducken“, rechts „⬆ Springen“ (Ducken solange gedrückt). Kein versehentliches Zoomen oder Scrollen beim Tippen.
+- Punkte = zurückgelegte Strecke + Traubenzucker. Die Geschwindigkeit steigt langsam.
+- Feste Zeitschrittweite für die Spielphysik (unabhängig von der Bildwiederholrate), damit Punkte auf allen Geräten vergleichbar sind. Pause, wenn die Seite in den Hintergrund geht. Spielbar im Hoch- und Querformat.
+- Kein Ton (Unterricht).
+- Nach einem Zusammenstoß: „Game over“, Punktzahl, persönliche Bestleistung, Knopf „Nochmal“ und zufällig eine der „Wusstest du?“-Infos (in inhalte.js):
+  • Anzeichen einer Unterzuckerung: Zittern, Schwitzen, Herzklopfen, Heißhunger, Verwirrtheit.
+  • Unterzuckerung bei wacher Person: 15–20 g schnell wirksame Kohlenhydrate, z. B. Traubenzucker oder 200 ml Fruchtsaft – nach etwa 15 Minuten erneut messen.
+  • Bewusstlos? Nichts einflößen, stabile Seitenlage, Notruf 112.
+  • Beraten statt belehren: Die Entscheidung bleibt bei der beratenen Person.
+  • Komplexe Themen brauchen ein geplantes Gespräch – nicht zwischen Tür und Angel.
+
+Leistung und Stabilität (wichtig: 30 Smartphones gleichzeitig, auch ältere oder günstige Geräte, mäßiges Schul-WLAN)
+- Das Spiel läuft vollständig auf dem jeweiligen Handy. Übers Netz gehen nur die Seitendateien beim ersten Laden und nach jedem Lauf eine winzige Punktemeldung.
+- Grafik bewusst einfach: kleine interne Auflösung (ca. 320 × 180 Pixel), per CSS hochskaliert mit image-rendering: pixelated (nicht mit devicePixelRatio hochrechnen). Wenige flache Farben, keine Verläufe, Schatten, Filter, Transparenz-Effekte oder Partikel. Höchstens eine Hintergrundebene mit Parallax; der Hintergrund wird einmal vorgezeichnet und nur verschoben.
+- Alle Figuren und Hindernisse einmal beim Start in kleine Offscreen-Canvas vorzeichnen und danach nur noch kopieren (drawImage). Höchstens etwa 6 Objekte gleichzeitig auf dem Bildschirm. Keine Speicherreservierung pro Bild (Objekte wiederverwenden), damit es keine Ruckler durch die Speicherbereinigung gibt.
+- Bildwiederholrate auf höchstens 60 Bilder pro Sekunde begrenzen. Automatischer Sparmodus: Wenn ein Gerät dauerhaft langsamer als ca. 40 Bilder pro Sekunde zeichnet, Parallax und Laufanimation abschalten und mit 30 Bildern pro Sekunde zeichnen – die Spielphysik bleibt gleich, damit die Punkte fair bleiben.
+- Netzwerk nie während eines Laufs: Verbindungsversuche und Punktemeldungen nur auf dem Start- und Game-over-Bildschirm. Höchstens eine Meldung pro Gerät alle 2 Sekunden.
+- Kleiner Dateiumfang: Spielseite inklusive Code und Grafiken (ohne PeerJS) unter 150 KB, alles zusammen unter 400 KB; keine Bild-, Ton- oder Schriftdateien.
+- Offline-fähig: ein Service Worker speichert alle Dateien beim ersten Aufruf. Danach lassen sich Übungen und Spiel auch bei schlechtem oder kurz unterbrochenem WLAN weiter nutzen; Punkte werden nachgereicht, sobald wieder eine Verbindung besteht. Mit Versionsnummer im Cache-Namen, damit nach einer Änderung im Repository die neue Fassung geladen wird.
+- Ranglisten-Seite: Anzeige höchstens einmal pro Sekunde neu aufbauen, auch wenn viele Meldungen gleichzeitig eintreffen; ausgelegt auf mindestens 40 gleichzeitig verbundene Handys.
+
+Live-Verbindung Handy → Laptop (ohne eigenen Server)
+- Technik: WebRTC-Datenkanal mit der Bibliothek PeerJS und dem kostenlosen PeerJS-Cloud-Vermittlungsdienst (Standard-Einstellung von PeerJS). Die Bibliothek wird NICHT von einem CDN geladen, sondern als Datei ins Repository gelegt (z. B. docs/vendor/peerjs.min.js aus dem npm-Paket peerjs, Lizenzdatei dazu). Die Verbindungslogik kapselst du in einem eigenen Modul mit austauschbarer „Transport“-Schicht (PeerJS im Echtbetrieb, BroadcastChannel o. Ä. für Tests).
+- Die Ranglisten-Seite meldet sich unter der Kennung RAUM_PRAEFIX + Raumcode an. Ist die Kennung schon belegt, zeigt sie: „Dieser Raumcode wird gerade schon verwendet – bitte einen anderen wählen.“
+- Die Ranglisten-Seite muss eine ganze Unterrichtsstunde (und länger) in einem Hintergrund-Tab stabil bleiben: Bricht die Verbindung zum Vermittlungsdienst ab (Ereignis „disconnected“, z. B. durch die Drosselung von Hintergrund-Tabs im Browser oder ein kurzes WLAN-Problem), stellt sie sie automatisch unter derselben Kennung wieder her; bestehende Verbindungen zu Handys bleiben erhalten oder werden von den Handys neu aufgebaut. Wenn möglich verhindern, dass der Bildschirm in den Ruhezustand geht (Screen Wake Lock, falls verfügbar).
+- Das Handy versucht sich nach Eingabe des Raumcodes im Hintergrund mit dieser Kennung zu verbinden und wiederholt den Versuch alle 10 Sekunden, solange die Rangliste noch nicht erreichbar ist – ohne das Spiel zu stören (kein Ruckeln, keine Fehlermeldungen im Spiel).
+- Sobald die Verbindung steht, sendet das Handy sofort seine bisherige Bestleistung (mit Zeitpunkt) und danach nach jedem Lauf jede neue Bestleistung. Nach einem Verbindungsabbruch automatisch neu verbinden und die Bestleistung erneut senden.
+- Nachricht: { geraeteId (zufällig, lokal gemerkt), spitzname, figur, punkte, erreichtUm }. Keine weiteren Daten.
+- Kleine, unaufdringliche Statuszeile nur auf dem Start- und Game-over-Bildschirm des Spiels: verbunden → „📡 Ihre Bestleistung ist auf der Rangliste.“; noch nicht verbunden → „📡 Ihre Bestleistung wird automatisch übertragen.“ Kommt nach 2 Minuten noch keine Verbindung zustande, zusätzlich „Raumcode richtig eingegeben?“ mit Link zum Ändern.
+
+Ranglisten-Seite für den Beamer (docs/rangliste.html)
+- Beim Öffnen: Eingabefeld „Raumcode Ihrer Folie“ (4 Ziffern) und Knopf „Rangliste starten“. Alternativ per Adresse: rangliste.html?raum=4821 startet direkt. Zusätzlich ein Knopf „Zufälligen Code vorschlagen“, falls ich mir vorher einen ausdenken will.
+- Beamer-tauglich: großer Titel „Pflege-Sprint – Rangliste“, sehr große Schrift, hoher Kontrast, Vollbild-Knopf, passt ohne Scrollen auf 16:9.
+- Der Raumcode steht dauerhaft groß sichtbar in einer Ecke mit dem Hinweis „Nachzügler: Raumcode im Spiel eingeben“.
+- Solange noch niemand gespielt hat, eine ruhige, neutrale Anzeige (z. B. „Warten auf die ersten Läufe …“), die nichts verrät, falls sie versehentlich zu sehen ist.
+- Rangliste: Top 10 mit Platz, Spitzname, kleiner Pixel-Figur (Lina/Tim) und Punkten; pro Gerät nur die Bestleistung; nur Leistungen aus den letzten ANZEIGE_MINUTEN Minuten. Gleiche Spitznamen von verschiedenen Geräten werden unterscheidbar gemacht (z. B. „Mia (2)“). Dezente Animation, wenn jemand neu einsteigt oder überholt. Anzeige „x Spielende verbunden“ und ein kleiner Verbindungsstatus.
+- Moderation: Klick auf einen Eintrag → „Eintrag ausblenden“ (blendet diesen Spitznamen bzw. dieses Gerät für die laufende Sitzung aus), ohne Browser-Dialoge (alert/confirm) zu verwenden. Knopf „Liste leeren“ mit Bestätigung auf der Seite.
+- Die Einträge werden nur im Browser des Laptops gehalten (sessionStorage, damit ein versehentliches Neuladen nichts löscht) und nach ANZEIGE_MINUTEN Minuten verworfen. Nichts wird an einen Server gesendet oder gespeichert.
+- Demo-Modus rangliste.html?demo=1 mit erfundenen Einträgen, damit ich das Aussehen vorher am Beamer prüfen kann.
+- Die Seite ist von keiner anderen Seite aus verlinkt.
+
+== QR-Codes und Arbeitsblatt ==
+1. Ermittle Besitzer und Namen dieses Repositorys aus dem Git-Remote. Die Adressen lauten:
+   https://<besitzer-in-kleinbuchstaben>.github.io/<repository-name>/aa1.html
+   https://<besitzer-in-kleinbuchstaben>.github.io/<repository-name>/aa2.html
+2. Erzeuge zwei QR-Codes (PNG, mindestens 600 × 600 px, Fehlerkorrektur M, Ruhezone 4 Module) im Ordner qr/ (z. B. mit der Python-Bibliothek segno oder qrcode). Prüfe, falls möglich, dass sie sich dekodieren lassen und die richtige Adresse enthalten.
+3. Öffne KB2_AB12_Professionell_beraten_digital.docx mit python-docx. Durchsuche alle Absätze, auch in Tabellenzellen (einschließlich verschachtelter Tabellen):
+   - Der Absatz mit genau dem Text [QR-AA1] wird geleert und erhält stattdessen das QR-Bild für aa1.html (Breite 3,2 cm). Ebenso [QR-AA2] mit dem QR-Bild für aa2.html.
+   - Die Zeichenfolgen [LINK-AA1] und [LINK-AA2] stehen jeweils vollständig in einem einzelnen Run. Ersetze sie durch die Adresse ohne „https://“ (z. B. name.github.io/repo/aa1.html).
+   - Ändere sonst nichts am Dokument (Formatierung, Kopfzeile, Zeilennummern, Texte).
+4. Speichere das Ergebnis als KB2_AB12_Professionell_beraten_digital_mit_QR.docx im Hauptverzeichnis; das Original bleibt unverändert. Prüfe danach, dass keine Platzhalter mehr vorhanden und genau zwei Bilder eingefügt sind.
+5. Lege die .docx-Dateien nicht in den Ordner docs/.
+
+== Testen ==
+- Teste beide Seiten automatisiert in Handygröße (z. B. Playwright, 390 × 844): Jede richtige Antwort wird akzeptiert; falsche Antworten zeigen den Tipp; der Merksatz erscheint erst, wenn alle Karten richtig gelöst sind; „Noch einmal üben“ setzt alles zurück; bei AA2a Nr. 2 werden M und S akzeptiert, alle anderen Karten haben genau eine richtige Antwort. Keine Fehler in der Konsole, keine Anfragen an externe Adressen.
+- Vergleiche alle Texte in docs/inhalte.js Zeichen für Zeichen mit diesem Auftrag.
+- Easter Egg: Das Spiel ist gesperrt, solange nicht beide Aufgaben gelöst sind; der Raumcode wird abgefragt (genau 4 Ziffern); Springen, Ducken und Zusammenstöße funktionieren per Tastatur und per Touch (Handygröße); das Spiel läuft mit gleichmäßiger Geschwindigkeit bei 30, 60 und 120 Bildern pro Sekunde.
+- Live-Rangliste: Teste mit der Test-Transportschicht in mehreren Browser-Kontexten (z. B. Playwright): (a) Rangliste ist von Anfang an offen; (b) Handys spielen zuerst, Rangliste wird erst danach geöffnet → die bisherigen Bestleistungen erscheinen automatisch; (c) neue Bestleistungen erscheinen live; (d) Verbindungsabbruch und Neuverbindung auf beiden Seiten, auch nach längerer Zeit im Hintergrund; (e) gleiche Spitznamen von zwei Geräten; (f) Ausblenden und Liste leeren; (g) Einträge älter als ANZEIGE_MINUTEN verschwinden; (h) belegter Raumcode. Das Spiel darf durch die Verbindungsversuche nicht ruckeln.
+- Leistung: Miss die Bildrate des Spiels in Handygröße mit CPU-Drosselung (z. B. Playwright/Chrome DevTools, 4- und 6-fach gedrosselt) über mindestens 3 Minuten Spielzeit. Ziel: ohne Drosselung stabil 60 Bilder pro Sekunde, bei 6-facher Drosselung mindestens 30 (ggf. im Sparmodus), kein wachsender Speicherverbrauch. Belastungstest der Ranglisten-Seite mit 40 simulierten Handys über die Test-Transportschicht, die gleichzeitig Punkte melden. Nenne mir die Messergebnisse.
+- Offline: Nach dem ersten Laden funktionieren Übungen und Spiel ohne Netz; nach Rückkehr der Verbindung werden Punkte nachgereicht.
+- Prüfe, dass außer dem PeerJS-Vermittlungsdienst (und den von PeerJS standardmäßig genutzten STUN-Servern) keine externen Adressen angefragt werden.
+
+== Abschluss ==
+- README.md auf Deutsch: was die App macht, wie man Texte in docs/inhalte.js und Einstellungen in docs/config.js ändert, wie GitHub Pages eingeschaltet wird und wie die Live-Rangliste im Unterricht benutzt wird.
+- Committe und pushe alles.
+- Gib mir zum Schluss eine kurze Schritt-für-Schritt-Anleitung auf Deutsch ohne Fachjargon:
+  (1) wie ich die Änderungen übernehme (Pull Request erstellen und auf GitHub zusammenführen),
+  (2) wie ich GitHub Pages einschalte (Settings → Pages → „Deploy from a branch“ → Branch main, Ordner /docs → Save),
+  (3) nach welcher Wartezeit die Seiten erreichbar sind,
+  (4) die beiden endgültigen Links und
+  (5) wo ich das Arbeitsblatt mit QR-Codes herunterlade,
+  (6) die Adresse der Ranglisten-Seite (…/rangliste.html) und eine Anleitung für die Stunde: Raumcode wählen und auf die Folie setzen → rangliste.html vor Unterrichtsbeginn öffnen, denselben Code eingeben und im Hintergrund offen lassen (Laptop nicht in den Ruhezustand) → zum passenden Zeitpunkt in den Vollbildmodus wechseln,
+  (7) eine Anleitung für einen Probelauf vorab im Klassenzimmer (Laptop im Schul-WLAN, ein Handy im Schul-WLAN und eins mit mobilen Daten), weil manche Schulnetze direkte Verbindungen zwischen Geräten blockieren.
+
+== Falls die Übungen schon gebaut sind ==
+Wenn es in diesem Repository bereits docs/aa1.html und docs/aa2.html gibt, baue nur das Easter Egg (Freischaltung, Spiel, Live-Verbindung, Ranglisten-Seite, Tests, Anleitung) in die bestehende App ein und lass Übungen und Arbeitsblatt unverändert. Falls dort schon eine frühere Fassung des Easter Eggs mit Google Apps Script, Highscore-Adresse oder Spielcode existiert, entferne diese Teile vollständig.
