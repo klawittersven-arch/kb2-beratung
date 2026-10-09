@@ -65,6 +65,21 @@
   document.getElementById('titel').textContent = aufgabe.titel;
   document.getElementById('anweisung').textContent = aufgabe.anweisung;
 
+  // Gesperrt, solange die vorherige Aufgabe noch nicht gelöst wurde
+  if (aufgabe.voraussetzung && !KB2.Freischaltung.warGeloest(aufgabe.voraussetzung)) {
+    document.getElementById('anweisung').textContent = '';
+    document.querySelector('.fortschritt').style.display = 'none';
+    document.getElementById('noch-einmal').style.display = 'none';
+    var sperre = el('div', 'gesperrt');
+    sperre.setAttribute('role', 'alert');
+    sperre.appendChild(el('p', 'gesperrt-text', aufgabe.gesperrtText));
+    var weiter = el('a', 'startlink', aufgabe.gesperrtLink);
+    weiter.href = aufgabe.voraussetzung + '.html';
+    sperre.appendChild(weiter);
+    document.getElementById('karten').appendChild(sperre);
+    return;
+  }
+
   var fortschrittText = document.getElementById('fortschritt-text');
   var fortschrittBalken = document.getElementById('fortschritt-balken');
   var kartenBereich = document.getElementById('karten');

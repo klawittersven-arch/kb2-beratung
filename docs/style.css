@@ -165,6 +165,10 @@ a { color: var(--petrol); }
 
 .fuss { margin-top: 20px; text-align: center; }
 
+/* ---------- Gesperrte Aufgabe ---------- */
+.gesperrt { margin: 8px 0 20px; padding: 18px 16px; background: var(--bernstein-hell); border: 3px solid var(--bernstein-rand); border-radius: 14px; }
+.gesperrt-text { margin: 0 0 14px; font-size: 21px; font-weight: 800; color: #4D2A00; }
+
 /* ---------- Startseite ---------- */
 .startlinks { display: grid; gap: 14px; }
 .startlink {

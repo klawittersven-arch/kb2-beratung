@@ -134,26 +134,30 @@ const H = require('./hilfen');
   }
   await handy.close();
 
-  // Umgekehrte Reihenfolge: erst 2 a), dann 1 → Knopf erscheint NICHT bei Aufgabe 1
-  console.log('\n== Reihenfolge AA2 → AA1');
+  // 2 a) ist gesperrt, solange Aufgabe 1 nicht gelöst ist
+  console.log('\n== Sperre: 2 a) erst nach Aufgabe 1');
   {
     const ctx2 = await browser.newContext(H.MOBIL);
     const q = await ctx2.newPage();
-    H.beobachten(q, protokoll, 'reihenfolge');
+    H.beobachten(q, protokoll, 'sperre');
     const loesen = async (seite) => {
       await q.goto(basis + seite + '.html');
       const k = await q.evaluate((a) => INHALTE[a].karten.map((x) => [x.nummer, [].concat(x.richtig)[0]]), seite);
       for (const [n, r] of k) await q.click(`#karte-${n} [data-kuerzel="${r}"]`);
       await H.warte(300);
     };
-    await loesen('aa2');
-    H.pruefe((await q.locator('.easter-egg').count()) === 0, 'Nur 2 a) gelöst: kein Belohnungs-Knopf');
-    await loesen('aa1');
-    H.pruefe((await q.locator('.merksatz').isVisible()) && (await q.locator('.easter-egg').count()) === 0,
-      'Danach Aufgabe 1 gelöst: auch dort kein Belohnungs-Knopf');
     await q.goto(basis + 'aa2.html');
-    await H.warte(300);
-    H.pruefe((await q.locator('.easter-egg').count()) === 1, 'Zurück bei der gelösten 2 a): jetzt erscheint der Knopf am Ende von 2 a)');
+    const text = await q.locator('main').innerText();
+    H.pruefe(text.includes('Lösen Sie zuerst Arbeitsauftrag 1!') && (await q.locator('.karte').count()) === 0 &&
+      (await q.locator('.antwort').count()) === 0, '2 a) vor Aufgabe 1: „Lösen Sie zuerst Arbeitsauftrag 1!“, keine Karten');
+    H.pruefe((await q.locator('.gesperrt a').getAttribute('href')) === 'aa1.html', 'Link „Zu Arbeitsauftrag 1“');
+    await q.click('.gesperrt a');
+    H.pruefe(q.url().endsWith('aa1.html'), 'Link führt zu Arbeitsauftrag 1');
+    await loesen('aa1');
+    H.pruefe((await q.locator('.easter-egg').count()) === 0, 'Nach Aufgabe 1: kein Belohnungs-Knopf');
+    await q.click('#noch-einmal');
+    await q.goto(basis + 'aa2.html');
+    H.pruefe((await q.locator('.karte').count()) === 8, 'Nach Aufgabe 1 ist 2 a) offen – auch wenn Aufgabe 1 danach „noch einmal geübt“ wird');
     await ctx2.close();
   }
 

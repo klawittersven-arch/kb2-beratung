@@ -164,6 +164,11 @@ var INHALTE = {
     // Jede Karte beginnt mit „Lina …“
     kartenAnfang: 'Lina',
 
+    // Diese Aufgabe lässt sich erst öffnen, wenn Arbeitsauftrag 1 gelöst ist
+    voraussetzung: 'aa1',
+    gesperrtText: 'Lösen Sie zuerst Arbeitsauftrag 1!',
+    gesperrtLink: 'Zu Arbeitsauftrag 1',
+
     karten: [
       {
         nummer: 1,
