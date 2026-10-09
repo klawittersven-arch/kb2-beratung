@@ -59,6 +59,13 @@ tests/                ← automatische Tests (siehe tests/README.md)
 Die Datei ist ausführlich kommentiert. Auch die „Wusstest du?“-Sätze des Spiels und alle
 Beschriftungen der Rangliste stehen dort.
 
+### Schutz gegen Durchklicken
+
+Bei jeder Aufgabe steht in `docs/inhalte.js` `mindestensErsterVersuch` (Aufgabe 1: 7 von 10,
+Aufgabe 2 a): 5 von 8). Sind weniger Karten beim ersten Versuch richtig, erscheint statt des
+Merksatzes „Hey, nicht einfach durchklicken!“ mit dem Knopf „Aufgabe neu starten“. Dann gibt es
+weder Merksatz noch Freischaltung. Mit `0` schalten Sie die Prüfung ab.
+
 ## Einstellungen ändern (`docs/config.js`)
 
 | Einstellung | Bedeutung |

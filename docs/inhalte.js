@@ -42,6 +42,11 @@ var INHALTE = {
     richtigText: 'Richtig!',
     falschText: 'Noch nicht richtig – versuchen Sie es noch einmal.',
     tippVorwort: 'Tipp:',
+    // Erscheint statt des Merksatzes, wenn zu wenige Karten beim ersten Versuch richtig waren.
+    // {x} = beim ersten Versuch richtig, {y} = Anzahl Karten, {z} = nötige Mindestzahl
+    durchklickenTitel: 'Hey, nicht einfach durchklicken!',
+    durchklickenText: 'Beim ersten Versuch richtig: {x} von {y} – nötig sind mindestens {z}. Lesen Sie jede Aussage genau und überlegen Sie, bevor Sie antworten. Dann erhalten Sie auch Ihren Merksatz.',
+    durchklickenKnopf: 'Aufgabe neu starten',
     // Erscheint erst, wenn BEIDE Aufgaben vollständig richtig gelöst sind
     easterEggKnopf: '🎁 Merksatz fertig abgeschrieben? Dann tippen Sie hier!'
   },
@@ -61,6 +66,10 @@ var INHALTE = {
 
     // Wird vor jeden Kartentext gesetzt (hier leer = nichts davor)
     kartenAnfang: '',
+
+    // So viele Karten müssen beim ERSTEN Versuch richtig sein, sonst gibt es
+    // keinen Merksatz und die Aufgabe muss neu gestartet werden (0 = keine Prüfung)
+    mindestensErsterVersuch: 7,
 
     karten: [
       {
@@ -163,6 +172,9 @@ var INHALTE = {
 
     // Jede Karte beginnt mit „Lina …“
     kartenAnfang: 'Lina',
+
+    // So viele Karten müssen beim ERSTEN Versuch richtig sein (0 = keine Prüfung)
+    mindestensErsterVersuch: 5,
 
     // Diese Aufgabe lässt sich erst öffnen, wenn Arbeitsauftrag 1 gelöst ist
     voraussetzung: 'aa1',
