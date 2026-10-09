@@ -1,5 +1,5 @@
 /* Schwierigkeit: Ein automatischer „Profi-Spieler“ (sieht jedes Hindernis sofort,
- * reagiert ohne Verzögerung, nutzt Ducken und Doppelsprung) spielt viele Läufe.
+ * reagiert ohne Verzögerung, nutzt Ducken, schnelles Landen und Doppelsprung) spielt viele Läufe.
  * Ziel: die ersten 30 Sekunden schafft er fast immer, länger als 2 Minuten nie.
  * Aufruf: node tests/schwierigkeit.test.js [Anzahl Läufe, Standard 30] */
 'use strict';
@@ -35,8 +35,8 @@ const LAEUFE = +(process.argv[2] || 30);
         const s = PflegeSprint.zustand();
         if (s.bildschirm !== 'lauf') break;
         const vorne = s.objekte.filter((o) => o.art !== 'zucker' && o.x + o.b > 38).sort((a, b) => a.x - b.x);
-        const boden = vorne.filter((o) => o.art !== 'wespe1');
-        const wespe = vorne.find((o) => o.art === 'wespe1');
+        const boden = vorne.filter((o) => o.art !== 'schwarm');
+        const wespe = vorne.find((o) => o.art === 'schwarm');
         const naechstes = boden[0];
         let jetztSpringen = false, ducken = false;
         if (s.amBoden) {
@@ -46,14 +46,16 @@ const LAEUFE = +(process.argv[2] || 30);
             const ausloeser = naechstes.art === 'loch' ? s.v * 0.04 + 1 : s.v * 0.1 + 2;
             if (d < ausloeser) jetztSpringen = true;
           }
-        } else if (s.objekte && naechstes) {
+        } else if (naechstes) {
           // fallend: würde die Landung auf einem Hindernis oder in einem Loch enden? → Doppelsprung
           const hoehe = 160 - s.y;
           const tLand = Math.sqrt(2 * Math.max(0, hoehe) / g);
           const landX = 44 + s.v * tLand;
           const gefahr = boden.some((o) => landX > o.x - 6 && landX < o.x + o.b + 8);
-          if (gefahr && !window.__doppelt) { jetztSpringen = true; window.__doppelt = true; }
+          if (gefahr && s.vy > -40 && !window.__doppelt) { jetztSpringen = true; window.__doppelt = true; }
         }
+        // Schwarm kommt, während man noch in der Luft ist: ducken = schneller landen
+        if (!s.amBoden && wespe && wespe.x - 48 < s.v * 0.55) { ducken = true; jetztSpringen = false; }
         if (s.amBoden) window.__doppelt = false;
         if (jetztSpringen) { if (springt) taste('keyup', ' '); taste('keydown', ' '); springt = true; }
         else if (springt && !s.amBoden && s.y < 110) { taste('keyup', ' '); springt = false; }

@@ -19,7 +19,7 @@
   ✓ Neuer Eintrag erscheint live (nach 0.0 s)
 
 == (c) Neue Bestleistung erscheint live
-  ✓ Bestleistung 67 → 128 live aktualisiert (nach 0.0 s)
+  ✓ Bestleistung 67 → 130 live aktualisiert (nach 0.0 s)
   ✓ Überholen: neue Spitze steht auf Platz 1
 
 == (d) Verbindungsabbruch und Neuverbindung
@@ -58,7 +58,7 @@
 == (h) Belegter Raumcode
   ✓ Zweite Rangliste mit gleichem Code: Hinweis „schon verwendet“
   ✓ Die erste Rangliste bleibt davon unberührt
-  ✓ „Zufälligen Code vorschlagen“ liefert 4 Ziffern (1035)
+  ✓ „Zufälligen Code vorschlagen“ liefert 4 Ziffern (6209)
   ✓ Demo-Modus: 10 erfundene Einträge, passt ohne Scrollen auf 16:9
 
 == Konsole und externe Anfragen

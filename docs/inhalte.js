@@ -315,7 +315,7 @@ var INHALTE = {
 
     steuerungHandy: 'Tippen Sie unten auf „⬆ Springen“ oder „⬇ Ducken“. In der Luft noch einmal springen = Doppelsprung.',
     steuerungTastatur: 'Tastatur: Leertaste oder Pfeil hoch = springen, Pfeil runter = ducken.',
-    spielidee: 'Die Krankenschwester ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren, Pflegewagen und Schlaglöcher, ducken Sie sich vor Wespen und sammeln Sie Traubenzucker (+25 Punkte). Nach 30 Sekunden wird es schnell schwer!',
+    spielidee: 'Die Krankenschwester ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren, Pflegewagen und Schlaglöcher, ducken Sie sich unter Wespenschwärmen durch. Über den langen KBS-Lkw kommen Sie nur mit Doppelsprung (am höchsten Punkt noch einmal springen). Nach 30 Sekunden wird es schnell schwer!',
     knopfDucken: '⬇ Ducken',
     knopfSpringen: '⬆ Springen',
 

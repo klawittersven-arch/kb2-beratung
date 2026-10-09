@@ -104,7 +104,8 @@ Arbeitsblatt ein (Ergebnis: `…_mit_QR.docx`, das Original bleibt unverändert)
 
 **Idee:** Wer beide Aufgaben gelöst hat, findet das versteckte Spiel. Die Krankenschwester läuft auf
 der Tour des ambulanten Pflegedienstes durchs Kochertal: über Kuchen, Weinkisten, Rollatoren
-und Pflegewagen springen, unter Wespen wegducken, Traubenzucker sammeln (+25 Punkte). Kein Ton.
+Pflegewagen und Schlaglöcher springen (auch Doppelsprung), unter Wespenschwärmen wegducken. Nach 30 Sekunden
+wird es rasant schwerer; ein Lauf dauert praktisch nie länger als 2 Minuten. Kein Ton.
 Das Spiel läuft komplett auf dem Handy; nur nach jedem Lauf geht eine winzige Punktemeldung
 an Ihren Laptop.
 

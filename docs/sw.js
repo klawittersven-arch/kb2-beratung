@@ -6,7 +6,7 @@
  * Nach größeren Änderungen VERSION erhöhen – dann wird der Speicher erneuert. */
 'use strict';
 
-var VERSION = 'v5';
+var VERSION = 'v7';
 var CACHE = 'kb2-ab12-' + VERSION;
 var ZEITLIMIT_MS = 4000;
 
