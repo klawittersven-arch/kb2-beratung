@@ -1,0 +1,12 @@
+  ✓ Tempo 219 px/s (nach 31 s): Lkw mit einfachem Sprung nicht schaffbar
+  ✓ Tempo 219 px/s (nach 31 s): Lkw mit Doppelsprung schaffbar
+  ✓ Tempo 345 px/s (nach 45 s): Lkw mit einfachem Sprung nicht schaffbar
+  ✓ Tempo 345 px/s (nach 45 s): Lkw mit Doppelsprung schaffbar
+  ✓ Tempo 480 px/s (nach 60 s): Lkw mit einfachem Sprung nicht schaffbar
+  ✓ Tempo 480 px/s (nach 60 s): Lkw mit Doppelsprung schaffbar
+  ✓ Tempo 660 px/s (nach 80 s): Lkw mit einfachem Sprung nicht schaffbar
+  ✓ Tempo 660 px/s (nach 80 s): Lkw mit Doppelsprung schaffbar
+  ✓ Tempo 831 px/s (nach 99 s): Lkw mit einfachem Sprung nicht schaffbar
+  ✓ Tempo 831 px/s (nach 99 s): Lkw mit Doppelsprung schaffbar
+
+10 von 10 Prüfungen bestanden.

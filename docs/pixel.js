@@ -20,8 +20,7 @@
     V: '#5E2B71', v: '#8A4FA0', N: '#4E8A3A', // Trauben, Blatt
     M: '#5C6B70', m: '#2B2B2B', r: '#9AA7AB', // Metall, Reifen, Griff
     P: '#E3EAEC', p: '#AEBBBE', T: '#3F6C72', // Pflegewagen
-    Y: '#F2C200', Z: '#202020', X: '#D6EEF6', // Wespe
-    Q: '#FFFFFF', q: '#C8D2D5', o: '#8E9A9D'  // Traubenzucker
+    Y: '#F2C200', Z: '#202020', X: '#D6EEF6'  // Wespe
   };
 
   /* ---------- Figur (16 × 24): Krankenschwester mit Haube ---------- */
@@ -175,6 +174,66 @@
       '.mMm..........mMm.',
       '.mmm..........mmm.'
     ],
+    // Lkw (wird im Spiel aus Fahrerhaus, Kofferaufbau, Rädern und Schriftzug zusammengesetzt)
+    lkwKabine: [
+      '....mmmmmmmmmmmmmmmm',
+      '...mTTTTTTTTTTTTTTTm',
+      '..mTTTTTTTTTTTTTTTTm',
+      '.mTTTTTTTTTTTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTXXXXXXXXXXTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTPPTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mYYTTTTTTTTTTTTTTTTm',
+      'mYYTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mTTTTTTTTTTTTTTTTTTm',
+      'mmmmmmmmmmmmmmmmmmmm',
+      'mmmmmmmmmmmmmmmmmmmm',
+      'mmmmmmmmmmmmmmmmmmmm'
+    ],
+    lkwRad: [
+      '..mmmmmm..',
+      '.mmmmmmmm.',
+      'mmmmPPmmmm',
+      'mmmPmmPmmm',
+      'mmPmmmmPmm',
+      'mmPmmmmPmm',
+      'mmmPmmPmmm',
+      'mmmmPPmmmm',
+      '.mmmmmmmm.',
+      '..mmmmmm..'
+    ],
+    lkwSchrift: [
+      'T...T.TTTT...TTT.',
+      'T..T..T...T.T...T',
+      'T.T...T...T.T....',
+      'TT....TTTT...TTT.',
+      'T.T...T...T.....T',
+      'T..T..T...T.T...T',
+      'T...T.TTTT...TTT.'
+    ],
     wespe1: [
       '...XX..XX...',
       '..XXXXXXXX..',
@@ -192,16 +251,6 @@
       'ZYYZZYYZZYYE',
       '.ZYYZZYYZZ..',
       '...Z...Z....'
-    ],
-    zucker: [
-      '.qqqqqq.',
-      'qQQQQQQo',
-      'qQQQQQQo',
-      'qQQQQQQo',
-      'qQQQQQQo',
-      'qQQQQQQo',
-      'qQQQQQQo',
-      '.oooooo.'
     ]
   };
 

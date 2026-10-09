@@ -76,7 +76,10 @@ aufgabePruefen('Arbeitsauftrag 1', I.aa1, abschnitt('== Inhalte Arbeitsauftrag 1
   merksatz: 'Situativ wird ein Beratungsbedarf **erkannt** – geplant wird er in Ruhe **bearbeitet**: Komplexe, emotionale oder konfliktreiche Themen brauchen einen vereinbarten Termin.'
 });
 const aa2Zeilen = abschnitt('== Inhalte Arbeitsauftrag 2', '== Easter Egg');
-aufgabePruefen('Arbeitsauftrag 2 a)', I.aa2, aa2Zeilen, 'Merksatz AA2a: ');
+aufgabePruefen('Arbeitsauftrag 2 a)', I.aa2, aa2Zeilen, 'Merksatz AA2a: ', {
+  karten: 0,
+  merksatz: 'Fach im Kopf, Methode in der Hand,\nsozial mit Herz – und personal: den Blick auf mich gewandt.'
+});
 H.pruefe(aa2Zeilen.some((z) => z.includes('Jede Karte beginnt mit „' + I.aa2.kartenAnfang + ' …“.')), 'AA2a: Karten beginnen mit „Lina …“');
 
 console.log('\n== Hilfe „Die vier Kompetenzbereiche“');

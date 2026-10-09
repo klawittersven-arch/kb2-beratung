@@ -33,7 +33,7 @@
 == Arbeitsauftrag 2 a)
   ✓ Titel
   ✓ Arbeitsanweisung
-  ✓ Anzahl Karten 8
+  ✓ Anzahl Karten 8 + 0 ergänzte
   ✓ Karte 1: Nummer
   ✓ Karte 1: Aussage
   ✓ Karte 1: richtige Antwort(en) F
@@ -75,7 +75,7 @@
   ✓ Karte 8: richtige Antwort(en) P
   ✓ Karte 8: Erklärung
   ✓ Karte 8: Tipp
-  ✓ Merksatz
+  ✓ Merksatz (überarbeitete Fassung)
   ✓ AA2a: Karten beginnen mit „Lina …“
 
 == Hilfe „Die vier Kompetenzbereiche“
