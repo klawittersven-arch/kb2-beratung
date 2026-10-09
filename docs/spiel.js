@@ -980,7 +980,24 @@
   grafikenBauen();
   groesseAnpassen();
 
-  if (!KB2.Freischaltung.beideGeloest()) zeigeGesperrt();
+  // Direktlink: spiel.html?zugang=<DIREKTLINK_SCHLUESSEL>[&raum=1234]
+  // Gilt 12 Stunden auf diesem Gerät, damit auch Neuladen funktioniert.
+  (function direktlink() {
+    var q;
+    try { q = new URLSearchParams(location.search); } catch (e) { return; }
+    var schluessel = CONFIG.DIREKTLINK_SCHLUESSEL;
+    if (schluessel && q.get('zugang') === schluessel) {
+      KB2.Speicher.dauer.schreiben('kb2ab12_direkt', Date.now());
+      var raum = q.get('raum');
+      if (raum && /^\d{4}$/.test(raum)) raumcodeSetzen(raum);
+    }
+  })();
+  function direktZugang() {
+    var um = KB2.Speicher.dauer.lesen('kb2ab12_direkt');
+    return !!CONFIG.DIREKTLINK_SCHLUESSEL && typeof um === 'number' && Date.now() - um < 12 * 3600000 && um <= Date.now() + 60000;
+  }
+
+  if (!KB2.Freischaltung.beideGeloest() && !direktZugang()) zeigeGesperrt();
   else if (!profilOk(profil())) zeigeName();
   else if (!raumcode()) zeigeRaum(false);
   else zeigeStart();

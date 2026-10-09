@@ -145,6 +145,12 @@ an Ihren Laptop.
 - **Probeansicht:** `…/rangliste.html?demo=1` zeigt erfundene Einträge – ideal, um vorab das
   Aussehen am Beamer zu prüfen.
 
+**Direktlink zum Spiel** (ohne vorher die Aufgaben zu lösen, z. B. für eine Vertretung oder
+eine Pause): `https://klawittersven-arch.github.io/kb2-beratung/spiel.html?zugang=kochertal`
+– mit Raumcode gleich eingetragen: `…/spiel.html?zugang=kochertal&raum=4821`. Das Schlüsselwort
+steht in `docs/config.js` (`DIREKTLINK_SCHLUESSEL`); ändern Sie es, wenn ein verschickter Link
+nicht mehr funktionieren soll.
+
 **Technik und Datenschutz der Live-Verbindung:** Handy und Laptop verbinden sich direkt per
 WebRTC. Zum „Bekanntmachen“ nutzt die Bibliothek PeerJS den kostenlosen Vermittlungsdienst
 `0.peerjs.com`; für den Verbindungsaufbau werden die STUN-Server von Google und – falls ein

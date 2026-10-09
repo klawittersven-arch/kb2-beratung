@@ -37,6 +37,13 @@ var CONFIG = {
     'dick', 'cock', 'pussy', 'slut', 'whore', 'cunt', 'kill'
   ],
 
+  // Direktlink zum Spiel (ohne vorher die Aufgaben zu lösen):
+  //   …/spiel.html?zugang=kochertal          → Spiel sofort spielbar
+  //   …/spiel.html?zugang=kochertal&raum=4821 → zusätzlich Raumcode schon eingetragen
+  // Ändern Sie das Wort, wenn der Link nicht mehr funktionieren soll.
+  // Leer lassen ('') = kein Direktlink möglich.
+  DIREKTLINK_SCHLUESSEL: 'kochertal',
+
   // Technik der Live-Verbindung. Bitte nicht ändern.
   // 'peerjs' = Echtbetrieb. 'test' = nur für automatische Tests
   // (kann auch mit ?transport=test an der Adresse gewählt werden).
