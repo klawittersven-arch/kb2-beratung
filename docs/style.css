@@ -1,0 +1,180 @@
+/* Gestaltung der Übungsseiten – Farben passend zum Arbeitsblatt */
+:root {
+  --dunkelpetrol: #25434B;
+  --petrol: #3F6C72;
+  --hellblau: #EAF2F4;
+  --text: #16262A;
+  --hintergrund: #FFFFFF;
+  --gruen: #1B6E35;
+  --gruen-hell: #E2F3E7;
+  --bernstein: #7A4300;
+  --bernstein-rand: #D98B00;
+  --bernstein-hell: #FFF2D9;
+  --rand: #C5D8DC;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--hintergrund);
+}
+
+a { color: var(--petrol); }
+
+.nur-vorlesen {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- Kopf ---------- */
+.kopf {
+  background: var(--dunkelpetrol);
+  color: #fff;
+  padding: 16px 16px 18px;
+}
+.kopfzeile { margin: 0 0 4px; font-size: 17px; opacity: .92; letter-spacing: .01em; }
+.kopf h1 { margin: 0; font-size: 23px; line-height: 1.3; }
+
+/* ---------- Fortschritt ---------- */
+.fortschritt {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--rand);
+  font-size: 17px; font-weight: 600;
+}
+.fortschritt-spur {
+  flex: 1; height: 10px; border-radius: 5px; background: var(--hellblau);
+  overflow: hidden; border: 1px solid var(--rand);
+}
+.fortschritt-balken { display: block; height: 100%; width: 0; background: var(--petrol); transition: width .3s; }
+
+/* ---------- Inhalt ---------- */
+.inhalt { max-width: 720px; margin: 0 auto; padding: 16px 16px 40px; }
+.anweisung { margin: 4px 0 16px; font-size: 18px; }
+
+/* ---------- Hilfe ---------- */
+.hilfe {
+  margin: 0 0 18px; border: 2px solid var(--petrol); border-radius: 10px; background: #fff;
+}
+.hilfe summary {
+  cursor: pointer; padding: 12px 14px; min-height: 48px; font-weight: 700; color: var(--dunkelpetrol);
+  list-style-position: inside;
+}
+.hilfe[open] summary { border-bottom: 1px solid var(--rand); }
+.hilfe-bereich { padding: 6px 14px 4px; }
+.hilfe-bereich h3 { margin: 8px 0 4px; font-size: 18px; color: var(--dunkelpetrol); }
+.hilfe-bereich ul { margin: 0 0 8px; padding-left: 22px; }
+.hilfe-bereich li { margin: 2px 0; }
+
+/* ---------- Karten ---------- */
+.karte {
+  background: var(--hellblau);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 0 0 16px;
+}
+.karte.ist-richtig { border-color: var(--gruen); }
+.karte-kopf { display: flex; gap: 12px; align-items: flex-start; }
+.nummer {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--dunkelpetrol); color: #fff; font-weight: 700; font-size: 18px;
+}
+.aussage { margin: 3px 0 12px; font-size: 18px; }
+
+.knoepfe { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+
+.antwort {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 52px; padding: 8px 10px;
+  font: inherit; font-size: 17px; font-weight: 600; line-height: 1.25;
+  color: #fff; background: var(--petrol);
+  border: 2px solid var(--petrol); border-radius: 10px;
+  cursor: pointer; touch-action: manipulation; text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.antwort:hover:not(:disabled) { background: var(--dunkelpetrol); border-color: var(--dunkelpetrol); }
+.antwort:focus-visible { outline: 3px solid #F2B600; outline-offset: 2px; }
+.antwort:disabled { cursor: default; }
+.antwort .symbol:empty { display: none; }
+.antwort .symbol { font-weight: 800; font-size: 19px; }
+
+/* noch nicht gewählte Knöpfe auf einer gelösten Karte */
+.karte.ist-richtig .antwort:not(.richtig):not(.falsch) {
+  background: #fff; color: #51666B; border-color: var(--rand);
+}
+.antwort.richtig, .antwort.richtig:disabled {
+  background: var(--gruen); border-color: var(--gruen); color: #fff;
+}
+.antwort.falsch, .antwort.falsch:disabled {
+  background: var(--bernstein-hell); border: 2px dashed var(--bernstein-rand); color: var(--bernstein);
+  text-decoration: line-through;
+}
+
+/* ---------- Rückmeldung ---------- */
+.rueckmeldung:empty { display: none; }
+.rueckmeldung { margin-top: 12px; padding: 10px 12px; border-radius: 10px; border-left: 6px solid; }
+.rueckmeldung p { margin: 0; }
+.rueckmeldung .rueck-titel { font-weight: 700; margin-bottom: 4px; }
+.rueckmeldung.ist-richtig { background: var(--gruen-hell); border-color: var(--gruen); color: #10421F; }
+.rueckmeldung.ist-richtig .symbol { color: var(--gruen); }
+.rueckmeldung.ist-falsch { background: var(--bernstein-hell); border-color: var(--bernstein-rand); color: #4D2A00; }
+.rueckmeldung.ist-falsch .symbol { color: var(--bernstein); }
+
+/* ---------- Merksatz ---------- */
+.merksatz {
+  margin: 8px 0 20px; padding: 18px 16px;
+  background: #fff; border: 4px solid var(--dunkelpetrol); border-radius: 14px;
+  box-shadow: 0 0 0 4px var(--hellblau);
+}
+.merksatz h2 { margin: 0 0 8px; font-size: 22px; color: var(--dunkelpetrol); }
+.merksatz-text { margin: 0 0 12px; font-size: 20px; font-weight: 700; line-height: 1.45; }
+.merksatz-hinweis { margin: 0 0 8px; padding: 8px 10px; background: var(--hellblau); border-radius: 8px; }
+.erster-versuch { margin: 0; font-size: 17px; }
+
+.easter-egg {
+  display: inline-block; margin-top: 14px; padding: 6px 4px; min-height: 44px;
+  font-size: 17px; color: #51666B; text-decoration: none; border-bottom: 1px dotted #9AAEB2;
+}
+
+/* ---------- Knöpfe allgemein ---------- */
+.knopf {
+  display: block; width: 100%; min-height: 52px; padding: 10px 16px;
+  font: inherit; font-weight: 700; font-size: 18px;
+  border-radius: 10px; cursor: pointer; touch-action: manipulation;
+}
+.knopf-zweit { background: #fff; color: var(--dunkelpetrol); border: 2px solid var(--petrol); }
+.knopf-zweit:hover { background: var(--hellblau); }
+.knopf:focus-visible, a:focus-visible { outline: 3px solid #F2B600; outline-offset: 2px; }
+
+.fuss { margin-top: 20px; text-align: center; }
+
+/* ---------- Startseite ---------- */
+.startlinks { display: grid; gap: 14px; }
+.startlink {
+  display: block; padding: 16px; min-height: 56px; border-radius: 12px;
+  background: var(--petrol); color: #fff; font-weight: 700; text-decoration: none; font-size: 18px;
+}
+.startlink:hover { background: var(--dunkelpetrol); }
+.startlink.erledigt::after { content: "  ✓"; }
+
+@media (min-width: 600px) {
+  .kopf { padding: 20px 24px; }
+  .kopf h1 { font-size: 27px; }
+  .knoepfe-2 { grid-template-columns: 1fr 1fr; }
+  .knoepfe-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fortschritt-balken { transition: none; }
+}

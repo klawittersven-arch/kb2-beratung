@@ -1,0 +1,129 @@
+
+== Arbeitsauftrag 1
+  ✓ Titel
+  ✓ Arbeitsanweisung
+  ✓ Anzahl Karten 5
+  ✓ Karte 1: Nummer
+  ✓ Karte 1: Aussage
+  ✓ Karte 1: richtige Antwort(en) S
+  ✓ Karte 1: Erklärung
+  ✓ Karte 1: Tipp
+  ✓ Karte 2: Nummer
+  ✓ Karte 2: Aussage
+  ✓ Karte 2: richtige Antwort(en) G
+  ✓ Karte 2: Erklärung
+  ✓ Karte 2: Tipp
+  ✓ Karte 3: Nummer
+  ✓ Karte 3: Aussage
+  ✓ Karte 3: richtige Antwort(en) S
+  ✓ Karte 3: Erklärung
+  ✓ Karte 3: Tipp
+  ✓ Karte 4: Nummer
+  ✓ Karte 4: Aussage
+  ✓ Karte 4: richtige Antwort(en) S
+  ✓ Karte 4: Erklärung
+  ✓ Karte 4: Tipp
+  ✓ Karte 5: Nummer
+  ✓ Karte 5: Aussage
+  ✓ Karte 5: richtige Antwort(en) G
+  ✓ Karte 5: Erklärung
+  ✓ Karte 5: Tipp
+  ✓ Merksatz
+
+== Arbeitsauftrag 2 a)
+  ✓ Titel
+  ✓ Arbeitsanweisung
+  ✓ Anzahl Karten 8
+  ✓ Karte 1: Nummer
+  ✓ Karte 1: Aussage
+  ✓ Karte 1: richtige Antwort(en) F
+  ✓ Karte 1: Erklärung
+  ✓ Karte 1: Tipp
+  ✓ Karte 2: Nummer
+  ✓ Karte 2: Aussage
+  ✓ Karte 2: richtige Antwort(en) M + S
+  ✓ Karte 2: Erklärung bei M
+  ✓ Karte 2: Erklärung bei S
+  ✓ Karte 2: Tipp
+  ✓ Karte 3: Nummer
+  ✓ Karte 3: Aussage
+  ✓ Karte 3: richtige Antwort(en) P
+  ✓ Karte 3: Erklärung
+  ✓ Karte 3: Tipp
+  ✓ Karte 4: Nummer
+  ✓ Karte 4: Aussage
+  ✓ Karte 4: richtige Antwort(en) S
+  ✓ Karte 4: Erklärung
+  ✓ Karte 4: Tipp
+  ✓ Karte 5: Nummer
+  ✓ Karte 5: Aussage
+  ✓ Karte 5: richtige Antwort(en) F
+  ✓ Karte 5: Erklärung
+  ✓ Karte 5: Tipp
+  ✓ Karte 6: Nummer
+  ✓ Karte 6: Aussage
+  ✓ Karte 6: richtige Antwort(en) M
+  ✓ Karte 6: Erklärung
+  ✓ Karte 6: Tipp
+  ✓ Karte 7: Nummer
+  ✓ Karte 7: Aussage
+  ✓ Karte 7: richtige Antwort(en) S
+  ✓ Karte 7: Erklärung
+  ✓ Karte 7: Tipp
+  ✓ Karte 8: Nummer
+  ✓ Karte 8: Aussage
+  ✓ Karte 8: richtige Antwort(en) P
+  ✓ Karte 8: Erklärung
+  ✓ Karte 8: Tipp
+  ✓ Merksatz
+  ✓ AA2a: Karten beginnen mit „Lina …“
+
+== Hilfe „Die vier Kompetenzbereiche“
+  ✓ Vier Bereiche
+  ✓ Bereichsname Fachkompetenz
+  ✓ Stichpunkte Fachkompetenz
+  ✓ Bereichsname Methodenkompetenz
+  ✓ Stichpunkte Methodenkompetenz
+  ✓ Bereichsname Sozial-kommunikative Kompetenz
+  ✓ Stichpunkte Sozial-kommunikative Kompetenz
+  ✓ Bereichsname Personale Kompetenz
+  ✓ Stichpunkte Personale Kompetenz
+  ✓ Überschrift der Hilfe
+
+== „Wusstest du?“
+  ✓ Fünf Infos
+
+== Weitere wörtliche Texte
+  ✓ „KB II – Beratung · Arbeitsblatt 12“ steht so im Auftrag
+  ✓ „Ihr Merksatz“ steht so im Auftrag
+  ✓ „Schreiben Sie den Merksatz auf Ihr Arbeitsblatt.“ steht so im Auftrag
+  ✓ „Noch einmal üben“ steht so im Auftrag
+  ✓ „🥚 Da hat sich etwas versteckt …“ steht so im Auftrag
+  ✓ „S – situativ“ steht so im Auftrag
+  ✓ „G – geplant“ steht so im Auftrag
+  ✓ „F – Fach“ steht so im Auftrag
+  ✓ „M – Methoden“ steht so im Auftrag
+  ✓ „S – sozial-kommunikativ“ steht so im Auftrag
+  ✓ „P – personal“ steht so im Auftrag
+  ✓ „Lösen Sie zuerst beide Aufgaben.“ steht so im Auftrag
+  ✓ „Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen. Ihr Spitzname und Ihre Punkte erscheinen nur während des Unterrichts auf einer Rangliste und werden nicht gespeichert.“ steht so im Auftrag
+  ✓ „Geben Sie den vierstelligen Raumcode ein, der gerade in der Präsentation angezeigt wird.“ steht so im Auftrag
+  ✓ „⬇ Ducken“ steht so im Auftrag
+  ✓ „⬆ Springen“ steht so im Auftrag
+  ✓ „📡 Ihre Bestleistung ist auf der Rangliste.“ steht so im Auftrag
+  ✓ „📡 Ihre Bestleistung wird automatisch übertragen.“ steht so im Auftrag
+  ✓ „Raumcode richtig eingegeben?“ steht so im Auftrag
+  ✓ „Lina“ steht so im Auftrag
+  ✓ „Tim“ steht so im Auftrag
+  ✓ „Pflege-Sprint – Rangliste“ steht so im Auftrag
+  ✓ „Raumcode Ihrer Folie“ steht so im Auftrag
+  ✓ „Rangliste starten“ steht so im Auftrag
+  ✓ „Zufälligen Code vorschlagen“ steht so im Auftrag
+  ✓ „Nachzügler: Raumcode im Spiel eingeben“ steht so im Auftrag
+  ✓ „Dieser Raumcode wird gerade schon verwendet – bitte einen anderen wählen.“ steht so im Auftrag
+  ✓ „Eintrag ausblenden“ steht so im Auftrag
+  ✓ „Liste leeren“ steht so im Auftrag
+  ✓ Vorlage „Beim ersten Versuch richtig: x von y“
+  ✓ Wartetext der Rangliste
+
+117 von 117 Prüfungen bestanden.

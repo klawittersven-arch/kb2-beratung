@@ -1,0 +1,30 @@
+
+== Offline nach dem ersten Laden
+  ✓ Service Worker aktiv, Cache „kb2-ab12-v1“ mit Versionsnummer
+  ✓ Offline: index.html lädt aus dem Speicher
+  ✓ Offline: aa1.html lädt aus dem Speicher
+  ✓ Offline: aa2.html lädt aus dem Speicher
+  ✓ Offline: spiel.html?transport=test lädt aus dem Speicher
+  ✓ Offline: spiel.html lädt aus dem Speicher
+  ✓ Offline: Übung lässt sich vollständig lösen
+  ✓ Offline: Spiel läuft, Ergebnis wird zum Nachreichen gespeichert
+  ✓ Offline: Statuszeile ohne Fehlermeldung
+  (Das Nachreichen nach Rückkehr der Verbindung prüft tests/rangliste.test.js, Szenario d.)
+
+== Externe Adressen im Echtbetrieb (PeerJS)
+  angefragt: https://0.peerjs.com
+  ✓ Nur der PeerJS-Vermittlungsdienst (0.peerjs.com) wird angefragt
+  ✓ Keine Cookies
+
+== Quelltext und Dateigrößen
+  ✓ Keine externen Skripte, Schriften, Bilder oder Stile im eigenen Code
+  ✓ Keine Bild-, Ton- oder Schriftdateien im Ordner docs/
+  ✓ docs/.nojekyll vorhanden
+  Spielseite ohne PeerJS: 94.3 KB; alle Dateien in docs/: 226.5 KB (PeerJS 85.0 KB)
+  ✓ Spielseite inkl. Code und Grafiken (ohne PeerJS) unter 150 KB
+  ✓ Alles zusammen unter 400 KB
+
+== Konsole
+  ✓ Keine Fehler in der Konsole
+
+17 von 17 Prüfungen bestanden.
