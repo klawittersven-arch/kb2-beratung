@@ -1,5 +1,5 @@
 /* ==========================================================================
-   EINSTELLUNGEN – Minispiel „Pflege-Sprint“ und Live-Rangliste
+   EINSTELLUNGEN – Minispiel „Diabetes Run!“ und Live-Rangliste
    ==========================================================================
    Ändern Sie nur die Werte rechts vom Gleichheitszeichen.
    Texte stehen zwischen einfachen Hochkommas ' … ', Zahlen ohne.

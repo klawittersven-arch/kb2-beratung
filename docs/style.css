@@ -143,9 +143,14 @@ a { color: var(--petrol); }
 .erster-versuch { margin: 0; font-size: 17px; }
 
 .easter-egg {
-  display: inline-block; margin-top: 14px; padding: 6px 4px; min-height: 44px;
-  font-size: 17px; color: #51666B; text-decoration: none; border-bottom: 1px dotted #9AAEB2;
+  display: block; margin-top: 16px; padding: 14px 16px; min-height: 56px;
+  font-size: 19px; font-weight: 800; line-height: 1.35; text-align: center; text-decoration: none;
+  color: #fff; background: var(--petrol); border: 3px solid #F2B600; border-radius: 12px;
+  animation: belohnung .6s ease-out;
 }
+.easter-egg:hover { background: var(--dunkelpetrol); }
+@keyframes belohnung { from { transform: scale(.85); opacity: 0; } 60% { transform: scale(1.04); opacity: 1; } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .easter-egg { animation: none; } }
 
 /* ---------- Knöpfe allgemein ---------- */
 .knopf {

@@ -55,6 +55,8 @@ const H = require('./hilfen');
       }
     }
     H.pruefe(!(await merksatzSichtbar()), 'Merksatz nach falschen Antworten noch nicht sichtbar');
+    H.pruefe((await p.locator('.easter-egg').count()) === 0 && !(await p.evaluate(() => document.body.innerHTML.includes('spiel.html'))),
+      'Vor vollständiger Lösung existiert kein Knopf/Link zum Spiel');
     H.pruefe(aufgabe === 'aa1' ? mehrfach === 0 : mehrfach === 1, `Genau ${aufgabe === 'aa1' ? 0 : 1} Karte mit zwei richtigen Antworten`);
 
     // Dann richtig lösen (bei Karte 2 von AA2a die Antwort S, um die zweite Lösung zu prüfen)
@@ -102,8 +104,18 @@ const H = require('./hilfen');
     for (const k of daten.karten) await p.locator(`#karte-${k.nummer} [data-kuerzel="${richtig(k)[0]}"]`).click();
     await H.warte(300);
     H.pruefe((await p.locator('.merksatz').innerText()).includes(`Beim ersten Versuch richtig: ${daten.karten.length} von ${daten.karten.length}`), 'Bei fehlerfreier Lösung: alle beim ersten Versuch richtig');
-    if (aufgabe === 'aa1') H.pruefe((await p.locator('.easter-egg').count()) === 0, 'Nach nur einer Aufgabe noch kein Easter-Egg-Knopf');
-    else H.pruefe((await p.locator('.easter-egg').count()) === 1 && (await p.locator('.easter-egg').getAttribute('href')) === 'spiel.html', 'Nach beiden Aufgaben: Knopf „🥚 Da hat sich etwas versteckt …“ führt zu spiel.html');
+    if (aufgabe === 'aa1') H.pruefe((await p.locator('.easter-egg').count()) === 0, 'Nach nur einer Aufgabe noch kein Belohnungs-Knopf');
+    else {
+      const ei = p.locator('.easter-egg');
+      H.pruefe((await ei.count()) === 1 && (await ei.getAttribute('href')) === 'spiel.html' && (await ei.innerText()).startsWith('🎁'),
+        'Nach beiden Aufgaben: Belohnungs-Knopf „🎁 Merksatz fertig abgeschrieben? …“ führt zu spiel.html');
+      await p.click('#noch-einmal');
+      await p.locator('#karte-1 [data-kuerzel="F"]').click();
+      H.pruefe((await p.locator('.easter-egg').count()) === 0 && !(await p.evaluate(() => KB2.Freischaltung.istGeloest('aa2'))),
+        'Nach „Noch einmal üben“ ist der Knopf weg, bis wieder alles gelöst ist');
+      for (const k of daten.karten) if (k.nummer > 1) await p.locator(`#karte-${k.nummer} [data-kuerzel="${richtig(k)[0]}"]`).click();
+      H.pruefe((await p.locator('.easter-egg').count()) === 1, 'Nach erneuter vollständiger Lösung erscheint er wieder');
+    }
 
     // AA2a Karte 2: auch M wird akzeptiert
     if (aufgabe === 'aa2') {
@@ -129,7 +141,7 @@ const H = require('./hilfen');
   const fehler = [];
   p.on('pageerror', (e) => fehler.push(e.message));
   await p.goto(basis + 'aa1.html');
-  for (const [n, k] of [[1, 'S'], [2, 'G'], [3, 'S'], [4, 'S'], [5, 'G']]) await p.click(`#karte-${n} [data-kuerzel=${k}]`);
+  for (const [n, k] of await p.evaluate(() => INHALTE.aa1.karten.map((x) => [x.nummer, [].concat(x.richtig)[0]]))) await p.click(`#karte-${n} [data-kuerzel=${k}]`);
   H.pruefe(fehler.length === 0 && await p.locator('.merksatz').isVisible(), 'Übung läuft ohne Speicher fehlerfrei', fehler);
   await ctx.close();
 

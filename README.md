@@ -8,16 +8,18 @@ am Smartphone:
 
 | Seite | Inhalt |
 |---|---|
-| `aa1.html` | Arbeitsauftrag 1: Situativ oder geplant? (5 Situationen, S/G) |
+| `aa1.html` | Arbeitsauftrag 1: Situativ oder geplant? (10 Situationen, S/G, ab Nr. 6 schwieriger) |
 | `aa2.html` | Arbeitsauftrag 2 a): Kompetenzen erkennen (8 Verhaltensweisen, F/M/S/P) |
 | `index.html` | kurze Startseite mit Links zu beiden Aufgaben |
-| `spiel.html` | verstecktes Minispiel „Pflege-Sprint“ (Easter Egg) |
+| `spiel.html` | verstecktes Minispiel „Diabetes Run!“ (Easter Egg) |
 | `rangliste.html` | Live-Rangliste für Ihren Laptop/Beamer – **nirgends verlinkt** |
 
 Jede Antwort bekommt sofort eine Rückmeldung: richtig (grün, ✓, Erklärung) oder falsch
 (orange, ✗, Tipp; die Lösung wird nie verraten). Sind alle Karten gelöst, erscheint der
 **Merksatz**, den die SuS auf das Arbeitsblatt abschreiben. Wer beide Aufgaben gelöst hat,
-findet im Merksatz-Kasten den unauffälligen Knopf „🥚 Da hat sich etwas versteckt …“.
+sieht im Merksatz-Kasten als Belohnung den Knopf „🎁 Merksatz fertig abgeschrieben? Dann tippen
+Sie hier!“. Er existiert erst, wenn beide Aufgaben vollständig richtig gelöst sind (gilt 3 Stunden;
+„Noch einmal üben“ nimmt die Freischaltung dieser Aufgabe zurück).
 
 **Datenschutz:** keine Anmeldung, keine Cookies, keine Analyse, keine fremden Schriften
 oder Skripte. Die Übungen übertragen keine Daten. Nur das Minispiel sendet nach jedem Lauf
@@ -98,7 +100,7 @@ Das Skript liest die Adresse aus dem Git-Remote, erzeugt `qr/qr_aa1.png` und `qr
 setzt sie anstelle der Platzhalter `[QR-AA1]`, `[QR-AA2]`, `[LINK-AA1]`, `[LINK-AA2]` in das
 Arbeitsblatt ein (Ergebnis: `…_mit_QR.docx`, das Original bleibt unverändert).
 
-## Minispiel „Pflege-Sprint“ und Live-Rangliste im Unterricht
+## Minispiel „Diabetes Run!“ und Live-Rangliste im Unterricht
 
 **Idee:** Wer beide Aufgaben gelöst hat, findet das versteckte Spiel. Die Krankenschwester läuft auf
 der Tour des ambulanten Pflegedienstes durchs Kochertal: über Kuchen, Weinkisten, Rollatoren

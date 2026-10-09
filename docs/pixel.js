@@ -1,4 +1,4 @@
-/* Pixel-Grafiken für „Pflege-Sprint“ – alles selbst gezeichnet, keine Bilddateien.
+/* Pixel-Grafiken für „Diabetes Run!“ – alles selbst gezeichnet, keine Bilddateien.
  * Jede Grafik ist ein Raster aus Zeichen; jedes Zeichen steht für eine Farbe,
  * „.“ ist durchsichtig. Beim Start wird jede Grafik einmal in eine kleine
  * Offscreen-Leinwand gezeichnet und danach nur noch kopiert (drawImage). */

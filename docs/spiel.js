@@ -1,4 +1,4 @@
-/* „Pflege-Sprint“ – Minispiel (Programmlogik). Texte stehen in inhalte.js,
+/* „Diabetes Run!“ – Minispiel (Programmlogik). Texte stehen in inhalte.js,
  * Einstellungen in config.js. Das Spiel läuft vollständig auf dem Gerät. */
 (function () {
   'use strict';

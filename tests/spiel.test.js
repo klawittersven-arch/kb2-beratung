@@ -19,10 +19,10 @@ const H = require('./hilfen');
     H.pruefe(text.includes('Lösen Sie zuerst beide Aufgaben.') && (await p.locator('#panel a[href="aa1.html"]').count()) === 1 &&
       (await p.locator('#panel a[href="aa2.html"]').count()) === 1, 'Ohne gelöste Aufgaben: Hinweis und Links zu beiden Aufgaben');
     H.pruefe((await p.locator('#knopf-los').count()) === 0, 'Spiel ist gesperrt');
-    await p.evaluate(() => localStorage.setItem('kb2ab12_geloest_aa1', 'true'));
+    await p.evaluate(() => localStorage.setItem('kb2ab12_geloest_aa1', String(Date.now())));
     await p.reload();
     H.pruefe((await p.locator('#panel').innerText()).includes('Lösen Sie zuerst beide Aufgaben.'), 'Nur eine Aufgabe gelöst: weiterhin gesperrt');
-    await p.evaluate(() => localStorage.setItem('kb2ab12_geloest_aa2', 'true'));
+    await p.evaluate(() => localStorage.setItem('kb2ab12_geloest_aa2', String(Date.now())));
     await p.reload();
     H.pruefe((await p.locator('#spitzname').count()) === 1 && (await p.locator('#panel .profil canvas').count()) === 1,
       'Beide gelöst: Spitzname wird abgefragt, Krankenschwester wird angezeigt (keine Figurwahl)');
