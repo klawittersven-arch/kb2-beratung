@@ -6,7 +6,7 @@
  * Nach größeren Änderungen VERSION erhöhen – dann wird der Speicher erneuert. */
 'use strict';
 
-var VERSION = 'v15';
+var VERSION = 'v16';
 var CACHE = 'kb2-ab12-' + VERSION;
 var ZEITLIMIT_MS = 4000;
 
@@ -25,6 +25,7 @@ var DATEIEN = [
   'verbindung.js',
   'pixel.js',
   'spiel.js',
+  'logo-kbs.png',
   'vendor/peerjs.min.js'
 ];
 

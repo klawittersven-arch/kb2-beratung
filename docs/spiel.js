@@ -308,7 +308,13 @@
     if (!raumcode()) { zeigeRaum(false); return; }
     menueModus('start');
     var p = panelLeeren();
-    p.appendChild(el('h1', null, T.titel));
+    var kopf = el('div', 'start-kopf');
+    var logo = el('img', 'schullogo');
+    logo.src = 'logo-kbs.png';
+    logo.alt = T.logoAlt;
+    kopf.appendChild(logo);
+    kopf.appendChild(el('h1', null, T.titel));
+    p.appendChild(kopf);
     p.appendChild(profilZeile(pr));
     p.appendChild(el('p', null, T.spielidee));
     if (persoenlicheBest() > 0) p.appendChild(el('p', null, KB2.ersetzen(T.bestleistung, { x: persoenlicheBest() })));

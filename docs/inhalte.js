@@ -306,7 +306,8 @@ var INHALTE = {
      MINISPIEL „Diabetes Run!“ (spiel.html)
      ------------------------------------------------------------------------ */
   spiel: {
-    titel: 'Diabetes Run!',
+    titel: 'KBS Diabetes Run!',
+    logoAlt: 'Logo der Schule',
     gesperrt: 'Lösen Sie zuerst beide Aufgaben.',
 
     spitznameFrage: 'Ihr Vorname:',
@@ -332,7 +333,7 @@ var INHALTE = {
 
     steuerungHandy: 'Tippen Sie unten auf „⬆ Springen“ oder „⬇ Ducken“. In der Luft noch einmal springen = Doppelsprung.',
     steuerungTastatur: 'Tastatur: Leertaste oder Pfeil hoch = springen, Pfeil runter = ducken.',
-    spielidee: 'Die Pflegekraft ist auf Tour, der Zeitplan ist eng – und es lauern zahlreiche Gefahren, nicht nur für ihren Blutzucker! Verlockende Kuchen, Weinkisten, Rollatoren, Pflegewagen und Schlaglöcher überspringen, unter Wespenschwärmen durchducken, und für den Lkw braucht es einen Doppelsprung. Ab 30 Sekunden geht’s erst richtig los!',
+    spielidee: 'Diese Hohenloher Pflegekraft ist auf Tour durchs schöne Ländle, doch der Zeitplan ist eng – und es lauern zahlreiche Gefahren, nicht nur für ihren Blutzucker! Verlockende Kuchen, Weinkisten, Rollatoren, Pflegewagen und Schlaglöcher überspringen, unter Wespenschwärmen durchducken, und für den Lkw braucht es einen Doppelsprung. Ab 30 Sekunden geht’s erst richtig los!',
     knopfDucken: '⬇ Ducken',
     knopfSpringen: '⬆ Springen',
 
