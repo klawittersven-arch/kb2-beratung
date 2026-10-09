@@ -65,8 +65,18 @@
   document.getElementById('titel').textContent = aufgabe.titel;
   document.getElementById('anweisung').textContent = aufgabe.anweisung;
 
+  // Direktlink (z. B. aa2.html?zugang=<DIREKTLINK_SCHLUESSEL>) hebt die Sperre auf (12 Stunden)
+  var direktSchluessel = window.CONFIG && CONFIG.DIREKTLINK_SCHLUESSEL;
+  try {
+    if (direktSchluessel && new URLSearchParams(location.search).get('zugang') === direktSchluessel) {
+      KB2.Speicher.dauer.schreiben('kb2ab12_direkt_' + aufgabeId, Date.now());
+    }
+  } catch (e) { /* alte Browser: ohne Direktlink */ }
+  var direktUm = KB2.Speicher.dauer.lesen('kb2ab12_direkt_' + aufgabeId);
+  var direkt = !!direktSchluessel && typeof direktUm === 'number' && Date.now() - direktUm < 12 * 3600000;
+
   // Gesperrt, solange die vorherige Aufgabe noch nicht gelöst wurde
-  if (aufgabe.voraussetzung && !KB2.Freischaltung.warGeloest(aufgabe.voraussetzung)) {
+  if (aufgabe.voraussetzung && !direkt && !KB2.Freischaltung.warGeloest(aufgabe.voraussetzung)) {
     document.getElementById('anweisung').textContent = '';
     document.querySelector('.fortschritt').style.display = 'none';
     document.getElementById('noch-einmal').style.display = 'none';

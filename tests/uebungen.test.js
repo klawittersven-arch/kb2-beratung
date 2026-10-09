@@ -188,6 +188,8 @@ const H = require('./hilfen');
       for (const [n, r] of k) await q.click(`#karte-${n} [data-kuerzel="${r}"]`);
       await H.warte(300);
     };
+    await q.goto(basis + 'aa2.html?zugang=falsch');
+    H.pruefe((await q.locator('.karte').count()) === 0, 'Falscher Direktlink-Schlüssel: 2 bleibt gesperrt');
     await q.goto(basis + 'aa2.html');
     const text = await q.locator('main').innerText();
     H.pruefe(text.includes('Lösen Sie zuerst Arbeitsauftrag 1!') && (await q.locator('.karte').count()) === 0 &&
@@ -200,6 +202,16 @@ const H = require('./hilfen');
     await q.click('#noch-einmal');
     await q.goto(basis + 'aa2.html');
     H.pruefe((await q.locator('.karte').count()) === 8, 'Nach Aufgabe 1 ist 2 a) offen – auch wenn Aufgabe 1 danach „noch einmal geübt“ wird');
+    // Direktlink in einem frischen Kontext
+    const ctx4 = await browser.newContext(H.MOBIL);
+    const d = await ctx4.newPage();
+    H.beobachten(d, protokoll, 'direkt-aa2');
+    const sch = await q.evaluate(() => CONFIG.DIREKTLINK_SCHLUESSEL);
+    await d.goto(basis + 'aa2.html?zugang=' + sch);
+    H.pruefe((await d.locator('.karte').count()) === 8, 'Direktlink aa2.html?zugang=…: 2 ohne Aufgabe 1 offen');
+    await d.goto(basis + 'aa2.html');
+    H.pruefe((await d.locator('.karte').count()) === 8, 'Direktlink: bleibt nach Neuladen offen');
+    await ctx4.close()
     await ctx2.close();
   }
 

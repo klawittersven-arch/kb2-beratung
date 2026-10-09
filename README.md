@@ -149,7 +149,8 @@ an Ihren Laptop.
 eine Pause): `https://klawittersven-arch.github.io/kb2-beratung/spiel.html?zugang=kochertal`
 – mit Raumcode gleich eingetragen: `…/spiel.html?zugang=kochertal&raum=4821`. Das Schlüsselwort
 steht in `docs/config.js` (`DIREKTLINK_SCHLUESSEL`); ändern Sie es, wenn ein verschickter Link
-nicht mehr funktionieren soll.
+nicht mehr funktionieren soll. Ebenso öffnet `…/aa2.html?zugang=kochertal` Arbeitsauftrag 2,
+ohne dass vorher Arbeitsauftrag 1 gelöst sein muss.
 
 **Technik und Datenschutz der Live-Verbindung:** Handy und Laptop verbinden sich direkt per
 WebRTC. Zum „Bekanntmachen“ nutzt die Bibliothek PeerJS den kostenlosen Vermittlungsdienst
