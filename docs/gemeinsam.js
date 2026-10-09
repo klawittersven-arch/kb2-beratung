@@ -63,9 +63,16 @@
   var Freischaltung = {
     alsGeloestMerken: function (aufgabe) {
       Speicher.dauer.schreiben('kb2ab12_geloest_' + aufgabe, Date.now());
+      Speicher.dauer.schreiben('kb2ab12_fertig_' + aufgabe, Date.now());
     },
     zuruecknehmen: function (aufgabe) {
       Speicher.dauer.schreiben('kb2ab12_geloest_' + aufgabe, null);
+    },
+    // Zugang zur nächsten Aufgabe: einmal gelöst genügt (12 Stunden),
+    // „Noch einmal üben“ nimmt ihn nicht zurück.
+    warGeloest: function (aufgabe) {
+      var um = Speicher.dauer.lesen('kb2ab12_fertig_' + aufgabe);
+      return typeof um === 'number' && um <= Date.now() + 60000 && Date.now() - um < 12 * 3600000;
     },
     istGeloest: function (aufgabe) {
       var um = Speicher.dauer.lesen('kb2ab12_geloest_' + aufgabe);

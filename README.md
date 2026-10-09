@@ -9,7 +9,7 @@ am Smartphone:
 | Seite | Inhalt |
 |---|---|
 | `aa1.html` | Arbeitsauftrag 1: Situativ oder geplant? (10 Situationen, S/G, ab Nr. 6 schwieriger) |
-| `aa2.html` | Arbeitsauftrag 2 a): Kompetenzen erkennen (8 Verhaltensweisen, F/M/S/P) |
+| `aa2.html` | Arbeitsauftrag 2 a): Kompetenzen erkennen (8 Verhaltensweisen, F/M/S/P) | – erst nach Arbeitsauftrag 1 freigeschaltet
 | `index.html` | kurze Startseite mit Links zu beiden Aufgaben |
 | `spiel.html` | verstecktes Minispiel „Diabetes Run!“ (Easter Egg) |
 | `rangliste.html` | Live-Rangliste für Ihren Laptop/Beamer – **nirgends verlinkt** |

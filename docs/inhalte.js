@@ -164,6 +164,11 @@ var INHALTE = {
     // Jede Karte beginnt mit „Lina …“
     kartenAnfang: 'Lina',
 
+    // Diese Aufgabe lässt sich erst öffnen, wenn Arbeitsauftrag 1 gelöst ist
+    voraussetzung: 'aa1',
+    gesperrtText: 'Lösen Sie zuerst Arbeitsauftrag 1!',
+    gesperrtLink: 'Zu Arbeitsauftrag 1',
+
     karten: [
       {
         nummer: 1,
@@ -315,7 +320,7 @@ var INHALTE = {
 
     steuerungHandy: 'Tippen Sie unten auf „⬆ Springen“ oder „⬇ Ducken“. In der Luft noch einmal springen = Doppelsprung.',
     steuerungTastatur: 'Tastatur: Leertaste oder Pfeil hoch = springen, Pfeil runter = ducken.',
-    spielidee: 'Die Krankenschwester ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren, Pflegewagen und Schlaglöcher, ducken Sie sich unter Wespenschwärmen durch. Über den langen KBS-Lkw kommen Sie nur mit Doppelsprung (am höchsten Punkt noch einmal springen). Nach 30 Sekunden wird es schnell schwer!',
+    spielidee: 'Die Pflegekraft ist auf Tour, der Zeitplan ist eng – und es lauern zahlreiche Gefahren, nicht nur für ihren Blutzucker! Verlockende Kuchen, Weinkisten, Rollatoren, Pflegewagen und Schlaglöcher überspringen, unter Wespenschwärmen durchducken, und für den Lkw braucht es einen Doppelsprung. Ab 30 Sekunden geht’s erst richtig los!',
     knopfDucken: '⬇ Ducken',
     knopfSpringen: '⬆ Springen',
 
