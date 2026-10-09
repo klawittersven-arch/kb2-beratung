@@ -247,11 +247,8 @@ var INHALTE = {
     titel: 'Pflege-Sprint',
     gesperrt: 'Lösen Sie zuerst beide Aufgaben.',
 
-    figurFrage: 'Wählen Sie Ihre Figur:',
-    figurLina: 'Lina',
-    figurLinaBeschreibung: 'Pflegefachfrau',
-    figurTim: 'Tim',
-    figurTimBeschreibung: 'Pflegefachmann',
+    // Text neben der Spielfigur (es gibt nur eine Figur: die Krankenschwester)
+    figurText: 'Ihre Spielfigur: die Krankenschwester',
 
     spitznameFrage: 'Ihr Spitzname:',
     spitznameHinweis: 'Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen. Ihr Spitzname und Ihre Punkte erscheinen nur während des Unterrichts auf einer Rangliste und werden nicht gespeichert.',
@@ -267,7 +264,7 @@ var INHALTE = {
     nochmal: 'Nochmal',
     zurueckZumStart: 'Zum Startbildschirm',
     raumcodeAendern: 'Raumcode ändern',
-    figurAendern: 'Figur oder Spitzname ändern',
+    figurAendern: 'Spitzname ändern',
     bestleistung: 'Ihre Bestleistung: {x}',
     punkte: 'Punkte: {x}',
     neueBestleistung: 'Neue Bestleistung!',
@@ -276,7 +273,7 @@ var INHALTE = {
 
     steuerungHandy: 'Tippen Sie unten auf „⬆ Springen“ oder „⬇ Ducken“.',
     steuerungTastatur: 'Tastatur: Leertaste oder Pfeil hoch = springen, Pfeil runter = ducken.',
-    spielidee: 'Lina oder Tim ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren und Pflegewagen, ducken Sie sich vor Wespen und sammeln Sie Traubenzucker (+25 Punkte).',
+    spielidee: 'Die Krankenschwester ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren und Pflegewagen, ducken Sie sich vor Wespen und sammeln Sie Traubenzucker (+25 Punkte).',
     knopfDucken: '⬇ Ducken',
     knopfSpringen: '⬆ Springen',
 

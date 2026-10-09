@@ -78,7 +78,7 @@ function busErstellen() {
 }
 
 /* Setzt die Freischaltung und optional Profil/Raumcode, bevor die Seite lädt */
-async function handyVorbereiten(ctx, { figur = 'lina', spitzname = 'Mia', raum = '4821', geloest = true, test = {} } = {}) {
+async function handyVorbereiten(ctx, { figur = 'schwester', spitzname = 'Mia', raum = '4821', geloest = true, test = {} } = {}) {
   await ctx.addInitScript(({ figur, spitzname, raum, geloest, test }) => {
     try {
       if (!localStorage.getItem('__vorbereitet')) {

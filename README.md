@@ -100,7 +100,7 @@ Arbeitsblatt ein (Ergebnis: `…_mit_QR.docx`, das Original bleibt unverändert)
 
 ## Minispiel „Pflege-Sprint“ und Live-Rangliste im Unterricht
 
-**Idee:** Wer beide Aufgaben gelöst hat, findet das versteckte Spiel. Lina oder Tim läuft auf
+**Idee:** Wer beide Aufgaben gelöst hat, findet das versteckte Spiel. Die Krankenschwester läuft auf
 der Tour des ambulanten Pflegedienstes durchs Kochertal: über Kuchen, Weinkisten, Rollatoren
 und Pflegewagen springen, unter Wespen wegducken, Traubenzucker sammeln (+25 Punkte). Kein Ton.
 Das Spiel läuft komplett auf dem Handy; nur nach jedem Lauf geht eine winzige Punktemeldung

@@ -113,8 +113,6 @@
   ✓ „📡 Ihre Bestleistung ist auf der Rangliste.“ steht so im Auftrag
   ✓ „📡 Ihre Bestleistung wird automatisch übertragen.“ steht so im Auftrag
   ✓ „Raumcode richtig eingegeben?“ steht so im Auftrag
-  ✓ „Lina“ steht so im Auftrag
-  ✓ „Tim“ steht so im Auftrag
   ✓ „Pflege-Sprint – Rangliste“ steht so im Auftrag
   ✓ „Raumcode Ihrer Folie“ steht so im Auftrag
   ✓ „Rangliste starten“ steht so im Auftrag
@@ -126,4 +124,4 @@
   ✓ Vorlage „Beim ersten Versuch richtig: x von y“
   ✓ Wartetext der Rangliste
 
-117 von 117 Prüfungen bestanden.
+115 von 115 Prüfungen bestanden.

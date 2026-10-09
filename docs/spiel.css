@@ -55,18 +55,8 @@ body.lauf #panel { display: none; }
 .knopf:hover { background: var(--dunkelpetrol); }
 .knopf-zweit { background: #fff; color: var(--dunkelpetrol); }
 .knopf-zweit:hover { background: var(--hellblau); }
-.knopf:focus-visible, .klein-link:focus-visible, .figurwahl:focus-visible { outline: 3px solid #F2B600; outline-offset: 2px; }
+.knopf:focus-visible, .klein-link:focus-visible { outline: 3px solid #F2B600; outline-offset: 2px; }
 
-.figuren { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.figurwahl {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  padding: 12px 8px; min-height: 48px; border-radius: 12px; cursor: pointer;
-  background: var(--hellblau); border: 3px solid transparent; font: inherit; color: var(--text);
-}
-.figurwahl.gewaehlt { border-color: var(--petrol); background: #fff; }
-.figurwahl canvas { width: 64px; height: 96px; image-rendering: pixelated; image-rendering: crisp-edges; }
-.figurwahl strong { font-size: 20px; }
-.figurwahl span { font-size: 17px; }
 
 .feld {
   display: block; width: 100%; font: inherit; font-size: 22px; padding: 10px 12px; min-height: 52px;

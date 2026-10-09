@@ -3,9 +3,9 @@
   ✓ Ohne gelöste Aufgaben: Hinweis und Links zu beiden Aufgaben
   ✓ Spiel ist gesperrt
   ✓ Nur eine Aufgabe gelöst: weiterhin gesperrt
-  ✓ Beide gelöst: Figurwahl Lina/Tim erscheint
+  ✓ Beide gelöst: Spitzname wird abgefragt, Krankenschwester wird angezeigt (keine Figurwahl)
 
-== Figur, Spitzname, Raumcode
+== Spitzname, Raumcode
   ✓ Datenschutzhinweis beim Spitznamen
   ✓ Spitzname „A“ wird abgelehnt
   ✓ Spitzname „Mia!“ wird abgelehnt
