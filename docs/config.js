@@ -37,9 +37,10 @@ var CONFIG = {
     'dick', 'cock', 'pussy', 'slut', 'whore', 'cunt', 'kill'
   ],
 
-  // Direktlink zum Spiel (ohne vorher die Aufgaben zu lösen):
+  // Direktlinks (ohne vorher die anderen Aufgaben zu lösen):
   //   …/spiel.html?zugang=kochertal          → Spiel sofort spielbar
   //   …/spiel.html?zugang=kochertal&raum=4821 → zusätzlich Raumcode schon eingetragen
+  //   …/aa2.html?zugang=kochertal            → Arbeitsauftrag 2 ohne Arbeitsauftrag 1
   // Ändern Sie das Wort, wenn der Link nicht mehr funktionieren soll.
   // Leer lassen ('') = kein Direktlink möglich.
   DIREKTLINK_SCHLUESSEL: 'kochertal',

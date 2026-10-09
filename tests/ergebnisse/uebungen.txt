@@ -171,11 +171,14 @@
   ✓ 7 von 10 beim ersten Versuch → Merksatz
 
 == Sperre: 2 a) erst nach Aufgabe 1
+  ✓ Falscher Direktlink-Schlüssel: 2 bleibt gesperrt
   ✓ 2 a) vor Aufgabe 1: „Lösen Sie zuerst Arbeitsauftrag 1!“, keine Karten
   ✓ Link „Zu Arbeitsauftrag 1“
   ✓ Link führt zu Arbeitsauftrag 1
   ✓ Nach Aufgabe 1: kein Belohnungs-Knopf
   ✓ Nach Aufgabe 1 ist 2 a) offen – auch wenn Aufgabe 1 danach „noch einmal geübt“ wird
+  ✓ Direktlink aa2.html?zugang=…: 2 ohne Aufgabe 1 offen
+  ✓ Direktlink: bleibt nach Neuladen offen
 
 == ohne Browser-Speicher
   ✓ Übung läuft ohne Speicher fehlerfrei
@@ -184,4 +187,4 @@
   ✓ Keine Fehler in der Konsole
   ✓ Keine Anfragen an externe Adressen
 
-173 von 173 Prüfungen bestanden.
+176 von 176 Prüfungen bestanden.
