@@ -1,0 +1,64 @@
+
+== Freischaltung
+  ✓ Ohne gelöste Aufgaben: Hinweis und Links zu beiden Aufgaben
+  ✓ Spiel ist gesperrt
+  ✓ Nur eine Aufgabe gelöst: weiterhin gesperrt
+  ✓ Beide gelöst: Figurwahl Lina/Tim erscheint
+
+== Figur, Spitzname, Raumcode
+  ✓ Datenschutzhinweis beim Spitznamen
+  ✓ Spitzname „A“ wird abgelehnt
+  ✓ Spitzname „Mia!“ wird abgelehnt
+  ✓ Spitzname „Arsch“ wird abgelehnt
+  ✓ Spitzname „F1ck3r“ wird abgelehnt
+  ✓ Spitzname auf 12 Zeichen begrenzt
+  ✓ Raumcode-Frage wie im Auftrag
+  ✓ Ziffernfeld (inputmode="numeric")
+  ✓ Raumcode „12“ abgelehnt
+  ✓ Raumcode „12a“ abgelehnt
+  ✓ Raumcode „“ abgelehnt
+  ✓ Mehr als 4 Ziffern werden abgeschnitten
+  ✓ Jede vierstellige Zahl wird angenommen → Startbildschirm
+  ✓ Statuszeile ohne Rangliste
+  ✓ Spitzname, Figur und Raumcode bleiben gespeichert
+  ✓ Nach mehr als 3 Stunden wird der Raumcode erneut abgefragt
+  ✓ Link „Raumcode ändern“ auf dem Startbildschirm
+
+== Tastatur: Springen, Ducken, Zusammenstoß
+  ✓ Leertaste startet den Lauf auf dem Startbildschirm
+  ✓ Leertaste = springen
+  ✓ Pfeil runter (gehalten) = ducken
+  ✓ Loslassen beendet das Ducken
+  ✓ Pfeil hoch = springen
+  ✓ Ohne Eingabe: Zusammenstoß → „Game over“
+  ✓ Game over zeigt Punktzahl, Bestleistung und „Nochmal“
+  ✓ „Wusstest du?“-Info wird angezeigt
+  ✓ Zusammenstoß mit einem Hindernis an der Figur
+  ✓ „Nochmal“ startet einen neuen Lauf
+  ✓ Seite im Hintergrund → Pause (Zeit steht)
+  ✓ Tippen setzt das Spiel fort
+
+== Touch (Handygröße): Springen, Ducken, kein Zoomen/Scrollen
+  ✓ Zwei große Knöpfe: links „⬇ Ducken“, rechts „⬆ Springen“
+  ✓ Ducken links, Springen rechts
+  ✓ Antippen „Springen“ = springen
+  ✓ Gedrückt halten „Ducken“ = ducken, solange gedrückt
+  ✓ Loslassen beendet das Ducken
+  ✓ Kein Zoomen oder Scrollen beim Tippen
+  ✓ Zusammenstoß beendet den Lauf (Touch)
+  ✓ Querformat: großes Spielfeld, Knöpfe sichtbar, kein Überlauf
+
+== Feste Physik-Zeitschritte: 30 / 60 / 120 Hz (je 20 s Spielzeit, virtuelle Uhr)
+  30 Hz: Spielzeit 19.992 s, Strecke 3698.5 px, Tempo 220.0 px/s, gezeichnete Bilder 600, Sparmodus an
+  60 Hz: Spielzeit 20.000 s, Strecke 3700.3 px, Tempo 220.0 px/s, gezeichnete Bilder 1200, Sparmodus aus
+  120 Hz: Spielzeit 19.992 s, Strecke 3698.5 px, Tempo 220.0 px/s, gezeichnete Bilder 1201, Sparmodus aus
+  ✓ Gleiche Strecke (±0,2 %) bei 30, 60 und 120 Hz
+  ✓ Spielzeit = Echtzeit bei allen Bildraten
+  ✓ Bei 120 Hz höchstens 60 Bilder/s gezeichnet
+  ✓ Dauerhaft < 40 Bilder/s schaltet den Sparmodus ein (30 Hz), bei 60 Hz nicht
+
+== Konsole und externe Anfragen
+  ✓ Keine Fehler in der Konsole
+  ✓ Keine Anfragen an externe Adressen (Test-Transport)
+
+47 von 47 Prüfungen bestanden.

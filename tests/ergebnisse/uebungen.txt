@@ -1,0 +1,141 @@
+
+== aa1.html
+  ✓ Merksatz steht vor dem Lösen nirgends in der Seite
+  ✓ 5 Karten in fester Reihenfolge
+  ✓ Nummerierung wie im Auftrag
+  ✓ Antwortknöpfe ≥ 48 px hoch, Schrift ≥ 17 px
+  ✓ Sichtbare Schrift überall ≥ 17 px
+  ✓ Kein waagrechtes Scrollen bei 390 px
+  ✓ Karte 1: falsche Antwort G → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 1: Lösung nach G nicht verraten
+  ✓ Karte 2: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 2: Lösung nach S nicht verraten
+  ✓ Karte 3: falsche Antwort G → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 3: Lösung nach G nicht verraten
+  ✓ Karte 4: falsche Antwort G → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 4: Lösung nach G nicht verraten
+  ✓ Karte 5: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 5: Lösung nach S nicht verraten
+  ✓ Merksatz nach falschen Antworten noch nicht sichtbar
+  ✓ Genau 0 Karte mit zwei richtigen Antworten
+  ✓ Karte 1: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „1 von 5 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 2: G richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „2 von 5 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 3: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „3 von 5 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 4: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „4 von 5 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 5: G richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „5 von 5 richtig“
+  ✓ Kasten „Ihr Merksatz“ erscheint nach vollständiger Lösung
+  ✓ Merksatz und Hinweis stehen im Kasten
+  ✓ Zählung „Beim ersten Versuch richtig“
+  ✓ Automatisch zum Merksatz gescrollt
+  ✓ Nach Neuladen bleibt der Fortschritt erhalten (sessionStorage)
+  ✓ „Noch einmal üben“ setzt alles zurück
+  ✓ Bei fehlerfreier Lösung: alle beim ersten Versuch richtig
+  ✓ Nach nur einer Aufgabe noch kein Easter-Egg-Knopf
+
+== aa2.html
+  ✓ Merksatz steht vor dem Lösen nirgends in der Seite
+  ✓ 8 Karten in fester Reihenfolge
+  ✓ Nummerierung wie im Auftrag
+  ✓ Antwortknöpfe ≥ 48 px hoch, Schrift ≥ 17 px
+  ✓ Sichtbare Schrift überall ≥ 17 px
+  ✓ Kein waagrechtes Scrollen bei 390 px
+  ✓ Hilfe „Die vier Kompetenzbereiche“ ist zugeklappt
+  ✓ Hilfe lässt sich aufklappen
+  ✓ Karte 1: falsche Antwort M → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 1: Lösung nach M nicht verraten
+  ✓ Karte 1: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 1: Lösung nach S nicht verraten
+  ✓ Karte 1: falsche Antwort P → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 1: Lösung nach P nicht verraten
+  ✓ Karte 2: falsche Antwort F → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 2: Lösung nach F nicht verraten
+  ✓ Karte 2: falsche Antwort P → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 2: Lösung nach P nicht verraten
+  ✓ Karte 3: falsche Antwort F → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 3: Lösung nach F nicht verraten
+  ✓ Karte 3: falsche Antwort M → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 3: Lösung nach M nicht verraten
+  ✓ Karte 3: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 3: Lösung nach S nicht verraten
+  ✓ Karte 4: falsche Antwort F → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 4: Lösung nach F nicht verraten
+  ✓ Karte 4: falsche Antwort M → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 4: Lösung nach M nicht verraten
+  ✓ Karte 4: falsche Antwort P → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 4: Lösung nach P nicht verraten
+  ✓ Karte 5: falsche Antwort M → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 5: Lösung nach M nicht verraten
+  ✓ Karte 5: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 5: Lösung nach S nicht verraten
+  ✓ Karte 5: falsche Antwort P → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 5: Lösung nach P nicht verraten
+  ✓ Karte 6: falsche Antwort F → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 6: Lösung nach F nicht verraten
+  ✓ Karte 6: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 6: Lösung nach S nicht verraten
+  ✓ Karte 6: falsche Antwort P → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 6: Lösung nach P nicht verraten
+  ✓ Karte 7: falsche Antwort F → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 7: Lösung nach F nicht verraten
+  ✓ Karte 7: falsche Antwort M → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 7: Lösung nach M nicht verraten
+  ✓ Karte 7: falsche Antwort P → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 7: Lösung nach P nicht verraten
+  ✓ Karte 8: falsche Antwort F → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 8: Lösung nach F nicht verraten
+  ✓ Karte 8: falsche Antwort M → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 8: Lösung nach M nicht verraten
+  ✓ Karte 8: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 8: Lösung nach S nicht verraten
+  ✓ Merksatz nach falschen Antworten noch nicht sichtbar
+  ✓ Genau 1 Karte mit zwei richtigen Antworten
+  ✓ Karte 1: F richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „1 von 8 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 2: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „2 von 8 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 3: P richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „3 von 8 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 4: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „4 von 8 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 5: F richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „5 von 8 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 6: M richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „6 von 8 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 7: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „7 von 8 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 8: P richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „8 von 8 richtig“
+  ✓ Kasten „Ihr Merksatz“ erscheint nach vollständiger Lösung
+  ✓ Merksatz und Hinweis stehen im Kasten
+  ✓ Zählung „Beim ersten Versuch richtig“
+  ✓ Automatisch zum Merksatz gescrollt
+  ✓ Nach Neuladen bleibt der Fortschritt erhalten (sessionStorage)
+  ✓ „Noch einmal üben“ setzt alles zurück
+  ✓ Bei fehlerfreier Lösung: alle beim ersten Versuch richtig
+  ✓ Nach beiden Aufgaben: Knopf „🥚 Da hat sich etwas versteckt …“ führt zu spiel.html
+  ✓ AA2a Karte 2: M ist richtig (mit eigener Erklärung)
+
+== ohne Browser-Speicher
+  ✓ Übung läuft ohne Speicher fehlerfrei
+
+== Konsole und externe Anfragen
+  ✓ Keine Fehler in der Konsole
+  ✓ Keine Anfragen an externe Adressen
+
+131 von 131 Prüfungen bestanden.

@@ -19,7 +19,7 @@
   ✓ Neuer Eintrag erscheint live (nach 0.0 s)
 
 == (c) Neue Bestleistung erscheint live
-  ✓ Bestleistung 67 → 129 live aktualisiert (nach 0.0 s)
+  ✓ Bestleistung 67 → 115 live aktualisiert (nach 0.0 s)
   ✓ Überholen: neue Spitze steht auf Platz 1
 
 == (d) Verbindungsabbruch und Neuverbindung
@@ -28,11 +28,11 @@
   ✓ Bestehende Verbindungen zu den Handys bleiben erhalten
   ✓ Netzausfall am Laptop: Verbindungen brechen ab
   ✓ Nach dem Netzausfall wieder angemeldet
-  ✓ Handys verbinden sich neu (nach 7.6 s)
+  ✓ Handys verbinden sich neu (nach 8.4 s)
   ✓ Nach Neuverbindung: neue Bestleistung kommt an
   ✓ Handy offline: Verbindung bricht ab
   ✓ Offline erzielte Bestleistung ist noch nicht da
-  ✓ Wieder online: Bestleistung wird nachgereicht (nach 8.9 s)
+  ✓ Wieder online: Bestleistung wird nachgereicht (nach 0.3 s)
   ✓ Hintergrund-Tab (30 s, Vermittlung getrennt): Meldungen kommen weiter an
   ✓ Nach längerer Zeit im Hintergrund wieder verbunden
 
@@ -44,7 +44,7 @@
 == (g) Einträge älter als ANZEIGE_MINUTEN verschwinden
   ✓ Eintrag knapp innerhalb des Zeitraums wird angezeigt
   ✓ Eintrag älter als ANZEIGE_MINUTEN wird nicht angezeigt
-  ✗ Nach Ablauf von ANZEIGE_MINUTEN verschwindet der Eintrag von selbst
+  ✓ Nach Ablauf von ANZEIGE_MINUTEN verschwindet der Eintrag von selbst
 
 == (f) Moderation
   ✓ Klick auf Eintrag → Frage auf der Seite (kein Browser-Dialog)
@@ -58,11 +58,11 @@
 == (h) Belegter Raumcode
   ✓ Zweite Rangliste mit gleichem Code: Hinweis „schon verwendet“
   ✓ Die erste Rangliste bleibt davon unberührt
-  ✓ „Zufälligen Code vorschlagen“ liefert 4 Ziffern (6674)
+  ✓ „Zufälligen Code vorschlagen“ liefert 4 Ziffern (1467)
   ✓ Demo-Modus: 10 erfundene Einträge, passt ohne Scrollen auf 16:9
 
 == Konsole und externe Anfragen
   ✓ Keine Fehler in der Konsole
   ✓ Keine Anfragen an externe Adressen (Test-Transport)
 
-44 von 45 Prüfungen bestanden.
+45 von 45 Prüfungen bestanden.

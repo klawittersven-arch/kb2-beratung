@@ -189,8 +189,8 @@ const H = require('./hilfen');
   }, RAUM);
   H.pruefe(await H.bis(async () => (await eintraege(L)).some((e) => e.id === 'knappgeraet01'), { zeit: 15000 }), 'Eintrag knapp innerhalb des Zeitraums wird angezeigt');
   H.pruefe(!(await eintraege(L)).some((e) => e.id === 'altgeraet0001'), 'Eintrag älter als ANZEIGE_MINUTEN wird nicht angezeigt');
-  H.pruefe(await H.bis(async () => !(await eintraege(L)).some((e) => e.id === 'knappgeraet01'), { zeit: 25000 }) &&
-    (await L.locator('#liste .zeile[data-id="knappgeraet01"]').count()) === 0, 'Nach Ablauf von ANZEIGE_MINUTEN verschwindet der Eintrag von selbst');
+  H.pruefe(await H.bis(async () => !(await eintraege(L)).some((e) => e.id === 'knappgeraet01') &&
+    (await L.locator('#liste .zeile[data-id="knappgeraet01"]').count()) === 0, { zeit: 25000 }), 'Nach Ablauf von ANZEIGE_MINUTEN verschwindet der Eintrag von selbst');
 
   /* ---------- (f) Ausblenden und Liste leeren ---------- */
   console.log('\n== (f) Moderation');

@@ -99,7 +99,7 @@
     var aus = [];
     Object.keys(z.eintraege).forEach(function (id) {
       var e = z.eintraege[id];
-      if (e.erreichtUm < grenze) { delete z.eintraege[id]; return; }
+      if (e.erreichtUm < grenze) { delete z.eintraege[id]; schmutzig = true; return; }
       if (z.ausgeblendet.geraete[id] || z.ausgeblendet.namen[namensSchluessel(e.spitzname)]) return;
       aus.push({ id: id, e: e });
     });
@@ -216,9 +216,15 @@
     belegt.hidden = zust !== 'belegt';
   }
 
+  function etwasAbgelaufen() {
+    var grenze = Date.now() - FENSTER_MS;
+    for (var id in z.eintraege) if (z.eintraege[id].erreichtUm < grenze) return true;
+    return false;
+  }
+
   setInterval(function () {
     if (!z) return;
-    if (schmutzig || Date.now() - letzterAufbau > 10000) aufbauen();
+    if (schmutzig || Date.now() - letzterAufbau > 10000 || etwasAbgelaufen()) aufbauen();
   }, 1000);
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden && z) { aufbauen(); wachHalten(); }
