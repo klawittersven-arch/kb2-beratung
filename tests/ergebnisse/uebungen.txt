@@ -1,7 +1,7 @@
 
 == aa1.html
   ✓ Merksatz steht vor dem Lösen nirgends in der Seite
-  ✓ 5 Karten in fester Reihenfolge
+  ✓ 10 Karten in fester Reihenfolge
   ✓ Nummerierung wie im Auftrag
   ✓ Antwortknöpfe ≥ 48 px hoch, Schrift ≥ 17 px
   ✓ Sichtbare Schrift überall ≥ 17 px
@@ -16,30 +16,58 @@
   ✓ Karte 4: Lösung nach G nicht verraten
   ✓ Karte 5: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
   ✓ Karte 5: Lösung nach S nicht verraten
+  ✓ Karte 6: falsche Antwort G → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 6: Lösung nach G nicht verraten
+  ✓ Karte 7: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 7: Lösung nach S nicht verraten
+  ✓ Karte 8: falsche Antwort G → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 8: Lösung nach G nicht verraten
+  ✓ Karte 9: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 9: Lösung nach S nicht verraten
+  ✓ Karte 10: falsche Antwort G → ✗, deaktiviert, Tipp sichtbar
+  ✓ Karte 10: Lösung nach G nicht verraten
   ✓ Merksatz nach falschen Antworten noch nicht sichtbar
+  ✓ Vor vollständiger Lösung existiert kein Knopf/Link zum Spiel
   ✓ Genau 0 Karte mit zwei richtigen Antworten
   ✓ Karte 1: S richtig → ✓, Erklärung, Knöpfe gesperrt
-  ✓ Fortschritt „1 von 5 richtig“
+  ✓ Fortschritt „1 von 10 richtig“
   ✓ Merksatz noch nicht sichtbar
   ✓ Karte 2: G richtig → ✓, Erklärung, Knöpfe gesperrt
-  ✓ Fortschritt „2 von 5 richtig“
+  ✓ Fortschritt „2 von 10 richtig“
   ✓ Merksatz noch nicht sichtbar
   ✓ Karte 3: S richtig → ✓, Erklärung, Knöpfe gesperrt
-  ✓ Fortschritt „3 von 5 richtig“
+  ✓ Fortschritt „3 von 10 richtig“
   ✓ Merksatz noch nicht sichtbar
   ✓ Karte 4: S richtig → ✓, Erklärung, Knöpfe gesperrt
-  ✓ Fortschritt „4 von 5 richtig“
+  ✓ Fortschritt „4 von 10 richtig“
   ✓ Merksatz noch nicht sichtbar
   ✓ Karte 5: G richtig → ✓, Erklärung, Knöpfe gesperrt
-  ✓ Fortschritt „5 von 5 richtig“
+  ✓ Fortschritt „5 von 10 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 6: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „6 von 10 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 7: G richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „7 von 10 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 8: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „8 von 10 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 9: G richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „9 von 10 richtig“
+  ✓ Merksatz noch nicht sichtbar
+  ✓ Karte 10: S richtig → ✓, Erklärung, Knöpfe gesperrt
+  ✓ Fortschritt „10 von 10 richtig“
   ✓ Kasten „Ihr Merksatz“ erscheint nach vollständiger Lösung
+  ✓ „erkannt“ und „bearbeitet“ fett und unterstrichen
+  ✓ Keine Sternchen sichtbar
   ✓ Merksatz und Hinweis stehen im Kasten
   ✓ Zählung „Beim ersten Versuch richtig“
   ✓ Automatisch zum Merksatz gescrollt
   ✓ Nach Neuladen bleibt der Fortschritt erhalten (sessionStorage)
   ✓ „Noch einmal üben“ setzt alles zurück
   ✓ Bei fehlerfreier Lösung: alle beim ersten Versuch richtig
-  ✓ Nach nur einer Aufgabe noch kein Easter-Egg-Knopf
+  ✓ Nach nur einer Aufgabe noch kein Belohnungs-Knopf
 
 == aa2.html
   ✓ Merksatz steht vor dem Lösen nirgends in der Seite
@@ -97,6 +125,7 @@
   ✓ Karte 8: falsche Antwort S → ✗, deaktiviert, Tipp sichtbar
   ✓ Karte 8: Lösung nach S nicht verraten
   ✓ Merksatz nach falschen Antworten noch nicht sichtbar
+  ✓ Vor vollständiger Lösung existiert kein Knopf/Link zum Spiel
   ✓ Genau 1 Karte mit zwei richtigen Antworten
   ✓ Karte 1: F richtig → ✓, Erklärung, Knöpfe gesperrt
   ✓ Fortschritt „1 von 8 richtig“
@@ -128,7 +157,9 @@
   ✓ Nach Neuladen bleibt der Fortschritt erhalten (sessionStorage)
   ✓ „Noch einmal üben“ setzt alles zurück
   ✓ Bei fehlerfreier Lösung: alle beim ersten Versuch richtig
-  ✓ Nach beiden Aufgaben: Knopf „🥚 Da hat sich etwas versteckt …“ führt zu spiel.html
+  ✓ Nach beiden Aufgaben: Belohnungs-Knopf „🎁 Merksatz fertig abgeschrieben? …“ führt zu spiel.html
+  ✓ Nach „Noch einmal üben“ ist der Knopf weg, bis wieder alles gelöst ist
+  ✓ Nach erneuter vollständiger Lösung erscheint er wieder
   ✓ AA2a Karte 2: M ist richtig (mit eigener Erklärung)
 
 == ohne Browser-Speicher
@@ -138,4 +169,4 @@
   ✓ Keine Fehler in der Konsole
   ✓ Keine Anfragen an externe Adressen
 
-131 von 131 Prüfungen bestanden.
+162 von 162 Prüfungen bestanden.

@@ -78,14 +78,14 @@ function busErstellen() {
 }
 
 /* Setzt die Freischaltung und optional Profil/Raumcode, bevor die Seite lädt */
-async function handyVorbereiten(ctx, { figur = 'lina', spitzname = 'Mia', raum = '4821', geloest = true, test = {} } = {}) {
+async function handyVorbereiten(ctx, { figur = 'schwester', spitzname = 'Mia', raum = '4821', geloest = true, test = {} } = {}) {
   await ctx.addInitScript(({ figur, spitzname, raum, geloest, test }) => {
     try {
       if (!localStorage.getItem('__vorbereitet')) {
         localStorage.setItem('__vorbereitet', '1');
         if (geloest) {
-          localStorage.setItem('kb2ab12_geloest_aa1', 'true');
-          localStorage.setItem('kb2ab12_geloest_aa2', 'true');
+          localStorage.setItem('kb2ab12_geloest_aa1', String(Date.now()));
+          localStorage.setItem('kb2ab12_geloest_aa2', String(Date.now()));
         }
         if (spitzname) localStorage.setItem('kb2ab12_profil', JSON.stringify({ figur, spitzname }));
         if (raum) localStorage.setItem('kb2ab12_raum', JSON.stringify({ code: raum, um: Date.now() }));

@@ -98,7 +98,7 @@ function statistik(werte) {
   H.beobachten(S, protokoll, 'simulator');
   await S.goto(basis + 'index.html?transport=test');
   await S.addScriptTag({ url: 'verbindung.js' });
-  const namen = ['Mia', 'Leon', 'Emma', 'Ben', 'Lea', 'Finn', 'Hanna', 'Elias', 'Lina', 'Tim'];
+  const namen = ['Mia', 'Leon', 'Emma', 'Ben', 'Lea', 'Finn', 'Hanna', 'Elias', 'Lia', 'Tom'];
   const aufbauVorher = await L.evaluate(() => Rangliste.aufbauZaehler());
   const t0 = Date.now();
   await S.evaluate((namen) => {
@@ -107,7 +107,7 @@ function statistik(werte) {
       const g = { punkte: 100 + i, um: Date.now(), name: namen[i % namen.length] };
       const s = new KB2Verbindung.Sender({
         raumId: CONFIG.RAUM_PRAEFIX + '5555', geraeteId: 'simgeraet' + String(i).padStart(3, '0'),
-        profil: () => ({ spitzname: g.name, figur: i % 2 ? 'tim' : 'lina' }),
+        profil: () => ({ spitzname: g.name, figur: 'schwester' }),
         bestleistung: () => ({ punkte: g.punkte, erreichtUm: g.um })
       });
       s.aktivieren();

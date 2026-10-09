@@ -58,12 +58,18 @@
   };
 
   /* ---------- Freischaltung des Minispiels ---------- */
+  // „Gelöst“ gilt 3 Stunden (eine Unterrichtssitzung), danach muss neu gelöst werden.
+  var GELOEST_GUELTIG_MS = 3 * 3600000;
   var Freischaltung = {
     alsGeloestMerken: function (aufgabe) {
-      Speicher.dauer.schreiben('kb2ab12_geloest_' + aufgabe, true);
+      Speicher.dauer.schreiben('kb2ab12_geloest_' + aufgabe, Date.now());
+    },
+    zuruecknehmen: function (aufgabe) {
+      Speicher.dauer.schreiben('kb2ab12_geloest_' + aufgabe, null);
     },
     istGeloest: function (aufgabe) {
-      return Speicher.dauer.lesen('kb2ab12_geloest_' + aufgabe) === true;
+      var um = Speicher.dauer.lesen('kb2ab12_geloest_' + aufgabe);
+      return typeof um === 'number' && um <= Date.now() + 60000 && Date.now() - um < GELOEST_GUELTIG_MS;
     },
     beideGeloest: function () {
       return Freischaltung.istGeloest('aa1') && Freischaltung.istGeloest('aa2');

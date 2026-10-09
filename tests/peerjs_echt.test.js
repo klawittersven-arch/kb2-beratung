@@ -18,7 +18,7 @@ const H = require('./hilfen');
   H.pruefe(bereit, 'Rangliste ist beim PeerJS-Dienst angemeldet');
 
   const handys = [];
-  for (const [name, figur] of [['Ida', 'lina'], ['Ole', 'tim']]) {
+  for (const [name, figur] of [['Ida', 'schwester'], ['Ole', 'schwester']]) {
     const ctx = await browser.newContext(H.MOBIL);
     await H.handyVorbereiten(ctx, { spitzname: name, figur, raum, test: {} });
     const p = await ctx.newPage();

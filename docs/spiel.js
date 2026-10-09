@@ -1,4 +1,4 @@
-/* „Pflege-Sprint“ – Minispiel (Programmlogik). Texte stehen in inhalte.js,
+/* „Diabetes Run!“ – Minispiel (Programmlogik). Texte stehen in inhalte.js,
  * Einstellungen in config.js. Das Spiel läuft vollständig auf dem Gerät. */
 (function () {
   'use strict';
@@ -21,7 +21,7 @@
 
   function profil() { return KB2.Speicher.dauer.lesen(SP.profil); }
   function profilOk(p) {
-    return p && (p.figur === 'lina' || p.figur === 'tim') && KB2.spitznamePruefen(p.spitzname) === '';
+    return p && KB2.spitznamePruefen(p.spitzname) === '';
   }
 
   function raumcode() {
@@ -92,7 +92,7 @@
       sender = new KB2Verbindung.Sender({
         raumId: CONFIG.RAUM_PRAEFIX + code,
         geraeteId: geraeteId(),
-        profil: function () { var q = profil() || {}; return { spitzname: q.spitzname, figur: q.figur }; },
+        profil: function () { var q = profil() || {}; return { spitzname: q.spitzname, figur: FIGUR }; },
         bestleistung: rangBestleistung
       });
     } catch (e) {
@@ -162,8 +162,11 @@
     groesseAnpassen();
   }
 
-  function figurVorschau(figur, massstab) {
-    return PIXEL.figur(figur, 'lauf1', massstab || 1);
+  // Es gibt nur eine Spielfigur: die Krankenschwester
+  var FIGUR = 'schwester';
+
+  function figurVorschau() {
+    return PIXEL.figur(FIGUR, 'lauf2', 1);
   }
 
   function zeigeGesperrt() {
@@ -181,38 +184,14 @@
     szeneZeichnen();
   }
 
-  function zeigeFigur() {
-    menueModus('figur');
-    var p = panelLeeren();
-    p.appendChild(el('h1', null, T.titel));
-    p.appendChild(el('p', null, T.figurFrage));
-    var reihe = el('div', 'figuren');
-    var aktuell = (profil() || {}).figur;
-    [['lina', T.figurLina, T.figurLinaBeschreibung], ['tim', T.figurTim, T.figurTimBeschreibung]].forEach(function (f) {
-      var b = el('button', 'figurwahl' + (aktuell === f[0] ? ' gewaehlt' : ''));
-      b.type = 'button';
-      b.setAttribute('data-figur', f[0]);
-      b.appendChild(figurVorschau(f[0], 1));
-      b.appendChild(el('strong', null, f[1]));
-      b.appendChild(el('span', null, f[2]));
-      b.addEventListener('click', function () {
-        var q = profil() || {};
-        q.figur = f[0];
-        KB2.Speicher.dauer.schreiben(SP.profil, q);
-        figurGewaehlt = f[0];
-        figurenBauen();
-        zeigeName();
-      });
-      reihe.appendChild(b);
-    });
-    p.appendChild(reihe);
-    szeneZeichnen();
-  }
-
   function zeigeName() {
     menueModus('name');
     var p = panelLeeren();
     p.appendChild(el('h1', null, T.titel));
+    var vorschau = el('div', 'profil');
+    vorschau.appendChild(figurVorschau());
+    vorschau.appendChild(el('span', null, T.figurText));
+    p.appendChild(vorschau);
     var form = el('form');
     form.setAttribute('novalidate', '');
     var label = el('label', null, T.spitznameFrage);
@@ -299,7 +278,7 @@
 
   function profilZeile(p) {
     var zeile = el('div', 'profil');
-    zeile.appendChild(figurVorschau(p.figur, 1));
+    zeile.appendChild(figurVorschau());
     zeile.appendChild(el('strong', null, p.spitzname));
     return zeile;
   }
@@ -318,7 +297,7 @@
     r.addEventListener('click', function () { zeigeRaum(true); });
     var f = el('button', 'klein-link', T.figurAendern);
     f.type = 'button';
-    f.addEventListener('click', zeigeFigur);
+    f.addEventListener('click', zeigeName);
     links.appendChild(r);
     links.appendChild(f);
     p.appendChild(links);
@@ -326,7 +305,7 @@
 
   function zeigeStart() {
     var pr = profil();
-    if (!profilOk(pr)) { zeigeFigur(); return; }
+    if (!profilOk(pr)) { zeigeName(); return; }
     if (!raumcode()) { zeigeRaum(false); return; }
     menueModus('start');
     var p = panelLeeren();
@@ -391,15 +370,12 @@
 
   var bilder = {};
   var figurBilder = { lauf1: null, lauf2: null, lauf3: null, sprung: null, ducken: null };
-  var figurGewaehlt = null;
   var LAUF_FOLGE = ['lauf1', 'lauf2', 'lauf3', 'lauf2'];
   var laufBilder = [null, null, null, null];
 
   function figurenBauen() {
-    var f = (profil() || {}).figur === 'tim' ? 'tim' : 'lina';
-    if (figurGewaehlt === f && figurBilder.lauf1) return;
-    figurGewaehlt = f;
-    Object.keys(figurBilder).forEach(function (pose) { figurBilder[pose] = PIXEL.figur(f, pose, 1); });
+    if (figurBilder.lauf1) return;
+    Object.keys(figurBilder).forEach(function (pose) { figurBilder[pose] = PIXEL.figur(FIGUR, pose, 1); });
     for (var i = 0; i < 4; i++) laufBilder[i] = figurBilder[LAUF_FOLGE[i]];
   }
 
@@ -645,7 +621,7 @@
     ctx.drawImage(bilder.hintergrund, 0, 0, B, 150, 0, 0, B, 150);
     ctx.drawImage(bilder.strasse, 0, 0, B, 30, 0, 150, B, 30);
     if (bildschirm === 'ende') { zeichnen(); return; }
-    ctx.drawImage(figurBilder.lauf1, SPIELER_X, BODEN - 24);
+    ctx.drawImage(figurBilder.lauf2, SPIELER_X, BODEN - 24);
     ctx.drawImage(bilder.kuchen, 150, BODEN - bilder.kuchen.height);
     ctx.drawImage(bilder.zucker, 210, BODEN - 44);
     ctx.drawImage(bilder.wespe1, 262, BODEN - 26);
@@ -895,11 +871,8 @@
   groesseAnpassen();
 
   if (!KB2.Freischaltung.beideGeloest()) zeigeGesperrt();
-  else if (!profilOk(profil())) {
-    var pr = profil();
-    if (pr && (pr.figur === 'lina' || pr.figur === 'tim')) zeigeName();
-    else zeigeFigur();
-  } else if (!raumcode()) zeigeRaum(false);
+  else if (!profilOk(profil())) zeigeName();
+  else if (!raumcode()) zeigeRaum(false);
   else zeigeStart();
 
   // Schnittstelle für automatische Tests (liest nur aus)

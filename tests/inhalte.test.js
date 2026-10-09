@@ -44,14 +44,15 @@ function kartenAusAuftrag(zeilen) {
   return karten;
 }
 
-function aufgabePruefen(name, daten, zeilen, merksatzKenn) {
+function aufgabePruefen(name, daten, zeilen, merksatzKenn, zusatz) {
   console.log(`\n== ${name}`);
   const titel = zeilen.find((z) => z.startsWith('Titel: ')).slice(7);
   const anweisung = zeilen.find((z) => z.startsWith('Arbeitsanweisung: ')).slice(18);
   gleich(daten.titel, titel, 'Titel');
   gleich(daten.anweisung, anweisung, 'Arbeitsanweisung');
   const soll = kartenAusAuftrag(zeilen);
-  H.pruefe(soll.length === daten.karten.length, `Anzahl Karten ${soll.length}`);
+  // zusatz: später auf Wunsch ergänzte Karten bzw. geänderter Merksatz (nicht im ursprünglichen Auftrag)
+  H.pruefe(soll.length + (zusatz ? zusatz.karten : 0) === daten.karten.length, `Anzahl Karten ${soll.length}` + (zusatz ? ` + ${zusatz.karten} ergänzte` : ''));
   soll.forEach((s, i) => {
     const k = daten.karten[i];
     H.pruefe(k.nummer === s.nummer, `Karte ${s.nummer}: Nummer`);
@@ -62,11 +63,18 @@ function aufgabePruefen(name, daten, zeilen, merksatzKenn) {
     else Object.keys(s.erkl).forEach((b) => gleich(k.erklaerung[b], s.erkl[b], `Karte ${s.nummer}: Erklärung bei ${b}`));
     gleich(k.tipp, s.tipp, `Karte ${s.nummer}: Tipp`);
   });
+  if (zusatz && zusatz.merksatz) {
+    H.pruefe(daten.merksatz === zusatz.merksatz, 'Merksatz (überarbeitete Fassung)');
+    return;
+  }
   const merksatz = zeilen.find((z) => z.startsWith(merksatzKenn)).slice(merksatzKenn.length);
   gleich(daten.merksatz, merksatz, 'Merksatz');
 }
 
-aufgabePruefen('Arbeitsauftrag 1', I.aa1, abschnitt('== Inhalte Arbeitsauftrag 1', '== Inhalte Arbeitsauftrag 2'), 'Merksatz AA1: ');
+aufgabePruefen('Arbeitsauftrag 1', I.aa1, abschnitt('== Inhalte Arbeitsauftrag 1', '== Inhalte Arbeitsauftrag 2'), 'Merksatz AA1: ', {
+  karten: 5,
+  merksatz: 'Situativ wird ein Beratungsbedarf **erkannt** – geplant wird er in Ruhe **bearbeitet**: Komplexe, emotionale oder konfliktreiche Themen brauchen einen vereinbarten Termin.'
+});
 const aa2Zeilen = abschnitt('== Inhalte Arbeitsauftrag 2', '== Easter Egg');
 aufgabePruefen('Arbeitsauftrag 2 a)', I.aa2, aa2Zeilen, 'Merksatz AA2a: ');
 H.pruefe(aa2Zeilen.some((z) => z.includes('Jede Karte beginnt mit „' + I.aa2.kartenAnfang + ' …“.')), 'AA2a: Karten beginnen mit „Lina …“');
@@ -90,10 +98,10 @@ gleich(I.spiel.wusstestDu.join(' | '), wusstestSoll.join(' | '), 'Fünf Infos');
 console.log('\n== Weitere wörtliche Texte');
 const woertlich = [
   I.allgemein.kopfzeile, I.allgemein.merksatzUeberschrift, I.allgemein.merksatzHinweis, I.allgemein.nochEinmal,
-  I.allgemein.easterEggKnopf, ...I.aa1.antworten.map((a) => a.text), ...I.aa2.antworten.map((a) => a.text),
+  ...I.aa1.antworten.map((a) => a.text), ...I.aa2.antworten.map((a) => a.text),
   I.spiel.gesperrt, I.spiel.spitznameHinweis, I.spiel.raumcodeFrage, I.spiel.knopfDucken, I.spiel.knopfSpringen,
-  I.spiel.statusVerbunden, I.spiel.statusWartet, I.spiel.statusPruefen, I.spiel.figurLina, I.spiel.figurTim,
-  I.rangliste.titel, I.rangliste.raumcodeFrage, I.rangliste.starten, I.rangliste.vorschlagen,
+  I.spiel.statusVerbunden, I.spiel.statusWartet, I.spiel.statusPruefen,
+  I.rangliste.raumcodeFrage, I.rangliste.starten, I.rangliste.vorschlagen,
   I.rangliste.nachzuegler, I.rangliste.belegt, I.rangliste.ausblenden, I.rangliste.leeren
 ];
 woertlich.forEach((t) => H.pruefe(auftrag.includes(t), `„${t}“ steht so im Auftrag`));

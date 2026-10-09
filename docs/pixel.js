@@ -1,4 +1,4 @@
-/* Pixel-Grafiken für „Pflege-Sprint“ – alles selbst gezeichnet, keine Bilddateien.
+/* Pixel-Grafiken für „Diabetes Run!“ – alles selbst gezeichnet, keine Bilddateien.
  * Jede Grafik ist ein Raster aus Zeichen; jedes Zeichen steht für eine Farbe,
  * „.“ ist durchsichtig. Beim Start wird jede Grafik einmal in eine kleine
  * Offscreen-Leinwand gezeichnet und danach nur noch kopiert (drawImage). */
@@ -6,13 +6,12 @@
   'use strict';
 
   var FARBEN = {
-    // Figuren
-    F: '#E9B48A', f: '#B97D57',          // Haut (Lina), Haut (Tim)
-    H: '#3B2416', h: '#5A3A22',          // Haare Lina, Haare Tim
-    K: '#3F6C72', k: '#2F5459',          // Kasack petrol, Schattenseite
-    B: '#25434B',                        // Hose dunkelpetrol
-    W: '#FFFFFF', w: '#B8C4C7',          // Schuhe weiß, Sohle
-    S: '#C9D2D4', s: '#55666A',          // Stethoskop hell / dunkel
+    // Figur: Krankenschwester
+    O: '#2B2A33',                        // Umrisslinie
+    W: '#FFFFFF', w: '#DCE4E8',          // Haube und Kleid weiß, Schatten
+    K: '#EE6F93',                        // Kreuz und Akzente rosa
+    H: '#8A4B3C',                        // Haare
+    F: '#F7D5B8', c: '#F3A3AC',          // Haut, Wangen
     E: '#1A1A1A',                        // Augen
     // Hindernisse
     G: '#D9A35E', g: '#B07C3C',          // Kuchenteig
@@ -25,124 +24,89 @@
     Q: '#FFFFFF', q: '#C8D2D5', o: '#8E9A9D'  // Traubenzucker
   };
 
-  /* ---------- Figuren (16 × 24) aus Kopf, Oberkörper und Beinen ---------- */
-  var KOPF = {
-    lina: [
-      '......HHHHH.....',
-      '.....HHHHHHH....',
-      '....HHHHHHHHH...',
-      '..HHHHHFFFFFH...',
-      '.HHH.HHFFFEFF...',
-      '.HH..HFFFFFFF...',
-      '.H....HFFFFF....',
-      '.......FFFF.....'
-    ],
-    tim: [
-      '................',
-      '.....hhhhhh.....',
-      '....hhhhhhhh....',
-      '....hhhffffh....',
-      '....hhffffEf....',
-      '....hfffffff....',
-      '.....ffffff.....',
-      '.......fff......'
-    ]
-  };
-
-  var RUMPF = [
-    '......KFFK......',
-    '....KKSKKSKK....',
-    '...KKKSKKSKKk...',
-    '...KKKSKKSKKk...',
-    '...KKKKSSKKKk...',
-    '...KKKKKsKKKk...',
-    '...+KKKKKKKK+...',
-    '....KKKKKKKK....'
+  /* ---------- Figur (16 × 24): Krankenschwester mit Haube ---------- */
+  // Kopf mit Haube (14 Zeilen), leicht nach rechts gedreht: Augen rechts, links Haare und Ohr
+  var KOPF = [
+    '.....OOOOOO.....',
+    '....OWWWWWWO....',
+    '...OWWWKKWWWO...',
+    '...OWWKKKKWWO...',
+    '...OWWWKKWWWO...',
+    '..OHHWWWWWWHHO..',
+    '.OHHHHHHHHHHHHO.',
+    '.OHHHHFFFFFFHHO.',
+    'OOHHHFFFFFFFFFO.',
+    'OFFHHFFFEFFFEFO.',
+    'OFFHHFFFEFFFEFO.',
+    'OOHHHFFcFFFcFFO.',
+    '..OHHFFFFFFFFO..',
+    '...OOFFFFFFOO...'
   ];
 
+  // Oberkörper im weißen Kleid mit rosa Knöpfen (6 Zeilen)
+  var KLEID = [
+    '...OWWWKKWWWO...',
+    '..OFOWWWWWWOFO..',
+    '..OFOWWKWWWOFO..',
+    '...OOWWWWWWOO...',
+    '....OWWWWWWO....',
+    '....OwwwwwwO....'
+  ];
+
+  // Arme nach oben (Sprung)
+  var KLEID_SPRUNG = [
+    '.OFOWWWKKWWWOFO.',
+    '..OOWWWWWWWWOO..',
+    '...OWWWKWWWWO...',
+    '...OOWWWWWWOO...',
+    '....OWWWWWWO....',
+    '....OwwwwwwO....'
+  ];
+
+  // Beine (4 Zeilen) – weiße Strümpfe, rosa Schuhe
   var BEINE = {
     lauf1: [
-      '....BBBBBBBB....',
-      '....BBBBBBBB....',
-      '...BBBB..BBBB...',
-      '...BBB....BBBB..',
-      '..BBB......BBB..',
-      '..BBB.......BBB.',
-      '.WWWW.......WWWW',
-      '.www.........www'
+      '....OWO...OWO...',
+      '...OWO.....OWO..',
+      '..OKKO.....OKKO.',
+      '..OOOO.....OOOO.'
     ],
     lauf2: [
-      '....BBBBBBBB....',
-      '....BBBBBBBB....',
-      '.....BBBBBB.....',
-      '.....BBBBBB.....',
-      '.....BBB.BBB....',
-      '.....BBB.BBB....',
-      '....WWWW.BBB....',
-      '.........WWWW...'
+      '.....OWO.OWO....',
+      '.....OWO.OWO....',
+      '....OKKO.OKKO...',
+      '....OOOO.OOOO...'
     ],
     lauf3: [
-      '....BBBBBBBB....',
-      '....BBBBBBBB....',
-      '....BBBB.BBBB...',
-      '....BBB...BBB...',
-      '...BBB....BBB...',
-      '...BBB.....BBB..',
-      '..WWWW.....WWWW.',
-      '..www.......www.'
+      '......OWOWO.....',
+      '.....OWO.OKKO...',
+      '....OKKO.OOOO...',
+      '....OOOO........'
     ],
     sprung: [
-      '....BBBBBBBB....',
-      '....BBBBBBBB....',
-      '...BBBBBBBBBB...',
-      '..BBBB...BBBBB..',
-      '..BBB.....WWWW..',
-      '.WWWW.....www...',
-      '.www............',
+      '.....OWO.OWO....',
+      '....OKKO.OKKO...',
+      '....OOOO.OOOO...',
       '................'
     ]
   };
 
-  // Ducken: gebeugter Oberkörper, Kopf tiefer und weiter vorn
-  var DUCK_RUMPF = [
-    '...KKKKKKKK.....',
-    '..KKKKKSKKSK+...',
-    '..KKKKKSKKSK+...',
-    '..kKKKKKSSKK....',
-    '..BBBBBBBBBBB...',
-    '..BBBB...BBBB...',
-    '.WWWW....BBBB...',
-    '.www.....WWWWW..'
+  // Ducken: Kopf tiefer, Körper zusammengekauert (Oberkante 16 px über dem Boden)
+  var DUCKEN_UNTEN = [
+    '..OFOWWKKWWOFO..',
+    '...OOwwwwwwOO...',
+    '...OKKOOOOKKO...'
   ];
 
-  function figurRaster(figur, pose) {
-    var kopf = KOPF[figur];
-    var haut = figur === 'tim' ? 'f' : 'F';
-    var zeilen = [];
-    var i;
+  // name wird nicht mehr unterschieden (es gibt nur noch eine Figur)
+  function figurRaster(name, pose) {
     if (pose === 'ducken') {
-      for (i = 0; i < 24; i++) zeilen.push('................'.split(''));
-      // erst Oberkörper, dann Kopf darüber
-      for (i = 0; i < 8; i++) zeilen[16 + i] = DUCK_RUMPF[i].replace(/\+/g, haut).split('');
-      for (i = 0; i < 8; i++) {
-        var z = kopf[i].replace(/F/g, haut);
-        for (var x = 0; x < 16; x++) {
-          var zx = x - 2;
-          if (zx >= 0 && z[zx] !== '.') zeilen[9 + i][x] = z[zx];
-        }
-      }
-      return zeilen.map(function (r) { return r.join(''); });
+      var leer = [];
+      for (var i = 0; i < 8; i++) leer.push('................');
+      return leer.concat(KOPF.slice(1), DUCKEN_UNTEN);
     }
-    var rumpf = RUMPF.map(function (r) { return r.replace(/\+/g, haut).replace(/F/g, haut); });
-    if (pose === 'sprung') {
-      // Arme nach oben
-      rumpf = rumpf.slice();
-      rumpf[1] = '..' + haut + 'KKSKKSKK' + haut + '...';
-      rumpf[1] = rumpf[1].slice(0, 16);
-      rumpf[6] = '....KKKKKKKK....';
-    }
-    return kopf.map(function (r) { return r.replace(/F/g, haut); })
-      .concat(rumpf, BEINE[pose] || BEINE.lauf1);
+    var kleid = pose === 'sprung' ? KLEID_SPRUNG : KLEID;
+    return KOPF.concat(kleid, BEINE[pose] || BEINE.lauf2);
   }
 
   /* ---------- Hindernisse und Sammelobjekt ---------- */
@@ -280,7 +244,7 @@
   }
 
   function figur(name, pose, massstab) {
-    return rasterZeichnen(figurRaster(name === 'tim' ? 'tim' : 'lina', pose || 'lauf1'), massstab);
+    return rasterZeichnen(figurRaster(name, pose || 'lauf2'), massstab);
   }
 
   // Ziffernblatt: 10 Ziffern nebeneinander, je 4 px breit (inkl. Abstand)

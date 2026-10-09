@@ -65,7 +65,7 @@
     var schluessel = Object.keys(d).sort().join(',');
     if (schluessel !== 'erreichtUm,figur,geraeteId,punkte,spitzname') return false;
     if (typeof d.geraeteId !== 'string' || !/^[a-z0-9]{6,32}$/.test(d.geraeteId)) return false;
-    if (d.figur !== 'lina' && d.figur !== 'tim') return false;
+    if (d.figur !== 'schwester') return false;
     if (typeof d.punkte !== 'number' || !isFinite(d.punkte) || d.punkte < 1 || d.punkte > 999999 ||
         Math.floor(d.punkte) !== d.punkte) return false;
     if (typeof d.erreichtUm !== 'number' || !isFinite(d.erreichtUm)) return false;
@@ -382,7 +382,7 @@
     var demoIds = [];
     function demoMeldung(i, punkte) {
       meldungAnnehmen({
-        geraeteId: demoIds[i], spitzname: namen[i], figur: i % 2 ? 'tim' : 'lina',
+        geraeteId: demoIds[i], spitzname: namen[i], figur: 'schwester',
         punkte: punkte, erreichtUm: Date.now()
       });
     }

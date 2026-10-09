@@ -52,8 +52,8 @@ const H = require('./hilfen');
 
   /* ---------- (b) Handys spielen zuerst, Rangliste wird erst danach geöffnet ---------- */
   console.log('\n== (b) Handys spielen, bevor die Rangliste geöffnet ist');
-  const h1 = await handy('Mia', 'lina');
-  const h2 = await handy('Mia', 'tim');
+  const h1 = await handy('Mia', 'schwester');
+  const h2 = await handy('Mia', 'schwester');
   const r1 = await spielen(h1.p, 1500);
   const r2 = await spielen(h2.p, 500);
   console.log(`  Mia (Handy 1): ${r1.punkte} Punkte, Mia (Handy 2): ${r2.punkte} Punkte`);
@@ -92,7 +92,7 @@ const H = require('./hilfen');
 
   /* ---------- (a) Rangliste von Anfang an offen ---------- */
   console.log('\n== (a) Rangliste ist offen, ein weiteres Handy kommt dazu');
-  const h3 = await handy('Ben', 'tim');
+  const h3 = await handy('Ben', 'schwester');
   H.pruefe(await H.bis(async () => (await status(L)).spielende === 3, { zeit: 15000 }), 'Anzeige „3 Spielende verbunden“');
   H.pruefe((await L.locator('#anzahl').innerText()) === '3 Spielende verbunden', 'Text „x Spielende verbunden“');
   const r3 = await spielen(h3.p, 800);
@@ -180,7 +180,7 @@ const H = require('./hilfen');
     ].map((g) => {
       const s = new KB2Verbindung.Sender({
         raumId: CONFIG.RAUM_PRAEFIX + raum, geraeteId: g.id,
-        profil: () => ({ spitzname: g.name, figur: 'lina' }),
+        profil: () => ({ spitzname: g.name, figur: 'schwester' }),
         bestleistung: () => ({ punkte: 999, erreichtUm: g.um })
       });
       s.aktivieren();

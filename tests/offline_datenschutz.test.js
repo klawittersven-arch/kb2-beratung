@@ -29,7 +29,7 @@ const H = require('./hilfen');
       H.pruefe(ok, `Offline: ${seite} lädt aus dem Speicher`);
     }
     await p.goto(basis + 'aa1.html');
-    for (const [n, k] of [[1, 'S'], [2, 'G'], [3, 'S'], [4, 'S'], [5, 'G']]) await p.click(`#karte-${n} [data-kuerzel=${k}]`);
+    for (const [n, k] of await p.evaluate(() => INHALTE.aa1.karten.map((x) => [x.nummer, [].concat(x.richtig)[0]]))) await p.click(`#karte-${n} [data-kuerzel=${k}]`);
     H.pruefe(await p.locator('.merksatz').isVisible(), 'Offline: Übung lässt sich vollständig lösen');
     await p.goto(basis + 'spiel.html?transport=test');
     await p.click('#knopf-los');

@@ -42,7 +42,8 @@ var INHALTE = {
     richtigText: 'Richtig!',
     falschText: 'Noch nicht richtig – versuchen Sie es noch einmal.',
     tippVorwort: 'Tipp:',
-    easterEggKnopf: '🥚 Da hat sich etwas versteckt …'
+    // Erscheint erst, wenn BEIDE Aufgaben vollständig richtig gelöst sind
+    easterEggKnopf: '🎁 Merksatz fertig abgeschrieben? Dann tippen Sie hier!'
   },
 
   /* ------------------------------------------------------------------------
@@ -96,11 +97,54 @@ var INHALTE = {
         richtig: 'G',
         erklaerung: 'Ein vereinbarter Folgetermin zur Auswertung ist Teil des geplanten Beratungsprozesses.',
         tipp: 'Wird hier etwas für später verabredet?'
+      },
+      // Ab hier: schwierigere Situationen (Hinweise sind weniger eindeutig)
+      {
+        nummer: 6,
+        text: 'Beim Verbandswechsel wirkt Herr Brenner beunruhigt. Lina setzt sich danach zehn Minuten zu ihm und bespricht mit ihm, wie er seine Füße täglich kontrollieren kann.',
+        richtig: 'S',
+        erklaerung: 'Lina nimmt sich zwar bewusst Zeit – das Gespräch ergibt sich aber spontan aus der Pflegesituation und war nicht verabredet. Das ist situative Beratung.',
+        tipp: 'Lina nimmt sich Zeit – aber war dieses Gespräch vorher verabredet?'
+      },
+      {
+        nummer: 7,
+        text: 'Wie beim letzten Besuch angekündigt, bringt Lina eine Broschüre zur Unterzuckerung mit und geht sie mit Herrn Brenner in Ruhe Seite für Seite durch.',
+        richtig: 'G',
+        erklaerung: 'Das Gespräch ist angekündigt und vorbereitet (Thema und Material ausgewählt). Auch wenn es während eines normalen Hausbesuchs stattfindet, ist es geplante Beratung.',
+        tipp: 'Nicht der Ort entscheidet: Hat Lina das Gespräch angekündigt und vorbereitet?'
+      },
+      {
+        nummer: 8,
+        text: 'Frau Brenner ruft aufgeregt beim Pflegedienst an: Ihr Mann habe drei Stück Kuchen gegessen – was solle sie jetzt tun? Lina beantwortet ihre Fragen am Telefon.',
+        richtig: 'S',
+        erklaerung: 'Ein unerwarteter Anruf mit einem akuten Anliegen: Lina reagiert situativ. Das Grundthema (Umgang mit Kuchen) gehört danach in ein geplantes Gespräch.',
+        tipp: 'Wer hat das Gespräch angestoßen – und war es verabredet?'
+      },
+      {
+        nummer: 9,
+        text: 'Beim Gespräch am Donnerstag kommen Herrn Brenner beim Thema Einsamkeit die Tränen. Lina schlägt vor, darüber in der nächsten Woche in einem eigenen Termin in Ruhe zu sprechen.',
+        richtig: 'G',
+        erklaerung: 'Lina erkennt ein emotionales Thema und verabredet dafür bewusst einen eigenen Termin mit Zeit und Ruhe – das ist geplante Beratung.',
+        tipp: 'Worum geht es in der Aussage: um das Gespräch am Donnerstag – oder um das, was Lina vorschlägt?'
+      },
+      {
+        nummer: 10,
+        text: 'Die Tochter der Brenners spricht Lina im Treppenhaus an: „Können Sie meinem Vater nicht mal sagen, dass er mit dem Kuchen aufhören soll?“',
+        richtig: 'S',
+        erklaerung: 'Zwischen Tür und Angel, ohne Termin und ohne Herrn Brenner: situativ. Das Anliegen gehört in ein geplantes Gespräch mit allen Beteiligten.',
+        tipp: 'Achten Sie auf Ort, Zeitpunkt und darauf, wer beteiligt ist.'
       }
     ],
 
-    // Erscheint erst, wenn alle Karten richtig gelöst sind
-    merksatz: 'Beide Formen gehören zur Beratung: Situativ werden Beratungsbedarfe oft erst erkannt – komplexe, emotionale oder konfliktreiche Themen brauchen ein geplantes Gespräch.'
+    // Erscheint erst, wenn alle Karten richtig gelöst sind.
+    // Wörter zwischen **…** werden fett und unterstrichen angezeigt.
+    merksatz: 'Situativ wird ein Beratungsbedarf **erkannt** – geplant wird er in Ruhe **bearbeitet**: Komplexe, emotionale oder konfliktreiche Themen brauchen einen vereinbarten Termin.'
+
+    // Alternativen zum Austauschen (einfach eine davon oben einsetzen):
+    // 'Situativ erkennen, geplant vertiefen: Im Pflegealltag fallen Beratungsbedarfe auf – in einem vereinbarten Gespräch werden sie mit Zeit und Ruhe gemeinsam bearbeitet.'
+    // 'Situative Beratung entdeckt den Bedarf, geplante Beratung bearbeitet ihn – mit Termin, Ruhe, Zeit und allen Beteiligten.'
+    // 'Situativ: Bedarf erkennen und kurz reagieren. Geplant: das Thema in Ruhe vertiefen und gemeinsam Lösungen entwickeln.'
+    // 'Zwischen Tür und Angel wird ein Thema erkannt – gelöst wird es im geplanten Gespräch.'
   },
 
   /* ------------------------------------------------------------------------
@@ -241,17 +285,14 @@ var INHALTE = {
   },
 
   /* ------------------------------------------------------------------------
-     MINISPIEL „Pflege-Sprint“ (spiel.html)
+     MINISPIEL „Diabetes Run!“ (spiel.html)
      ------------------------------------------------------------------------ */
   spiel: {
-    titel: 'Pflege-Sprint',
+    titel: 'Diabetes Run!',
     gesperrt: 'Lösen Sie zuerst beide Aufgaben.',
 
-    figurFrage: 'Wählen Sie Ihre Figur:',
-    figurLina: 'Lina',
-    figurLinaBeschreibung: 'Pflegefachfrau',
-    figurTim: 'Tim',
-    figurTimBeschreibung: 'Pflegefachmann',
+    // Text neben der Spielfigur (es gibt nur eine Figur: die Krankenschwester)
+    figurText: 'Ihre Spielfigur: die Krankenschwester',
 
     spitznameFrage: 'Ihr Spitzname:',
     spitznameHinweis: 'Bitte nur einen Spitznamen oder Vornamen – keinen vollständigen Namen. Ihr Spitzname und Ihre Punkte erscheinen nur während des Unterrichts auf einer Rangliste und werden nicht gespeichert.',
@@ -267,7 +308,7 @@ var INHALTE = {
     nochmal: 'Nochmal',
     zurueckZumStart: 'Zum Startbildschirm',
     raumcodeAendern: 'Raumcode ändern',
-    figurAendern: 'Figur oder Spitzname ändern',
+    figurAendern: 'Spitzname ändern',
     bestleistung: 'Ihre Bestleistung: {x}',
     punkte: 'Punkte: {x}',
     neueBestleistung: 'Neue Bestleistung!',
@@ -276,7 +317,7 @@ var INHALTE = {
 
     steuerungHandy: 'Tippen Sie unten auf „⬆ Springen“ oder „⬇ Ducken“.',
     steuerungTastatur: 'Tastatur: Leertaste oder Pfeil hoch = springen, Pfeil runter = ducken.',
-    spielidee: 'Lina oder Tim ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren und Pflegewagen, ducken Sie sich vor Wespen und sammeln Sie Traubenzucker (+25 Punkte).',
+    spielidee: 'Die Krankenschwester ist auf Tour im Kochertal. Springen Sie über Kuchen, Weinkisten, Rollatoren und Pflegewagen, ducken Sie sich vor Wespen und sammeln Sie Traubenzucker (+25 Punkte).',
     knopfDucken: '⬇ Ducken',
     knopfSpringen: '⬆ Springen',
 
@@ -301,7 +342,7 @@ var INHALTE = {
      RANGLISTE für den Beamer (rangliste.html – nirgends verlinkt)
      ------------------------------------------------------------------------ */
   rangliste: {
-    titel: 'Pflege-Sprint – Rangliste',
+    titel: 'Diabetes Run! – Rangliste',
     raumcodeFrage: 'Raumcode Ihrer Folie',
     raumcodeFehler: 'Bitte genau 4 Ziffern eingeben.',
     starten: 'Rangliste starten',

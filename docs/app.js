@@ -176,6 +176,16 @@
     fortschrittBalken.style.width = Math.round(n / karten.length * 100) + '%';
   }
 
+  // Merksatz-Absatz: **Wort** wird fett und unterstrichen hervorgehoben
+  function merksatzAbsatz(text) {
+    var p = el('p', 'merksatz-text');
+    String(text).split('**').forEach(function (teil, i) {
+      if (!teil) return;
+      p.appendChild(i % 2 ? el('strong', 'betont', teil) : document.createTextNode(teil));
+    });
+    return p;
+  }
+
   // Der Merksatz wird erst nach vollständiger Lösung in die Seite eingefügt.
   function merksatzZeigen(scrollen) {
     merksatzBereich.textContent = '';
@@ -190,12 +200,13 @@
     var h = el('h2', null, A.merksatzUeberschrift);
     h.id = 'merksatz-ueberschrift';
     kasten.appendChild(h);
-    kasten.appendChild(el('p', 'merksatz-text', aufgabe.merksatz));
+    kasten.appendChild(merksatzAbsatz(aufgabe.merksatz));
     kasten.appendChild(el('p', 'merksatz-hinweis', A.merksatzHinweis));
     kasten.appendChild(el('p', 'erster-versuch',
       KB2.ersetzen(A.ersterVersuch, { x: anzahlErsterVersuch(), y: karten.length })));
 
-    if (KB2.Freischaltung.beideGeloest()) {
+    // Belohnung: erst, wenn diese UND die andere Aufgabe vollständig gelöst sind
+    if (anzahlRichtig() === karten.length && KB2.Freischaltung.beideGeloest()) {
       var ei = el('a', 'easter-egg', A.easterEggKnopf);
       ei.href = 'spiel.html';
       kasten.appendChild(ei);
@@ -234,6 +245,7 @@
   }
 
   nochEinmalKnopf.addEventListener('click', function () {
+    KB2.Freischaltung.zuruecknehmen(aufgabeId);
     zustand = leererZustand();
     speichern();
     allesZeigen(false);
