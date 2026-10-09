@@ -32,7 +32,7 @@ var INHALTE = {
      Texte, die auf allen Übungsseiten gleich sind
      ------------------------------------------------------------------------ */
   allgemein: {
-    kopfzeile: 'KB II – Beratung · Arbeitsblatt 12',
+    kopfzeile: 'KB II – Beratung',
     merksatzUeberschrift: 'Ihr Merksatz',
     merksatzHinweis: 'Schreiben Sie den Merksatz auf Ihr Arbeitsblatt.',
     // {x} und {y} werden automatisch durch Zahlen ersetzt.

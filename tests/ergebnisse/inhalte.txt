@@ -94,7 +94,7 @@
   ✓ Fünf Infos
 
 == Weitere wörtliche Texte
-  ✓ „KB II – Beratung · Arbeitsblatt 12“ steht so im Auftrag
+  ✓ „KB II – Beratung“ steht so im Auftrag
   ✓ „Ihr Merksatz“ steht so im Auftrag
   ✓ „Schreiben Sie den Merksatz auf Ihr Arbeitsblatt.“ steht so im Auftrag
   ✓ „Noch einmal üben“ steht so im Auftrag
