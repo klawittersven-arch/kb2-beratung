@@ -16,6 +16,7 @@ node spiel.test.js               # Sperre, Einrichtung, Tastatur, Touch, 30/60/1
 node rangliste.test.js           # Live-Rangliste, Szenarien (a)–(h)  (~4 Minuten)
 node offline_datenschutz.test.js # Offline, externe Adressen, Cookies, Dateigrößen
 node leistung.test.js [Sekunden] # Bildrate mit CPU-Drosselung 1×/4×/6×, 40 Handys (~11 Minuten)
+node lernkarten.test.js          # Lernkarten KB I: Inhalte, Bedienung, alle 96 Karten, Offline (~2 Minuten)
 ```
 
 Ergebnisse der letzten Läufe liegen in `tests/ergebnisse/`.
