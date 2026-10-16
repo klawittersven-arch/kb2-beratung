@@ -26,36 +26,6 @@ oder Skripte. Die Übungen übertragen keine Daten. Nur das Minispiel sendet nac
 Vorname, Figur und Punktzahl direkt vom Handy an Ihren Laptop (WebRTC über PeerJS, siehe
 unten). Es gibt keinen eigenen Server und keine Datenbank; nichts wird dauerhaft gespeichert.
 
-## Lernkarten KB I – Diabetes mellitus (`docs/kb1/`)
-
-Digitale Karteikarten zur **Ich-kann-Liste KB I – Diabetes mellitus** (Klausur am 09.11.2026),
-ähnlich wie Quizlet. Die SuS scannen den QR-Code am Ende der Ich-kann-Liste:
-
-**https://klawittersven-arch.github.io/kb2-beratung/kb1/**
-
-- **Vorderseite:** die Kompetenz („Ich kann …“, Operator *kursiv*), ggf. mit Fall oder Aussage im Kasten.
-  **Rückseite:** die Beispielantwort aus der Ich-kann-Liste (wörtlich übernommen).
-- Die Kompetenzen der Liste sind in **96 kleine Karten** aufgeteilt (z. B. „Mahlzeitenbezug“:
-  eine Karte für die Bedeutung, eine für die Gefahr einer verspäteten Mahlzeit), dazu 11 Karten zu den Operatoren.
-- Antippen dreht die Karte um. **„Gewusst“** / **„Noch nicht“** (oder nach rechts/links wischen).
-  Am Ende einer Runde: „x Karten wiederholen“ – so lange, bis alles sitzt. „Zurück“ nimmt einen Fehltipp zurück.
-- Auf der Startseite: Themen (Arbeitsblätter) einzeln an- und abwählen, „Karten mischen“,
-  Lernstand pro Arbeitsblatt. Eine angefangene Runde lässt sich später fortsetzen.
-- **Datenschutz:** keine Anmeldung, keine Cookies, keine fremden Server. Der Lernstand liegt nur
-  im Browser des Handys (`localStorage`). Funktioniert nach dem ersten Aufruf auch offline.
-
-**Karten ändern:** Alle Texte stehen in `docs/kb1/karten.js` (Anleitung oben in der Datei, gleiche Regeln
-wie bei `inhalte.js`). `**fett**` und `*kursiv*` funktionieren. Für den Abschnitt „Langzeitschäden und
-diabetisches Fußsyndrom“ steht in der Ich-kann-Liste noch ein Platzhalter für den AB-Titel – sobald er
-feststeht, dort `titel: '…'` durch `ab: 'Titel des Arbeitsblatts'` ersetzen.
-
-**QR-Code:** `qr/qr_kb1_lernkarten.png`. Neu erzeugen und gleich unten in die Ich-kann-Liste setzen:
-`python werkzeuge/qr_kb1_lernkarten.py 00_KB1_Ich_kann_Liste_Diabetes_v12.docx`
-(ergibt `…_mit_QR.docx`, das Original bleibt unverändert).
-
-**Für eine andere Ich-kann-Liste:** den Ordner `docs/kb1/` kopieren (z. B. nach `docs/kb3/`),
-`karten.js` neu befüllen und dort `speicherName` ändern.
-
 ## Dateien
 
 ```
@@ -67,12 +37,8 @@ docs/                 ← alles, was GitHub Pages veröffentlicht
   style.css, spiel.css, rangliste.css                                     ← Gestaltung
   sw.js               ← Offline-Speicher (Service Worker)
   vendor/peerjs.min.js, vendor/LICENSE-peerjs.txt   ← Bibliothek PeerJS 1.5.5 (MIT)
-  kb1/                ← Lernkarten KB I – Diabetes mellitus (eigenständig)
-    karten.js         ← ALLE Kartentexte
-    index.html, lernkarten.js, lernkarten.css, sw.js, manifest.json, icon-*.png
-qr/                   ← QR-Codes (PNG) für aa1.html, aa2.html und die Lernkarten KB I
+qr/                   ← QR-Codes (PNG) für aa1.html und aa2.html
 werkzeuge/qr_einsetzen.py   ← erzeugt die QR-Codes und setzt sie ins Arbeitsblatt
-werkzeuge/qr_kb1_lernkarten.py   ← QR-Code der Lernkarten KB I (optional gleich in die Ich-kann-Liste)
 KB2_AB12_Professionell_beraten_digital.docx          ← Original (unverändert)
 KB2_AB12_Professionell_beraten_digital_mit_QR.docx   ← Arbeitsblatt mit QR-Codes zum Ausdrucken
 tests/                ← automatische Tests (siehe tests/README.md)
