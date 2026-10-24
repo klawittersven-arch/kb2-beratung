@@ -74,7 +74,7 @@ body.lauf #panel { display: none; }
 .fehler:empty { display: none; }
 
 .profil { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; }
-.profil canvas { width: 32px; height: 48px; image-rendering: pixelated; image-rendering: crisp-edges; }
+.profil canvas { width: 32px; height: auto; image-rendering: pixelated; image-rendering: crisp-edges; }
 .gross { font-size: 30px; font-weight: 800; color: var(--dunkelpetrol); margin: 0 0 4px; }
 .neu-best { color: var(--gruen); font-weight: 800; }
 .wusstest { background: var(--hellblau); border-left: 6px solid var(--petrol); padding: 10px 12px; border-radius: 8px; margin: 4px 0 14px; }
