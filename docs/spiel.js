@@ -388,8 +388,8 @@
   ctx.imageSmoothingEnabled = false;
 
   var bilder = {};
-  var figurBilder = { lauf1: null, lauf2: null, lauf3: null, sprung: null, ducken: null };
-  var LAUF_FOLGE = ['lauf1', 'lauf2', 'lauf3', 'lauf2'];
+  var figurBilder = { lauf1: null, lauf2: null, lauf3: null, lauf4: null, sprung: null, ducken: null };
+  var LAUF_FOLGE = ['lauf1', 'lauf2', 'lauf3', 'lauf4'];
   var laufBilder = [null, null, null, null];
 
   function figurenBauen() {
@@ -718,7 +718,8 @@
     if (!sp.amBoden) fb = figurBilder.sprung;
     else if (sp.duckt) fb = figurBilder.ducken;
     else fb = sparmodus ? figurBilder.lauf1 : laufBilder[Math.floor(sp.strecke / 12) & 3];
-    ctx.drawImage(fb, SPIELER_X, Math.round(sp.y) - 24);
+    // die Posen sind unterschiedlich hoch: unterste Zeile auf sp.y (die Trefferfläche hängt nicht davon ab)
+    ctx.drawImage(fb, SPIELER_X, Math.round(sp.y) - fb.height);
 
     // Punkte oben rechts
     ctx.fillStyle = '#EAF2F4';
@@ -738,7 +739,7 @@
     ctx.drawImage(bilder.hintergrund, 0, 0, B, 150, 0, 0, B, 150);
     ctx.drawImage(bilder.strasse, 0, 0, B, 30, 0, 150, B, 30);
     if (bildschirm === 'ende') { zeichnen(); return; }
-    ctx.drawImage(figurBilder.lauf2, SPIELER_X, BODEN - 24);
+    ctx.drawImage(figurBilder.lauf2, SPIELER_X, BODEN - figurBilder.lauf2.height);
     ctx.drawImage(bilder.kuchen, 150, BODEN - bilder.kuchen.height);
     ctx.drawImage(bilder.schwarm1, 262, BODEN - 19 - bilder.schwarm1.height);
   }

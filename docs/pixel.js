@@ -7,12 +7,13 @@
 
   var FARBEN = {
     // Figur: Krankenschwester
-    O: '#2B2A33',                        // Umrisslinie
-    W: '#FFFFFF', w: '#DCE4E8',          // Haube und Kleid weiß, Schatten
-    K: '#EE6F93',                        // Kreuz und Akzente rosa
-    H: '#8A4B3C',                        // Haare
-    F: '#F7D5B8', c: '#F3A3AC',          // Haut, Wangen
-    E: '#1A1A1A',                        // Augen
+    O: '#1C1525',                        // Umrisslinie und Augen
+    W: '#FFFFFF', w: '#DCE3E7',          // Haube und Kleid weiß, Schatten
+    s: '#BEC7CE',                        // Strumpf des hinteren Beins
+    K: '#F76892', k: '#D34677',          // Kreuz, Kragen, Gürtel und Schuhe rosa; hinterer Schuh
+    H: '#964536', h: '#702F26',          // Haare, Haarschatten
+    F: '#FCD2B5', c: '#FAA2A8',          // Haut, Wangen
+    E: '#1A1A1A',                        // Augen der Wespe
     // Hindernisse
     G: '#D9A35E', g: '#B07C3C',          // Kuchenteig
     C: '#FFF4E2', R: '#C8283C',          // Sahne, Kirsche
@@ -23,89 +24,188 @@
     Y: '#F2C200', Z: '#202020', X: '#D6EEF6'  // Wespe
   };
 
-  /* ---------- Figur (16 × 24): Krankenschwester mit Haube ---------- */
-  // Kopf mit Haube (14 Zeilen), leicht nach rechts gedreht: Augen rechts, links Haare und Ohr
-  var KOPF = [
-    '.....OOOOOO.....',
-    '....OWWWWWWO....',
-    '...OWWWKKWWWO...',
-    '...OWWKKKKWWO...',
-    '...OWWWKKWWWO...',
-    '..OHHWWWWWWHHO..',
-    '.OHHHHHHHHHHHHO.',
-    '.OHHHHFFFFFFHHO.',
-    'OOHHHFFFFFFFFFO.',
-    'OFFHHFFFEFFFEFO.',
-    'OFFHHFFFEFFFEFO.',
-    'OOHHHFFcFFFcFFO.',
-    '..OHHFFFFFFFFO..',
-    '...OOFFFFFFOO...'
-  ];
-
-  // Oberkörper im weißen Kleid mit rosa Knöpfen (6 Zeilen)
-  var KLEID = [
-    '...OWWWKKWWWO...',
-    '..OFOWWWWWWOFO..',
-    '..OFOWWKWWWOFO..',
-    '...OOWWWWWWOO...',
-    '....OWWWWWWO....',
-    '....OwwwwwwO....'
-  ];
-
-  // Arme nach oben (Sprung)
-  var KLEID_SPRUNG = [
-    '.OFOWWWKKWWWOFO.',
-    '..OOWWWWWWWWOO..',
-    '...OWWWKWWWWO...',
-    '...OOWWWWWWOO...',
-    '....OWWWWWWO....',
-    '....OwwwwwwO....'
-  ];
-
-  // Beine (4 Zeilen) – weiße Strümpfe, rosa Schuhe
-  var BEINE = {
+  /* ---------- Figur: Krankenschwester mit Haube (wie in „Gipfelsprint“) ---------- */
+  // Jede Pose ist ein ganzes Raster: Kopf immer an derselben Stelle (Spalte 0–15), die unterste
+  // Zeile steht auf der Fußlinie. Laufen: vier Bilder, das hintere Bein ist grau, damit sich die
+  // Beine sichtbar abwechseln. Die Figur ist höher als die Trefferfläche (die bleibt unverändert).
+  var FIGUR = {
     lauf1: [
-      '....OWO...OWO...',
-      '...OWO.....OWO..',
-      '..OKKO.....OKKO.',
-      '..OOOO.....OOOO.'
+      '......OOOOOO.....',
+      '.....OwWWWWWO....',
+      '....OwWWWKWWWO...',
+      '....OwWWKKKWWO...',
+      '....OwwWWKWWWO...',
+      '...OHHwWWWWWHHO..',
+      '..OHHHHHHHHHHHHO.',
+      '.OhHHHHHFFFFFHHO.',
+      'OhhHHHHFFFFFFFFO.',
+      'OhFFHHHFFFOFFOFO.',
+      'OhFFHHHFFFOFFOFO.',
+      'OhhHHHHFFcFFcFFO.',
+      '.OOHHHHFFFFFFFO..',
+      '..OOHHHFFFFFOO...',
+      '....OOWWKKWO.....',
+      '..OOFWWWWKWWO.OO.',
+      '.OFFOwOwWWWOFOFFO',
+      'OFFOOOOwWWWOFFFFO',
+      'OFFO.OKKKKKOOFFO.',
+      '.OO.OwWWWWWO.OO..',
+      '...OwwWWWWWWO....',
+      '....OwwwWWWWO....',
+      '..OOssOOOwwO.....',
+      '.OsssO...OWWO....',
+      'OkssO....OWWOOO..',
+      'OkkO......OWKKKO.',
+      'OkkO......OkkKKO.',
+      '.OO........OOOO..'
     ],
     lauf2: [
-      '.....OWO.OWO....',
-      '.....OWO.OWO....',
-      '....OKKO.OKKO...',
-      '....OOOO.OOOO...'
+      '......OOOOOO....',
+      '.....OwWWWWWO...',
+      '....OwWWWKWWWO..',
+      '....OwWWKKKWWO..',
+      '....OwwWWKWWWO..',
+      '...OHHwWWWWWHHO.',
+      '..OHHHHHHHHHHHHO',
+      '.OhHHHHHFFFFFHHO',
+      'OhhHHHHFFFFFFFFO',
+      'OhFFHHHFFFOFFOFO',
+      'OhFFHHHFFFOFFOFO',
+      'OhhHHHHFFcFFcFFO',
+      '.OOHHHHFFFFFFFO.',
+      '..OOHHHFFFFFOO..',
+      '....OOWWKKWOO...',
+      '....OWWwWKWWO...',
+      '...OFFOOwWWOFOO.',
+      '..OFFOOwWWWOFFFO',
+      '..OFFOKKKKKOOFFO',
+      '...OOwwWWWWWOOO.',
+      '....OwWWWWWWWO..',
+      '...OwWWWwwwOO...',
+      '....OOssOwwO....',
+      '.....OssOwwO....',
+      '....OksOwwO.....',
+      '....OkkOKKO.....',
+      '.....OkkOkKO....',
+      '.....OOO.OOO....'
     ],
     lauf3: [
-      '......OWOWO.....',
-      '.....OWO.OKKO...',
-      '....OKKO.OOOO...',
-      '....OOOO........'
+      '......OOOOOO.....',
+      '.....OwWWWWWO....',
+      '....OwWWWKWWWO...',
+      '....OwWWKKKWWO...',
+      '....OwwWWKWWWO...',
+      '...OHHwWWWWWHHO..',
+      '..OHHHHHHHHHHHHO.',
+      '.OhHHHHHFFFFFHHO.',
+      'OhhHHHHFFFFFFFFO.',
+      'OhFFHHHFFFOFFOFO.',
+      'OhFFHHHFFFOFFOFO.',
+      'OhhHHHHFFcFFcFFO.',
+      '.OOHHHHFFFFFFFO..',
+      '..OOHHHFFFFFOO...',
+      '....OOWWKKWO.....',
+      '...OOWwWWKWWO.OO.',
+      '..OFFOwWwWWwOOFFO',
+      '.OFFOOOwWWWOFFFFO',
+      'OFFO.OKKKKKOFFOO.',
+      'OFFO.OwWWWwO.O...',
+      '.OO.OwWWWWWWO....',
+      '...OwwWwWWWWO....',
+      '...OOWWOOssO.....',
+      '..OWWWO..OssO....',
+      '.OKWWO...OsssOO..',
+      '.OKKO.....OskkkO.',
+      '.OKKO.....OkkkkO.',
+      '..OO......OOOOO..'
+    ],
+    lauf4: [
+      '......OOOOOO....',
+      '.....OwWWWWWO...',
+      '....OwWWWKWWWO..',
+      '....OwWWKKKWWO..',
+      '....OwwWWKWWWO..',
+      '...OHHwWWWWWHHO.',
+      '..OHHHHHHHHHHHHO',
+      '.OhHHHHHFFFFFHHO',
+      'OhhHHHHFFFFFFFFO',
+      'OhFFHHHFFFOFFOFO',
+      'OhFFHHHFFFOFFOFO',
+      'OhhHHHHFFcFFcFFO',
+      '.OOHHHHFFFFFFFO.',
+      '..OOHHHFFFFFOO..',
+      '....OOWWKKWO....',
+      '...OOWWwWKWWO...',
+      '..OFFwOwWWWOFOO.',
+      '.OFFOOOwWWWOFFFO',
+      '.OFFOOKKKKKOOFFO',
+      '..OO.OwWWWWO.OO.',
+      '....OwwWWWWWO...',
+      '...OwwWWWwwwO...',
+      '....OOWssssO....',
+      '.....OWsOssO....',
+      '....OKWOOssO....',
+      '....OKKOOkkO....',
+      '....OOKO.OkkO...',
+      '.....OO..OkkO...',
+      '..........OOO...'
     ],
     sprung: [
-      '.....OWO.OWO....',
-      '....OKKO.OKKO...',
-      '....OOOO.OOOO...',
-      '................'
+      '......OOOOOO.......',
+      '.....OwWWWWWO......',
+      '....OwWWWKWWWO.....',
+      '....OwWWKKKWWO.....',
+      '....OwwWWKWWWO.....',
+      '...OHHwWWWWWHHO....',
+      '..OHHHHHHHHHHHHO...',
+      '.OhHHHHHFFFFFHHO...',
+      'OhhHHHHFFFFFFFFO...',
+      'OhFFHHHFFFOFFOFO...',
+      'OhFFHHHFFFOFFOFO...',
+      'OhhHHHHFFcFFcFFOOO.',
+      '.OOHHHHFFFFFFFOFFO.',
+      '..OOHHHFFFFFOOOFFFO',
+      '....OOWWKKWOOWFFFO.',
+      '...OFWWwWKWWOWFOO..',
+      '..OFFwOwwWWWOOO....',
+      '.OFFOOOwWWWO.......',
+      '.OFFO.OKKKKKO......',
+      '..OO.OwWWWWWwO.....',
+      '.....OwWWWWOWWO....',
+      '....OwwWWWOWWO.....',
+      '.....OwwOOKKO......',
+      '.....OwWOOKKO......',
+      '.....OWWO.OKO......',
+      '....OWWO...O.......',
+      '....OKKO...........',
+      '....OKKO...........',
+      '.....OKO...........',
+      '......O............'
+    ],
+    // Ducken: Haube eine Zeile flacher, Körper zusammengekauert (Oberkante 16 px über dem Boden, unter dem Wespenschwarm)
+    ducken: [
+      '......OOOOOO....',
+      '....OwWWWKWWWO..',
+      '....OwWWKKKWWO..',
+      '....OwwWWKWWWO..',
+      '...OHHwWWWWWHHO.',
+      '..OHHHHHHHHHHHHO',
+      '.OhHHHHHFFFFFHHO',
+      'OhhHHHHFFFFFFFFO',
+      'OhFFHHHFFFOFFOFO',
+      'OhFFHHHFFFOFFOFO',
+      'OhhHHHHFFcFFcFFO',
+      '.OOHHHHFFFFFFFO.',
+      '..OOHHHFFFFFOO..',
+      '...OFOWKKKWOFO..',
+      '..OOwwWWWWWwwOO.',
+      '...OkKKOOOKKkO..'
     ]
   };
 
-  // Ducken: Kopf tiefer, Körper zusammengekauert (Oberkante 16 px über dem Boden)
-  var DUCKEN_UNTEN = [
-    '..OFOWWKKWWOFO..',
-    '...OOwwwwwwOO...',
-    '...OKKOOOOKKO...'
-  ];
-
   // name wird nicht mehr unterschieden (es gibt nur noch eine Figur)
   function figurRaster(name, pose) {
-    if (pose === 'ducken') {
-      var leer = [];
-      for (var i = 0; i < 8; i++) leer.push('................');
-      return leer.concat(KOPF.slice(1), DUCKEN_UNTEN);
-    }
-    var kleid = pose === 'sprung' ? KLEID_SPRUNG : KLEID;
-    return KOPF.concat(kleid, BEINE[pose] || BEINE.lauf2);
+    return FIGUR[pose] || FIGUR.lauf2;
   }
 
   /* ---------- Hindernisse und Sammelobjekt ---------- */
