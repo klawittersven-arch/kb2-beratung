@@ -9,6 +9,10 @@
   --bernstein-hell: #FFF2D9;
 }
 * { box-sizing: border-box; }
+/* iPhone (Safari): zwei schnelle Berührungen zoomen sonst ins Bild – etwa wenn der Lauf endet, während man noch
+   „Springen“ tippt; Spielfeld und Knöpfe ragen dann aus dem Bildschirm. manipulation verbietet nur das Doppeltipp-Zoomen,
+   Scrollen bleibt. Für alle Elemente, weil Safari die Einstellung nicht in scrollbare Bereiche (#panel) weitergibt. */
+* { touch-action: manipulation; }
 html, body { margin: 0; height: 100%; }
 body.spiel {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
