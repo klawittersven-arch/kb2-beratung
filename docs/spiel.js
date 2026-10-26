@@ -823,6 +823,8 @@
     pausiert = false;
     groesseAnpassen();
     try { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); } catch (e) { /* egal */ }
+    // eine vorher (z. B. im Menü) entstandene Textauswahl samt „Kopieren“-Menü nicht ins Spiel mitnehmen
+    try { var auswahl = window.getSelection(); if (auswahl && auswahl.rangeCount) auswahl.removeAllRanges(); } catch (e) { /* egal */ }
     var jetzt = performance.now();
     letzteZeit = jetzt; naechstesBild = jetzt; akku = 0;
     messStart = jetzt; messBilder = 0; messFenster = 0; schlechteFenster = 0;
@@ -956,6 +958,16 @@
   });
   document.addEventListener('dblclick', function (e) { if (bildschirm === 'lauf') e.preventDefault(); });
   document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+  // iPhone: zwei schnelle Berührungen nicht als Doppeltipp-Zoom werten, auch außerhalb des Laufs (etwa direkt nach
+  // dem Ende, wenn man noch tippt). Das CSS (touch-action) verhindert das meist schon; Knöpfe, Links und Felder
+  // sind ausgenommen, die sollen normal reagieren.
+  var letzteBeruehrung = 0;
+  document.addEventListener('touchend', function (e) {
+    var schnell = e.timeStamp - letzteBeruehrung < 450;
+    letzteBeruehrung = e.timeStamp;
+    var ziel = e.target;
+    if (schnell && e.cancelable && !(ziel && ziel.closest && ziel.closest('button, a, input, label, select, textarea'))) e.preventDefault();
+  }, { passive: false });
 
   /* =====================================================================
      Größe: Spielfeld im Seitenverhältnis 16:9 einpassen (Hoch- und Querformat)
